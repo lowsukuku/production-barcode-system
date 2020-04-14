@@ -88,31 +88,37 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/client.cpp">
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Scaner/scaner.cpp">
 			<Option target="FinalProject_server_part"/>
 		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/client.h">
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Scaner/scaner.h">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/User/user.cpp">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/User/user.h">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/client.cpp">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/client.h">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/HttpHandler/httphandler.cpp">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/HttpHandler/httphandler.h">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/server.cpp">
+			<Option target="FinalProject_server_part"/>
+		</Unit>
+		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/server.h">
 			<Option target="FinalProject_server_part"/>
 		</Unit>
 		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/main.cpp">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/scaner.cpp">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/scaner.h">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/server.cpp">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/server.h">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/user.cpp">
-			<Option target="FinalProject_server_part"/>
-		</Unit>
-		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/user.h">
 			<Option target="FinalProject_server_part"/>
 		</Unit>
 		<Unit filename="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/CMakeLists.txt">

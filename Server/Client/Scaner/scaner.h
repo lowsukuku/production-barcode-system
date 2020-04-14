@@ -5,18 +5,18 @@
 #ifndef FINALPROJECT_SERVER_PART_SCANER_H
 #define FINALPROJECT_SERVER_PART_SCANER_H
 
-#include "client.h"
+#include "../client.h"
 class Scaner : public Client{
 public:
     Scaner();
 
-protected:
-
     bool singIn() override;
 
-    void mainLoop() override;
-
     bool isClientActive() override;
+
+protected:
+
+    void mainLoop() override;
 
 public:
     uint64_t id;

@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/client.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/client.cpp.o"
+  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Scaner/scaner.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o"
+  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/User/user.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o"
+  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/client.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.o"
+  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/HttpHandler/httphandler.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o"
+  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/server.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.o"
   "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/main.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/main.cpp.o"
-  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/scaner.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/scaner.cpp.o"
-  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/server.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/server.cpp.o"
-  "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/user.cpp" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/FinalProject_server_part.dir/user.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

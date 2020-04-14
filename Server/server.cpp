@@ -19,3 +19,7 @@ void Server::acceptor() {
 void Server::clientHandler() {
 
 }
+
+enum ClientType Server::getType() {
+    return user;
+}

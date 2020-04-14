@@ -123,32 +123,140 @@ FinalProject_server_part/fast:
 	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/build
 .PHONY : FinalProject_server_part/fast
 
-client.o: client.cpp.o
+Server/Client/Scaner/scaner.o: Server/Client/Scaner/scaner.cpp.o
 
-.PHONY : client.o
+.PHONY : Server/Client/Scaner/scaner.o
 
 # target to build an object file
-client.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/client.cpp.o
-.PHONY : client.cpp.o
+Server/Client/Scaner/scaner.cpp.o:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o
+.PHONY : Server/Client/Scaner/scaner.cpp.o
 
-client.i: client.cpp.i
+Server/Client/Scaner/scaner.i: Server/Client/Scaner/scaner.cpp.i
 
-.PHONY : client.i
+.PHONY : Server/Client/Scaner/scaner.i
 
 # target to preprocess a source file
-client.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/client.cpp.i
-.PHONY : client.cpp.i
+Server/Client/Scaner/scaner.cpp.i:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.i
+.PHONY : Server/Client/Scaner/scaner.cpp.i
 
-client.s: client.cpp.s
+Server/Client/Scaner/scaner.s: Server/Client/Scaner/scaner.cpp.s
 
-.PHONY : client.s
+.PHONY : Server/Client/Scaner/scaner.s
 
 # target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/client.cpp.s
-.PHONY : client.cpp.s
+Server/Client/Scaner/scaner.cpp.s:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.s
+.PHONY : Server/Client/Scaner/scaner.cpp.s
+
+Server/Client/User/user.o: Server/Client/User/user.cpp.o
+
+.PHONY : Server/Client/User/user.o
+
+# target to build an object file
+Server/Client/User/user.cpp.o:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o
+.PHONY : Server/Client/User/user.cpp.o
+
+Server/Client/User/user.i: Server/Client/User/user.cpp.i
+
+.PHONY : Server/Client/User/user.i
+
+# target to preprocess a source file
+Server/Client/User/user.cpp.i:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.i
+.PHONY : Server/Client/User/user.cpp.i
+
+Server/Client/User/user.s: Server/Client/User/user.cpp.s
+
+.PHONY : Server/Client/User/user.s
+
+# target to generate assembly for a file
+Server/Client/User/user.cpp.s:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.s
+.PHONY : Server/Client/User/user.cpp.s
+
+Server/Client/client.o: Server/Client/client.cpp.o
+
+.PHONY : Server/Client/client.o
+
+# target to build an object file
+Server/Client/client.cpp.o:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.o
+.PHONY : Server/Client/client.cpp.o
+
+Server/Client/client.i: Server/Client/client.cpp.i
+
+.PHONY : Server/Client/client.i
+
+# target to preprocess a source file
+Server/Client/client.cpp.i:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.i
+.PHONY : Server/Client/client.cpp.i
+
+Server/Client/client.s: Server/Client/client.cpp.s
+
+.PHONY : Server/Client/client.s
+
+# target to generate assembly for a file
+Server/Client/client.cpp.s:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.s
+.PHONY : Server/Client/client.cpp.s
+
+Server/HttpHandler/httphandler.o: Server/HttpHandler/httphandler.cpp.o
+
+.PHONY : Server/HttpHandler/httphandler.o
+
+# target to build an object file
+Server/HttpHandler/httphandler.cpp.o:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o
+.PHONY : Server/HttpHandler/httphandler.cpp.o
+
+Server/HttpHandler/httphandler.i: Server/HttpHandler/httphandler.cpp.i
+
+.PHONY : Server/HttpHandler/httphandler.i
+
+# target to preprocess a source file
+Server/HttpHandler/httphandler.cpp.i:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.i
+.PHONY : Server/HttpHandler/httphandler.cpp.i
+
+Server/HttpHandler/httphandler.s: Server/HttpHandler/httphandler.cpp.s
+
+.PHONY : Server/HttpHandler/httphandler.s
+
+# target to generate assembly for a file
+Server/HttpHandler/httphandler.cpp.s:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.s
+.PHONY : Server/HttpHandler/httphandler.cpp.s
+
+Server/server.o: Server/server.cpp.o
+
+.PHONY : Server/server.o
+
+# target to build an object file
+Server/server.cpp.o:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.o
+.PHONY : Server/server.cpp.o
+
+Server/server.i: Server/server.cpp.i
+
+.PHONY : Server/server.i
+
+# target to preprocess a source file
+Server/server.cpp.i:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.i
+.PHONY : Server/server.cpp.i
+
+Server/server.s: Server/server.cpp.s
+
+.PHONY : Server/server.s
+
+# target to generate assembly for a file
+Server/server.cpp.s:
+	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.s
+.PHONY : Server/server.cpp.s
 
 main.o: main.cpp.o
 
@@ -177,87 +285,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-scaner.o: scaner.cpp.o
-
-.PHONY : scaner.o
-
-# target to build an object file
-scaner.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/scaner.cpp.o
-.PHONY : scaner.cpp.o
-
-scaner.i: scaner.cpp.i
-
-.PHONY : scaner.i
-
-# target to preprocess a source file
-scaner.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/scaner.cpp.i
-.PHONY : scaner.cpp.i
-
-scaner.s: scaner.cpp.s
-
-.PHONY : scaner.s
-
-# target to generate assembly for a file
-scaner.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/scaner.cpp.s
-.PHONY : scaner.cpp.s
-
-server.o: server.cpp.o
-
-.PHONY : server.o
-
-# target to build an object file
-server.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/server.cpp.o
-.PHONY : server.cpp.o
-
-server.i: server.cpp.i
-
-.PHONY : server.i
-
-# target to preprocess a source file
-server.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/server.cpp.i
-.PHONY : server.cpp.i
-
-server.s: server.cpp.s
-
-.PHONY : server.s
-
-# target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/server.cpp.s
-.PHONY : server.cpp.s
-
-user.o: user.cpp.o
-
-.PHONY : user.o
-
-# target to build an object file
-user.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/user.cpp.o
-.PHONY : user.cpp.o
-
-user.i: user.cpp.i
-
-.PHONY : user.i
-
-# target to preprocess a source file
-user.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/user.cpp.i
-.PHONY : user.cpp.i
-
-user.s: user.cpp.s
-
-.PHONY : user.s
-
-# target to generate assembly for a file
-user.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/user.cpp.s
-.PHONY : user.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -267,21 +294,24 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... FinalProject_server_part"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
+	@echo "... Server/Client/Scaner/scaner.o"
+	@echo "... Server/Client/Scaner/scaner.i"
+	@echo "... Server/Client/Scaner/scaner.s"
+	@echo "... Server/Client/User/user.o"
+	@echo "... Server/Client/User/user.i"
+	@echo "... Server/Client/User/user.s"
+	@echo "... Server/Client/client.o"
+	@echo "... Server/Client/client.i"
+	@echo "... Server/Client/client.s"
+	@echo "... Server/HttpHandler/httphandler.o"
+	@echo "... Server/HttpHandler/httphandler.i"
+	@echo "... Server/HttpHandler/httphandler.s"
+	@echo "... Server/server.o"
+	@echo "... Server/server.i"
+	@echo "... Server/server.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... scaner.o"
-	@echo "... scaner.i"
-	@echo "... scaner.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
-	@echo "... user.o"
-	@echo "... user.i"
-	@echo "... user.s"
 .PHONY : help
 
 

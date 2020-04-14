@@ -5,8 +5,14 @@
 #ifndef FINALPROJECT_SERVER_PART_SERVER_H
 #define FINALPROJECT_SERVER_PART_SERVER_H
 
-#include "user.h"
-#include "scaner.h"
+#include <vector>
+#include "Client/User/user.h"
+#include "Client/Scaner/scaner.h"
+
+enum ClientType{
+    user,
+    scaner,
+};
 
 class Server {
 public:
@@ -18,6 +24,8 @@ private:
     void acceptor();
 
     void clientHandler();
+
+    enum ClientType getType();
 
 public:
     std::vector<User> users;

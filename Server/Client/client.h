@@ -5,7 +5,7 @@
 #ifndef FINALPROJECT_SERVER_PART_CLIENT_H
 #define FINALPROJECT_SERVER_PART_CLIENT_H
 
-#include <iostream>
+#include "../HttpHandler/httphandler.h"
 
 class Client {
 public:
@@ -13,21 +13,13 @@ public:
 
     virtual bool isClientActive()=0;
 
-protected:
-
     virtual bool singIn()=0;
+
+protected:
 
     virtual void mainLoop()=0;
 
-    std::string getHTTP();
-
-    std::string parseHTTP(std::string);
-
     std::string askDataBase(std::string);
-
-    std::string createHTTP(std::string);
-
-    void sendHTTP(std::string);
 
 protected:
     boost::asio::ip::tcp::socket socket;

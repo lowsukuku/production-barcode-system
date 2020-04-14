@@ -5,13 +5,11 @@
 #ifndef FINALPROJECT_SERVER_PART_USER_H
 #define FINALPROJECT_SERVER_PART_USER_H
 
-#include "client.h"
+#include "../client.h"
 
 class User : public Client{
 public:
     User();
-
-protected:
 
     bool singIn() override;
 
@@ -19,13 +17,15 @@ protected:
 
     uint64_t generateID();
 
-    bool isIDUsed();
-
-    void mainLoop() override;
-
     void saveExit();
 
     bool isClientActive() override;
+
+protected:
+
+    bool isIDUsed();
+
+    void mainLoop() override;
 
 public:
     std::string login;
