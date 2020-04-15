@@ -1,0 +1,1 @@
+void SysCallLib(unsigned int Index, int *Ret, unsigned char Argc, unsigned int Arg[]);
