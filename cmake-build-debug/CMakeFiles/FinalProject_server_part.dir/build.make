@@ -135,6 +135,19 @@ CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/HttpHandler/httphandler.cpp" -o CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.s
 
+CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o: CMakeFiles/FinalProject_server_part.dir/flags.make
+CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o: ../Server/Client/Router/router.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o -c "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Router/router.cpp"
+
+CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Router/router.cpp" > CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.i
+
+CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/Server/Client/Router/router.cpp" -o CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.s
+
 # Object files for target FinalProject_server_part
 FinalProject_server_part_OBJECTS = \
 "CMakeFiles/FinalProject_server_part.dir/main.cpp.o" \
@@ -142,7 +155,8 @@ FinalProject_server_part_OBJECTS = \
 "CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.o" \
 "CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o" \
 "CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o" \
-"CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o"
+"CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o" \
+"CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o"
 
 # External object files for target FinalProject_server_part
 FinalProject_server_part_EXTERNAL_OBJECTS =
@@ -153,12 +167,12 @@ FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/Server/Client/
 FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o
 FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o
 FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o
+FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o
 FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/build.make
-FinalProject_server_part: /usr/local/lib/libboost_system.dylib
-FinalProject_server_part: /usr/local/lib/libboost_thread.dylib
-FinalProject_server_part: /usr/local/lib/libboost_atomic.dylib
+FinalProject_server_part: /usr/lib/libssl.dylib
+FinalProject_server_part: /usr/lib/libcrypto.dylib
 FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable FinalProject_server_part"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable FinalProject_server_part"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FinalProject_server_part.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

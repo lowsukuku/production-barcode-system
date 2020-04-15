@@ -6,6 +6,7 @@
 #define FINALPROJECT_SERVER_PART_CLIENT_H
 
 #include "../HttpHandler/httphandler.h"
+#include "Router/router.h"
 
 class Client {
 public:

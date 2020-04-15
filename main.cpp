@@ -1,13 +1,6 @@
-#include <iostream>
-#include <boost/thread/thread.hpp>
-
-
-
-
-int main() {
-
-    std::string pages;
-    boost::thread_group hrefFabric;
-
+#include "Server/server.h"
+int main(int argc, char **argv) {
+    Server s;
+    s.start();
     return 0;
 }

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o"
   "CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o"
   "CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o"
   "CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.o"
