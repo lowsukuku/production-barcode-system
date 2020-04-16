@@ -7,11 +7,18 @@
 
 #include <iostream>
 
+struct HttpInfo{
+    std::string request;
+    std::string header;
+    std::string body;
+};
+
+
 class HttpHandler {
 public:
     std::string getHTTP();
 
-    std::string parseHTTP(std::string);
+    HttpInfo parseHTTP(std::string);
 
     std::string createHTTP(std::string);
 

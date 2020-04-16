@@ -15,7 +15,6 @@ public:
     bool isClientActive() override;
 
 protected:
-
     void mainLoop() override;
 
 public:
