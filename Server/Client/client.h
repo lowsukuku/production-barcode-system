@@ -1,30 +1,29 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
-#ifndef FINALPROJECT_SERVER_PART_CLIENT_H
-#define FINALPROJECT_SERVER_PART_CLIENT_H
+#ifndef HTTPSERVER_CLIENT_H
+#define HTTPSERVER_CLIENT_H
 
 #include "../HttpHandler/httphandler.h"
-#include "Router/router.h"
 
 class Client {
 public:
-    explicit Client(boost::asio::ip::tcp::socket sock=-1);
+    explicit Client(boost::asio::ip::tcp sock): sock(sock), worker(nullptr){}
 
-    virtual bool isClientActive()=0;
-
-    virtual bool singIn()=0;
+    virtual void handleClient(std::string request)=0;
 
 protected:
+    std::string getPostAnswer(std::string request);
 
-    virtual void mainLoop()=0;
+    std::string askDataBase(std::string request);
 
-    std::string askDataBase(std::string);
+    virtual bool signIn(std::string request)=0;
 
 protected:
-    boost::asio::ip::tcp::socket socket;
+    boost::asio::ip::tcp sock;
+    HttpHandler *worker;
 };
 
 
-#endif //FINALPROJECT_SERVER_PART_CLIENT_H
+#endif //HTTPSERVER_CLIENT_H

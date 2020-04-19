@@ -1,29 +1,56 @@
 //
-// Created by Daniil Tchyorny on 14.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
-#ifndef FINALPROJECT_SERVER_PART_HTTPHANDLER_H
-#define FINALPROJECT_SERVER_PART_HTTPHANDLER_H
-
+#ifndef HTTPSERVER_HTTPHANDLER_H
+#define HTTPSERVER_HTTPHANDLER_H
+#include <boost/beast/core.hpp>
+#include <boost/beast/websocket.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <cstdlib>
+#include <functional>
 #include <iostream>
+#include <string>
+#include <thread>
 
-struct HttpInfo{
-    std::string request;
-    std::string header;
-    std::string body;
+namespace beast = boost::beast;         // from <boost/beast.hpp>
+namespace http = beast::http;           // from <boost/beast/http.hpp>
+namespace websocket = beast::websocket; // from <boost/beast/websocket.hpp>
+namespace net = boost::asio;            // from <boost/asio.hpp>
+using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
+using namespace std;
+
+enum RequestType{
+    POST,
+    GET,
 };
 
+struct HttpRequest{
+    enum RequestType type;
+    std::string method;
+    uint64_t contentLenth;
+    std::string data;
+};
 
 class HttpHandler {
 public:
-    std::string getHTTP();
+    explicit HttpHandler(boost::asio::ip::tcp sock);
 
-    HttpInfo parseHTTP(std::string);
+    void getRequest();
 
-    std::string createHTTP(std::string);
+    void sendRequest(std::string data);
 
-    void sendHTTP(std::string);
+protected:
+    void parseRequest(std::string request);
+
+    std::string getRequestType(std::string request);
+
+    std::string dataToRequest(std::string data);
+
+private:
+    boost::asio::ip::tcp sock;
+    HttpRequest request;
 };
 
 
-#endif //FINALPROJECT_SERVER_PART_HTTPHANDLER_H
+#endif //HTTPSERVER_HTTPHANDLER_H

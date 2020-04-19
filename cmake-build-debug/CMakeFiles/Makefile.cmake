@@ -15,6 +15,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeDependentOption.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeFindCodeBlocks.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeFindDependencyMacro.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeGenericSystem.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeInitializeConfigs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/CMakeLanguageInformation.cmake"
@@ -29,10 +30,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/Compiler/Clang.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/Compiler/GNU.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindOpenSSL.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindBoost.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindPackageHandleStandardArgs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindPackageMessage.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindPkgConfig.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindPythonInterp.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/FindThreads.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.15/Modules/GNUInstallDirs.cmake"
@@ -61,6 +61,15 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.15.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.15.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.15.3/CMakeSystem.cmake"
+  "/usr/local/lib/cmake/Boost-1.72.0/BoostConfig.cmake"
+  "/usr/local/lib/cmake/Boost-1.72.0/BoostConfigVersion.cmake"
+  "/usr/local/lib/cmake/BoostDetectToolset-1.72.0.cmake"
+  "/usr/local/lib/cmake/boost_headers-1.72.0/boost_headers-config-version.cmake"
+  "/usr/local/lib/cmake/boost_headers-1.72.0/boost_headers-config.cmake"
+  "/usr/local/lib/cmake/boost_thread-1.72.0/boost_thread-config-version.cmake"
+  "/usr/local/lib/cmake/boost_thread-1.72.0/boost_thread-config.cmake"
+  "/usr/local/lib/cmake/boost_thread-1.72.0/libboost_thread-variant-mt-shared.cmake"
+  "/usr/local/lib/cmake/boost_thread-1.72.0/libboost_thread-variant-mt-static.cmake"
   )
 
 # The corresponding makefile is:
@@ -80,7 +89,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/FinalProject_server_part.dir/DependInfo.cmake"
+  "CMakeFiles/HttpServer.dir/DependInfo.cmake"
   "Tests/CMakeFiles/Tests.dir/DependInfo.cmake"
   "Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"

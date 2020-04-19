@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part"
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer"
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug
+-- Build files have been written to: /Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug

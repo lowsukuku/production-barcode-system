@@ -1,35 +1,36 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
-#ifndef FINALPROJECT_SERVER_PART_USER_H
-#define FINALPROJECT_SERVER_PART_USER_H
+#ifndef HTTPSERVER_USER_H
+#define HTTPSERVER_USER_H
 
 #include "../client.h"
+#include "./Router/router.h"
+struct UserData{
+    std::string login;
+    std::string password;
+};
 
 class User : public Client{
 public:
-    User();
+    void handleClient(std::string request) override;
 
-    bool singIn() override;
+protected:
+    bool signIn(std::string request) override;
 
-    bool singUp();
+    bool signUp(std::string request);
 
     uint64_t generateID();
 
-    void saveExit();
+private:
+    bool isIdUsed();
 
-    bool isClientActive() override;
+    UserData getsingInData(std::string data);
 
-protected:
-
-    bool isIDUsed();
-
-    void mainLoop() override;
-
-public:
-    std::string login;
+private:
+    Router rout;
 };
 
 
-#endif //FINALPROJECT_SERVER_PART_USER_H
+#endif //HTTPSERVER_USER_H

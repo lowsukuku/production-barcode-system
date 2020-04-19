@@ -1,37 +1,29 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
 #include "user.h"
 
-User::User() {
-
-}
-
-bool User::singIn() {
+bool User::signIn(std::string) {
     return false;
 }
 
-bool User::singUp() {
+bool User::signUp(std::string request) {
     return false;
+}
+
+void User::handleClient(std::string request) {
+
 }
 
 uint64_t User::generateID() {
     return 0;
 }
 
-bool User::isIDUsed() {
+bool User::isIdUsed() {
     return false;
 }
 
-void User::mainLoop() {
-
-}
-
-void User::saveExit() {
-
-}
-
-bool User::isClientActive() {
-    return false;
+UserData User::getsingInData(std::string data) {
+    return UserData();
 }

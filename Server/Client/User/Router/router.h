@@ -1,22 +1,18 @@
 //
-// Created by Daniil Tchyorny on 15.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
-#ifndef FINALPROJECT_SERVER_PART_ROUTER_H
-#define FINALPROJECT_SERVER_PART_ROUTER_H
+#ifndef HTTPSERVER_ROUTER_H
+#define HTTPSERVER_ROUTER_H
 
 #include <iostream>
 
+
 class Router {
 public:
-    std::string parse(std::string);
+    std::string getAnswer(std::string body);
+
 private:
-    std::string  signInUser(std::string);
-
-    std::string signUpUser(std::string);
-
-    std::string  signInScaner(std::string);
-
     std::string fixDevice(std::string);
 
     std::string addDevice(std::string);
@@ -31,11 +27,13 @@ private:
 
     std::string getDevices(std::string);
 
+    std::string getModels(std::string);
+
     std::string checkIdProduct(std::string);
 
 private:
-   // DbMannager db;//объект класса Ильи
+    //DbManager db;//Iliya's class object
 };
 
 
-#endif //FINALPROJECT_SERVER_PART_ROUTER_H
+#endif //HTTPSERVER_ROUTER_H

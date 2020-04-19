@@ -1,25 +1,25 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
 #include "server.h"
 
-void Server::start() {
+void server::start() {
 
 }
 
-void Server::stop() {
+void server::stop() {
 
 }
 
-void Server::acceptor() {
+void server::acceptor() {
 
 }
 
-void Server::clientHandler() {
+void server::clientHandler() {
 
 }
 
-enum ClientType Server::getType() {
+enum ClientType server::getType() {
     return user;
 }

@@ -44,22 +44,22 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part"
+CMAKE_SOURCE_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/FinalProject_server_part.dir/all
+all: CMakeFiles/HttpServer.dir/all
 all: Tests/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
-clean: CMakeFiles/FinalProject_server_part.dir/clean
+clean: CMakeFiles/HttpServer.dir/clean
 clean: Tests/clean
 
 .PHONY : clean
@@ -70,31 +70,31 @@ preinstall: Tests/preinstall
 .PHONY : preinstall
 
 #=============================================================================
-# Target rules for target CMakeFiles/FinalProject_server_part.dir
+# Target rules for target CMakeFiles/HttpServer.dir
 
 # All Build rule for target.
-CMakeFiles/FinalProject_server_part.dir/all:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/depend
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8 "Built target FinalProject_server_part"
-.PHONY : CMakeFiles/FinalProject_server_part.dir/all
+CMakeFiles/HttpServer.dir/all:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/depend
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8 "Built target HttpServer"
+.PHONY : CMakeFiles/HttpServer.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/FinalProject_server_part.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 8
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/FinalProject_server_part.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
-.PHONY : CMakeFiles/FinalProject_server_part.dir/rule
+CMakeFiles/HttpServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 8
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/HttpServer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
+.PHONY : CMakeFiles/HttpServer.dir/rule
 
 # Convenience name for target.
-FinalProject_server_part: CMakeFiles/FinalProject_server_part.dir/rule
+HttpServer: CMakeFiles/HttpServer.dir/rule
 
-.PHONY : FinalProject_server_part
+.PHONY : HttpServer
 
 # clean rule for target.
-CMakeFiles/FinalProject_server_part.dir/clean:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/clean
-.PHONY : CMakeFiles/FinalProject_server_part.dir/clean
+CMakeFiles/HttpServer.dir/clean:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/clean
+.PHONY : CMakeFiles/HttpServer.dir/clean
 
 #=============================================================================
 # Directory level rules for directory Tests
@@ -125,14 +125,14 @@ Tests/CMakeFiles/Tests.dir/all: Tests/lib/googletest/googletest/CMakeFiles/gtest
 Tests/CMakeFiles/Tests.dir/all: Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f Tests/CMakeFiles/Tests.dir/build.make Tests/CMakeFiles/Tests.dir/depend
 	$(MAKE) -f Tests/CMakeFiles/Tests.dir/build.make Tests/CMakeFiles/Tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=9,10 "Built target Tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=9,10 "Built target Tests"
 .PHONY : Tests/CMakeFiles/Tests.dir/all
 
 # Build rule for subdir invocation for target.
 Tests/CMakeFiles/Tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 8
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 8
 	$(MAKE) -f CMakeFiles/Makefile2 Tests/CMakeFiles/Tests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : Tests/CMakeFiles/Tests.dir/rule
 
 # Convenience name for target.
@@ -192,14 +192,14 @@ Tests/lib/googletest/googlemock/preinstall: Tests/lib/googletest/googletest/prei
 Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/all: Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=11,12 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=11,12 "Built target gmock"
 .PHONY : Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
 Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 4
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 4
 	$(MAKE) -f CMakeFiles/Makefile2 Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/rule
 
 # Convenience name for target.
@@ -220,14 +220,14 @@ Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all: Tests/lib/googlet
 Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all: Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=13,14 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=13,14 "Built target gmock_main"
 .PHONY : Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
 Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 6
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 6
 	$(MAKE) -f CMakeFiles/Makefile2 Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/rule
 
 # Convenience name for target.
@@ -267,14 +267,14 @@ Tests/lib/googletest/googletest/preinstall:
 Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/all: Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=17,18 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=17,18 "Built target gtest_main"
 .PHONY : Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 4
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 4
 	$(MAKE) -f CMakeFiles/Makefile2 Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -294,14 +294,14 @@ Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/clean:
 Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" --progress-num=15,16 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" --progress-num=15,16 "Built target gtest"
 .PHONY : Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) -f CMakeFiles/Makefile2 Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.

@@ -1,28 +1,27 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
-#ifndef FINALPROJECT_SERVER_PART_SCANER_H
-#define FINALPROJECT_SERVER_PART_SCANER_H
+#ifndef HTTPSERVER_SCANER_H
+#define HTTPSERVER_SCANER_H
+
 
 #include "../client.h"
 class Scaner : public Client{
 public:
-    Scaner();
+    explicit Scaner(boost::asio::ip::tcp sock);
 
-    bool singIn() override;
-
-    bool isClientActive() override;
+    void handleClient(std::string request) override;
 
 protected:
-    void mainLoop() override;
+    bool signIn(std::string request) override;
 
-public:
-    uint64_t id;
 private:
-    time_t lastActiveTime;
+    uint64_t getScanerID(std::string request);
 
+private:
+    uint64_t id;
 };
 
 
-#endif //FINALPROJECT_SERVER_PART_SCANER_H
+#endif //HTTPSERVER_SCANER_H

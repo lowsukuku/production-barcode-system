@@ -1,22 +1,10 @@
 //
-// Created by Daniil Tchyorny on 15.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
 #include "router.h"
 
-std::string Router::parse(std::string) {
-    return std::string();
-}
-
-std::string Router::signInUser(std::string) {
-    return std::string();
-}
-
-std::string Router::signUpUser(std::string) {
-    return std::string();
-}
-
-std::string Router::signInScaner(std::string) {
+std::string Router::getAnswer(std::string body) {
     return std::string();
 }
 
@@ -45,6 +33,10 @@ std::string Router::fixModel(std::string) {
 }
 
 std::string Router::getDevices(std::string) {
+    return std::string();
+}
+
+std::string Router::getModels(std::string) {
     return std::string();
 }
 

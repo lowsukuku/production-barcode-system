@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part"
+CMAKE_SOURCE_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,28 +67,6 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -124,11 +102,33 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/FinalProject_server_part/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named FinalProject_server_part
+# Target rules for targets named HttpServer
 
 # Build rule for target.
-FinalProject_server_part: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 FinalProject_server_part
-.PHONY : FinalProject_server_part
+HttpServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 HttpServer
+.PHONY : HttpServer
 
 # fast build rule for target.
-FinalProject_server_part/fast:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/build
-.PHONY : FinalProject_server_part/fast
+HttpServer/fast:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/build
+.PHONY : HttpServer/fast
 
 #=============================================================================
 # Target rules for targets named Tests
@@ -234,40 +234,13 @@ gtest/fast:
 	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
-Server/Client/Router/router.o: Server/Client/Router/router.cpp.o
-
-.PHONY : Server/Client/Router/router.o
-
-# target to build an object file
-Server/Client/Router/router.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.o
-.PHONY : Server/Client/Router/router.cpp.o
-
-Server/Client/Router/router.i: Server/Client/Router/router.cpp.i
-
-.PHONY : Server/Client/Router/router.i
-
-# target to preprocess a source file
-Server/Client/Router/router.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.i
-.PHONY : Server/Client/Router/router.cpp.i
-
-Server/Client/Router/router.s: Server/Client/Router/router.cpp.s
-
-.PHONY : Server/Client/Router/router.s
-
-# target to generate assembly for a file
-Server/Client/Router/router.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Router/router.cpp.s
-.PHONY : Server/Client/Router/router.cpp.s
-
 Server/Client/Scaner/scaner.o: Server/Client/Scaner/scaner.cpp.o
 
 .PHONY : Server/Client/Scaner/scaner.o
 
 # target to build an object file
 Server/Client/Scaner/scaner.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Scaner/scaner.cpp.o
 .PHONY : Server/Client/Scaner/scaner.cpp.o
 
 Server/Client/Scaner/scaner.i: Server/Client/Scaner/scaner.cpp.i
@@ -276,7 +249,7 @@ Server/Client/Scaner/scaner.i: Server/Client/Scaner/scaner.cpp.i
 
 # target to preprocess a source file
 Server/Client/Scaner/scaner.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Scaner/scaner.cpp.i
 .PHONY : Server/Client/Scaner/scaner.cpp.i
 
 Server/Client/Scaner/scaner.s: Server/Client/Scaner/scaner.cpp.s
@@ -285,8 +258,35 @@ Server/Client/Scaner/scaner.s: Server/Client/Scaner/scaner.cpp.s
 
 # target to generate assembly for a file
 Server/Client/Scaner/scaner.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/Scaner/scaner.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Scaner/scaner.cpp.s
 .PHONY : Server/Client/Scaner/scaner.cpp.s
+
+Server/Client/User/Router/router.o: Server/Client/User/Router/router.cpp.o
+
+.PHONY : Server/Client/User/Router/router.o
+
+# target to build an object file
+Server/Client/User/Router/router.cpp.o:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.o
+.PHONY : Server/Client/User/Router/router.cpp.o
+
+Server/Client/User/Router/router.i: Server/Client/User/Router/router.cpp.i
+
+.PHONY : Server/Client/User/Router/router.i
+
+# target to preprocess a source file
+Server/Client/User/Router/router.cpp.i:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.i
+.PHONY : Server/Client/User/Router/router.cpp.i
+
+Server/Client/User/Router/router.s: Server/Client/User/Router/router.cpp.s
+
+.PHONY : Server/Client/User/Router/router.s
+
+# target to generate assembly for a file
+Server/Client/User/Router/router.cpp.s:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.s
+.PHONY : Server/Client/User/Router/router.cpp.s
 
 Server/Client/User/user.o: Server/Client/User/user.cpp.o
 
@@ -294,7 +294,7 @@ Server/Client/User/user.o: Server/Client/User/user.cpp.o
 
 # target to build an object file
 Server/Client/User/user.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/user.cpp.o
 .PHONY : Server/Client/User/user.cpp.o
 
 Server/Client/User/user.i: Server/Client/User/user.cpp.i
@@ -303,7 +303,7 @@ Server/Client/User/user.i: Server/Client/User/user.cpp.i
 
 # target to preprocess a source file
 Server/Client/User/user.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/user.cpp.i
 .PHONY : Server/Client/User/user.cpp.i
 
 Server/Client/User/user.s: Server/Client/User/user.cpp.s
@@ -312,7 +312,7 @@ Server/Client/User/user.s: Server/Client/User/user.cpp.s
 
 # target to generate assembly for a file
 Server/Client/User/user.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/User/user.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/user.cpp.s
 .PHONY : Server/Client/User/user.cpp.s
 
 Server/Client/client.o: Server/Client/client.cpp.o
@@ -321,7 +321,7 @@ Server/Client/client.o: Server/Client/client.cpp.o
 
 # target to build an object file
 Server/Client/client.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/client.cpp.o
 .PHONY : Server/Client/client.cpp.o
 
 Server/Client/client.i: Server/Client/client.cpp.i
@@ -330,7 +330,7 @@ Server/Client/client.i: Server/Client/client.cpp.i
 
 # target to preprocess a source file
 Server/Client/client.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/client.cpp.i
 .PHONY : Server/Client/client.cpp.i
 
 Server/Client/client.s: Server/Client/client.cpp.s
@@ -339,7 +339,7 @@ Server/Client/client.s: Server/Client/client.cpp.s
 
 # target to generate assembly for a file
 Server/Client/client.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/Client/client.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/client.cpp.s
 .PHONY : Server/Client/client.cpp.s
 
 Server/HttpHandler/httphandler.o: Server/HttpHandler/httphandler.cpp.o
@@ -348,7 +348,7 @@ Server/HttpHandler/httphandler.o: Server/HttpHandler/httphandler.cpp.o
 
 # target to build an object file
 Server/HttpHandler/httphandler.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/HttpHandler/httphandler.cpp.o
 .PHONY : Server/HttpHandler/httphandler.cpp.o
 
 Server/HttpHandler/httphandler.i: Server/HttpHandler/httphandler.cpp.i
@@ -357,7 +357,7 @@ Server/HttpHandler/httphandler.i: Server/HttpHandler/httphandler.cpp.i
 
 # target to preprocess a source file
 Server/HttpHandler/httphandler.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/HttpHandler/httphandler.cpp.i
 .PHONY : Server/HttpHandler/httphandler.cpp.i
 
 Server/HttpHandler/httphandler.s: Server/HttpHandler/httphandler.cpp.s
@@ -366,7 +366,7 @@ Server/HttpHandler/httphandler.s: Server/HttpHandler/httphandler.cpp.s
 
 # target to generate assembly for a file
 Server/HttpHandler/httphandler.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/HttpHandler/httphandler.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/HttpHandler/httphandler.cpp.s
 .PHONY : Server/HttpHandler/httphandler.cpp.s
 
 Server/server.o: Server/server.cpp.o
@@ -375,7 +375,7 @@ Server/server.o: Server/server.cpp.o
 
 # target to build an object file
 Server/server.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/server.cpp.o
 .PHONY : Server/server.cpp.o
 
 Server/server.i: Server/server.cpp.i
@@ -384,7 +384,7 @@ Server/server.i: Server/server.cpp.i
 
 # target to preprocess a source file
 Server/server.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/server.cpp.i
 .PHONY : Server/server.cpp.i
 
 Server/server.s: Server/server.cpp.s
@@ -393,7 +393,7 @@ Server/server.s: Server/server.cpp.s
 
 # target to generate assembly for a file
 Server/server.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/Server/server.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/server.cpp.s
 .PHONY : Server/server.cpp.s
 
 main.o: main.cpp.o
@@ -402,7 +402,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -411,7 +411,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -420,7 +420,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/FinalProject_server_part.dir/build.make CMakeFiles/FinalProject_server_part.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -430,23 +430,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... install/strip"
+	@echo "... HttpServer"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... FinalProject_server_part"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
 	@echo "... Tests"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... Server/Client/Router/router.o"
-	@echo "... Server/Client/Router/router.i"
-	@echo "... Server/Client/Router/router.s"
 	@echo "... Server/Client/Scaner/scaner.o"
 	@echo "... Server/Client/Scaner/scaner.i"
 	@echo "... Server/Client/Scaner/scaner.s"
+	@echo "... Server/Client/User/Router/router.o"
+	@echo "... Server/Client/User/Router/router.i"
+	@echo "... Server/Client/User/Router/router.s"
 	@echo "... Server/Client/User/user.o"
 	@echo "... Server/Client/User/user.i"
 	@echo "... Server/Client/User/user.s"

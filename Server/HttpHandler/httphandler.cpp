@@ -1,21 +1,29 @@
 //
-// Created by Daniil Tchyorny on 14.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
 #include "httphandler.h"
 
-std::string HttpHandler::getHTTP() {
+HttpHandler::HttpHandler(boost::asio::ip::tcp sock) :sock(sock){
+
+}
+
+void HttpHandler::getRequest() {
+
+}
+
+void HttpHandler::sendRequest(std::string data) {
+
+}
+
+void HttpHandler::parseRequest(std::string request) {
+
+}
+
+std::string HttpHandler::getRequestType(std::string request) {
     return std::string();
 }
 
-std::string HttpHandler::parseHTTP(std::string) {
+std::string HttpHandler::dataToRequest(std::string data) {
     return std::string();
-}
-
-std::string HttpHandler::createHTTP(std::string) {
-    return std::string();
-}
-
-void HttpHandler::sendHTTP(std::string) {
-
 }

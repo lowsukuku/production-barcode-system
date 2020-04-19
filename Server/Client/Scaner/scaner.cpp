@@ -1,21 +1,21 @@
 //
-// Created by Daniil Tchyorny on 13.04.2020.
+// Created by Daniil Tchyorny on 19.04.2020.
 //
 
 #include "scaner.h"
 
-bool Scaner::singIn() {
+Scaner::Scaner(boost::asio::ip::tcp sock) : Client(sock), id(0) {
+
+}
+
+void Scaner::handleClient(std::string request) {
+
+}
+
+bool Scaner::signIn(std::string request) {
     return false;
 }
 
-void Scaner::mainLoop() {
-
-}
-
-bool Scaner::isClientActive() {
-    return false;
-}
-
-Scaner::Scaner() {
-
+uint64_t Scaner::getScanerID(std::string request) {
+    return 0;
 }
