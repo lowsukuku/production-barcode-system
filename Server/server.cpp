@@ -4,22 +4,23 @@
 
 #include "server.h"
 
-void server::start() {
+void Server::start() {
 
 }
 
-void server::stop() {
+void Server::stop() {
 
 }
 
-void server::acceptor() {
+void Server::acceptor() {
 
 }
 
-void server::clientHandler() {
+void Server::clientHandler() {
 
 }
 
-enum ClientType server::getType() {
+enum ClientType Server::getType() {
     return user;
 }
+
