@@ -30,7 +30,7 @@ public:
     std::vector<Scaner> devices;
 private:
     net::io_context ioc{1};
-    boost::asio::ip::tcp::endpoint sock;
+    tcp::acceptor sock;
 };
 
 

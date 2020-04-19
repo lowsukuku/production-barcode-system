@@ -9,7 +9,7 @@
 
 class Client {
 public:
-    explicit Client(boost::asio::ip::tcp sock): sock(sock), worker(nullptr){}
+    explicit Client(tcp sock): sock(sock), worker(nullptr){}
 
     virtual void handleClient(std::string request)=0;
 
@@ -21,7 +21,7 @@ protected:
     virtual bool signIn(std::string request)=0;
 
 protected:
-    boost::asio::ip::tcp sock;
+    tcp sock;
     HttpHandler *worker;
 };
 

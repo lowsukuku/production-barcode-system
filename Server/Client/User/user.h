@@ -26,10 +26,11 @@ protected:
 private:
     bool isIdUsed();
 
-    UserData getsingInData(std::string data);
+    UserData getSingInData(std::string data);
 
 private:
     Router rout;
+    UserData personalInfo;
 };
 
 

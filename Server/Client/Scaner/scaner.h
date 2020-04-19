@@ -9,7 +9,7 @@
 #include "../client.h"
 class Scaner : public Client{
 public:
-    explicit Scaner(boost::asio::ip::tcp sock);
+    explicit Scaner(tcp sock);
 
     void handleClient(std::string request) override;
 

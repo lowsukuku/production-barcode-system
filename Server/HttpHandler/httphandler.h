@@ -28,7 +28,7 @@ enum RequestType{
 struct HttpRequest{
     enum RequestType type;
     std::string method;
-    uint64_t contentLenth;
+    uint64_t contentLength;
     std::string data;
 };
 
@@ -48,7 +48,7 @@ protected:
     std::string dataToRequest(std::string data);
 
 private:
-    boost::asio::ip::tcp sock;
+    tcp sock;
     HttpRequest request;
 };
 
