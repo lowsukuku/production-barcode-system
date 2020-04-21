@@ -33,3 +33,5 @@
 
 build*/
 *pro.user*
+*txt.user*
+Texnopark_cpp_project/CMakeLists.txt.user

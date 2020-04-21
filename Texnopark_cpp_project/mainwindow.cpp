@@ -3,6 +3,14 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    initLayout();
+    initSignalsAndSlots();
+    authorizationForm->show();
+
+}
+
+void MainWindow::initLayout()
+{
     setWindowTitle("Система штрих-кодирования");
 
     authorizationForm = new AuthorizationForm();
@@ -29,7 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     body->setLayout(mainLayout);
     setCentralWidget(body);
+}
 
+void MainWindow::initSignalsAndSlots()
+{
     connect(addProtuctTypeBtn, SIGNAL(clicked()), this, SLOT(onClickedAddProtuctTypeBtn()));
     connect(addProtuctBtn, SIGNAL(clicked()), this, SLOT(onClickedAddProtuctBtn()));
     connect(tabWidget,SIGNAL(tabBarClicked(int)),this, SLOT(onClickedTabBar(int)));
@@ -44,9 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
              this, SLOT(tabProdChangeTypes(const QString &)));
     connect( prodTab->getProductIdsComboBox(), SIGNAL(currentTextChanged(const QString&)),
              this, SLOT(tabProdChangeId(const QString &)));
-
-    // needPrintBarecode(const QList<QImage>& img);
-   // void needSaveBarecode(const QList<QImage>& img);
     connect(addProductForm, SIGNAL(needPrintBarecode(const QList<QImage>& )), this, SLOT(printBarecode(const QList<QImage> &)));
     connect(addProductForm, SIGNAL(needSaveBarecode(const QList<QImage>& )), this, SLOT(saveBarecode(const QList<QImage> &)));
 
@@ -54,8 +62,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(prodTab, SIGNAL(needSaveBarecode(const QList<QImage>& )), this, SLOT(saveBarecode(const QList<QImage> &)));
 
     connect(authorizationForm->getButtonEnter(), SIGNAL(clicked()),this, SLOT(authorizate()));
-    authorizationForm->show();
 
+    connect(prodTypesTab->getProductTypeTable(), SIGNAL(cellDoubleClicked(int, int)), this, SLOT(tabProdTypesOnDoubleClicked(int, int)));
+    connect(prodByTypesTab->getProductsTable(), SIGNAL(cellDoubleClicked(int, int)), this, SLOT(tabProdByTypesOnDoubleClicked(int, int)));
 }
 
 MainWindow::~MainWindow()
@@ -69,7 +78,6 @@ void MainWindow::onClickedAddProtuctTypeBtn(){
 }
 
 void MainWindow::onClickedAddProtuctBtn(){
-    addProductForm->setBarecodeButtonsHidden();
     this->addProductForm->show();
 }
 
@@ -99,6 +107,8 @@ void MainWindow::tabProdByTypesChangedTypes(const QString &text)
     prodByTypesTab->updateTableData({});
 }
 
+
+
 void MainWindow::tabProdChangeTypes(const QString &text)
 {
     qDebug()<<"tabProdChangeTypes "<<text<<"\n";
@@ -124,7 +134,26 @@ void MainWindow::saveBarecode(const QList<QImage> &img)
 
 void MainWindow::authorizate()
 {
-    qDebug()<<"Login "<<authorizationForm->getUserName();
+     qDebug()<<"Login "<<authorizationForm->getUserName();
      qDebug()<<"Password "<<authorizationForm->getPassword()<<"\n";
-     authorizationForm->afterLoginRequest(true);
+     bool flag = !authorizationForm->getUserName().isEmpty() && !authorizationForm->getPassword().isEmpty();
+     authorizationForm->afterLoginRequest(flag);
+}
+
+
+
+void MainWindow::tabProdTypesOnDoubleClicked(int row, int column)
+{
+    qDebug()<<"tabProdTypesOnDoubleClicked"<<row<<" "<<column<<" " <<((QLabel*)(prodTypesTab->getProductTypeTable()->cellWidget(row,column)))->text()<<"\n";
+    //prodByTypesTab->updateProductTypes({prodTypesTab->getProductTypeTable()->cellWidget(row,column)});
+    prodByTypesTab->updateTableData({});
+    prodTab->updateProductTypes({});
+    prodTab->updateIds({});
+    tabWidget->setCurrentWidget(prodByTypesTab);
+}
+
+void MainWindow::tabProdByTypesOnDoubleClicked(int row, int column)
+{
+    qDebug()<<"tabProdTypesOnDoubleClicked"<<row<<" "<<column<<" " <<((QLabel*)(prodByTypesTab->getProductsTable()->cellWidget(row,column)))->text()<<"\n";
+    tabWidget->setCurrentWidget(prodTab);
 }

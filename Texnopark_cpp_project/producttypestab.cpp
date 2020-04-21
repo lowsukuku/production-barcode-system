@@ -9,7 +9,8 @@ ProductTypesTab::ProductTypesTab(QWidget *parent) : QWidget(parent)
     for(int i=0; i<5; i++){
         productTypesTable.insertRow(i);
         for(int j=0; j< 7; j++)
-        productTypesTable.setItem(i,j, new QTableWidgetItem("col"+QString::number(i)+" "+ QString::number(j)));
+       // productTypesTable.setItem(i,j, new QTableWidgetItem("col"+QString::number(i)+" "+ QString::number(j)));
+        productTypesTable.setCellWidget(i,j, new QLabel("col"+QString::number(i)+" "+ QString::number(j)));
     }
     productTypesTable.resizeColumnsToContents();
     productTypesTable.resizeRowsToContents();

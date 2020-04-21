@@ -10,6 +10,7 @@ public:
     explicit AllProductsTab(QWidget *parent = nullptr);
 
     void updateTableData(const QStringList data);
+    QTableWidget* getProductsTable(){return &productsTable;}
     ~AllProductsTab(){}
 
 private:

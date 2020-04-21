@@ -9,7 +9,7 @@ AllProductsTab::AllProductsTab(QWidget *parent) : QWidget(parent)
     for(int i=0; i<5; i++){
         productsTable.insertRow(i);
         for(int j=0; j< 4; j++)
-        productsTable.setItem(i,j, new QTableWidgetItem("col"+QString::number(i)+" "+ QString::number(j)));
+        productsTable.setCellWidget(i,j, new QLabel("col"+QString::number(i)+" "+ QString::number(j)));
     }
     productsTable.resizeColumnsToContents();
     productsTable.resizeRowsToContents();

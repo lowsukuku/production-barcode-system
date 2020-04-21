@@ -9,6 +9,8 @@ public:
     explicit AuthorizationForm(QWidget *parent = nullptr);
     const QString getUserName(){return  userName.text();}
     const QString getPassword(){return password.text();}
+    void setUserName(const QString& name){userName.setText(name);}
+    void setPassword(const QString& pswd){password.setText(pswd);}
     const QPushButton* getButtonEnter(){return &enter;}
     void  afterLoginRequest(bool isAuthorized);
 protected: void closeEvent(QCloseEvent *event)

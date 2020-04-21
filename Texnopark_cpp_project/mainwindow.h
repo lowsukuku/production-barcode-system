@@ -42,6 +42,10 @@ public slots:
 
     //для таба изделия по моделям
     void tabProdByTypesChangedTypes(const QString &text);
+    void tabProdByTypesOnDoubleClicked(int row, int column);
+
+    //для таба моделей
+    void tabProdTypesOnDoubleClicked(int row, int column);
 
     //для таба отдельного изделия
     void tabProdChangeTypes(const QString &text);
@@ -53,7 +57,11 @@ public slots:
 
     //для авторизации
      void authorizate();
-
+private:
+     void initLayout();
+     void initSignalsAndSlots();
 
 };
+
+
 #endif // MAINWINDOW_H

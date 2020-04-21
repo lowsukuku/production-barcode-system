@@ -12,12 +12,16 @@ public:
 
     const QString getCurrentProductType();
     const QString getCurrentAmount();
+    void setCurrentProductType(const QString& type){}
     const QPushButton* getSubmitButton(){return &submit;}
+    const QPushButton* getSaveBarecodeButton(){return &saveBareCodeInFileBtn;}
+     const QPushButton* getPrintBarecodeButton(){return &printBareCodeBtn;}
     void updateAfterSubmit(const QStringList& ids, const QList<QImage>& barecodes);
     void setBarecodeButtonsHidden(){
         printBareCodeBtn.setHidden(true);
         saveBareCodeInFileBtn.setHidden(true);
     }
+    bool isBarecodeButtonsHidden(){return printBareCodeBtn.isHidden()&&saveBareCodeInFileBtn.isHidden();}
      ~AddProductForm();
 signals:
    void needPrintBarecode(const QList<QImage>& img);

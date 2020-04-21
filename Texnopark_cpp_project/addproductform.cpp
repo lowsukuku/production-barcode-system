@@ -10,8 +10,8 @@ AddProductForm::AddProductForm(QWidget *parent):QDialog(parent)
     productTypes.addItems({"type1", "type2", "type3"});
     saveBareCodeInFileBtn.setText("Сохранить в файл");
     printBareCodeBtn.setText("Печать");
-    //saveBareCodeInFileBtn.setHidden(true);
-    //printBareCodeBtn.setHidden(true);
+    saveBareCodeInFileBtn.setHidden(true);
+    printBareCodeBtn.setHidden(true);
     amountOfProducts.setMinimum(1);
     layout.addWidget(&productTypes);
     layout.addWidget(&amountOfProducts);
@@ -51,6 +51,7 @@ void AddProductForm::updateAfterSubmit(const QStringList &ids, const QList<QImag
 void AddProductForm::onClickedPrintBareCode()
 {
     qDebug()<<"onClickedPrintBareCode\n";
+    setBarecodeButtonsHidden();
     hide();
     emit needPrintBarecode({});
 }
@@ -58,6 +59,7 @@ void AddProductForm::onClickedPrintBareCode()
 void AddProductForm::onClickedSaveBareCodeInFile()
 {
      qDebug()<<"onClickedSaveBareCodeInFile\n";
+     setBarecodeButtonsHidden();
      hide();
      emit needSaveBarecode({});
 }

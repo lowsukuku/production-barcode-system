@@ -11,7 +11,8 @@ public:
 
     void updateTableData(const QStringList data);
     void updateProductTypes(const QStringList productTypes);
-    const QComboBox* getProductTypesComboBox(){return & productTypes;}
+    QComboBox* getProductTypesComboBox(){return & productTypes;}
+    QTableWidget* getProductsTable(){ return &productsTable;}
     ~ProductsByTypesTab(){}
 private:
     QVBoxLayout layout;

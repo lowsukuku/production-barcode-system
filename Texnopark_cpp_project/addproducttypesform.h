@@ -10,6 +10,7 @@ public:
     explicit AddProductTypesForm(QWidget *parent = nullptr);
     const QPushButton* getSubmitButton(){return &submit;}
     const QString getCurrentProductTypeNameInput(){return productTypeNameInput.text();}
+    void setProductTypeName(const QString& name){productTypeNameInput.setText(name);}
     ~AddProductTypesForm(){}
 private:
     QLineEdit productTypeNameInput;
