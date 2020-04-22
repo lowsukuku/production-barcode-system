@@ -6,4 +6,5 @@ class KeyboardControl : GUIForm {
  private:
  public:
   void Navigate(Direction) override {}
+  std::string GetLine() { return ""; }
 };

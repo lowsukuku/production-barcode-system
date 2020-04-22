@@ -11,12 +11,15 @@ struct Point {
 
 class GUIForm {
  private:
+ 
+ protected:
+  Point position;
   std::map<GUIItem &, Point> items;
 
  public:
   enum Direction { Up, Down, Left, Right };
 
-  GUIForm(Point position) {}
+  GUIForm(Point position) : position(position) {}
   ~GUIForm() {}
 
   bool AddItem(GUIItem &, Point) { return true; }

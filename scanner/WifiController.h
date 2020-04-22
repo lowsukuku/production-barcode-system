@@ -20,7 +20,7 @@ class WifiController {
   ~WifiController() {}
 
   std::vector<HotSpot> GetHotSpots() {}
-  WifiConnectStatus Connect(HotSpot hotSpot, std::string password = "") {
+  WifiConnectStatus Connect(HotSpot &hotSpot, std::string password = "") {
     return WifiConnectStatus::OK;
   }
   bool Disconnect() { return true; }
