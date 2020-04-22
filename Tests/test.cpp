@@ -55,9 +55,9 @@ private:
     websocket::stream<tcp::socket> ws{ioc};
 };
 
-class User{
+class user{
 public:
-    User()= default;
+    user()= default;
     void send(std::string text){
         ws.write(net::buffer(std::string(text)));
     }
@@ -114,7 +114,7 @@ TEST(test, Test2) {
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", d.read());
     d.close();
 
-    User u;
+    user u;
     u.connect();
     message="POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddDevice"",""context"":{""modelId"":3,""deviceID"":1861559598230240184}}}";
     u.send(message);
@@ -142,7 +142,7 @@ TEST(test, Test2) {
     u.send(message);
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 18\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n172168591419290202\n", u.read());
     u.close();
-    
+
     s().stop();
 
     EXPECT_EQ(true, true);

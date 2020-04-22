@@ -14,9 +14,9 @@ public:
     virtual void handleClient(std::string request)=0;
 
 protected:
-    std::string getPostAnswer(std::string request);
+    void getRequest();
 
-    std::string askDataBase(std::string request);
+    void sendRequest(std::string data);
 
     virtual bool signIn(std::string request)=0;
 

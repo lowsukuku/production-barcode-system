@@ -7,6 +7,8 @@
 
 
 #include "../client.h"
+#include "../Router/router.h"
+
 class Scaner : public Client{
 public:
     explicit Scaner(tcp sock);
@@ -21,6 +23,7 @@ private:
 
 private:
     uint64_t id;
+    Router rout;
 };
 
 

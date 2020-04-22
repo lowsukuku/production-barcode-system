@@ -4,18 +4,6 @@
 
 #include "httphandler.h"
 
-HttpHandler::HttpHandler(boost::asio::ip::tcp sock) :sock(sock){
-
-}
-
-void HttpHandler::getRequest() {
-
-}
-
-void HttpHandler::sendRequest(std::string data) {
-
-}
-
 void HttpHandler::parseRequest(std::string request) {
 
 }

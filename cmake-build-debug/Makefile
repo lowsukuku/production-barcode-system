@@ -192,7 +192,7 @@ gmock: cmake_check_build_system
 
 # fast build rule for target.
 gmock/fast:
-	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/build
+	$(MAKE) -f Tests/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make Tests/googletest-build/googlemock/CMakeFiles/gmock.dir/build
 .PHONY : gmock/fast
 
 #=============================================================================
@@ -205,7 +205,7 @@ gmock_main: cmake_check_build_system
 
 # fast build rule for target.
 gmock_main/fast:
-	$(MAKE) -f Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make Tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build
+	$(MAKE) -f Tests/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make Tests/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
 .PHONY : gmock_main/fast
 
 #=============================================================================
@@ -218,7 +218,7 @@ gtest_main: cmake_check_build_system
 
 # fast build rule for target.
 gtest_main/fast:
-	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/build
+	$(MAKE) -f Tests/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make Tests/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
 #=============================================================================
@@ -231,8 +231,35 @@ gtest: cmake_check_build_system
 
 # fast build rule for target.
 gtest/fast:
-	$(MAKE) -f Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build.make Tests/lib/googletest/googletest/CMakeFiles/gtest.dir/build
+	$(MAKE) -f Tests/googletest-build/googletest/CMakeFiles/gtest.dir/build.make Tests/googletest-build/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
+
+Server/Client/Router/router.o: Server/Client/Router/router.cpp.o
+
+.PHONY : Server/Client/Router/router.o
+
+# target to build an object file
+Server/Client/Router/router.cpp.o:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Router/router.cpp.o
+.PHONY : Server/Client/Router/router.cpp.o
+
+Server/Client/Router/router.i: Server/Client/Router/router.cpp.i
+
+.PHONY : Server/Client/Router/router.i
+
+# target to preprocess a source file
+Server/Client/Router/router.cpp.i:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Router/router.cpp.i
+.PHONY : Server/Client/Router/router.cpp.i
+
+Server/Client/Router/router.s: Server/Client/Router/router.cpp.s
+
+.PHONY : Server/Client/Router/router.s
+
+# target to generate assembly for a file
+Server/Client/Router/router.cpp.s:
+	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Router/router.cpp.s
+.PHONY : Server/Client/Router/router.cpp.s
 
 Server/Client/Scaner/scaner.o: Server/Client/Scaner/scaner.cpp.o
 
@@ -260,33 +287,6 @@ Server/Client/Scaner/scaner.s: Server/Client/Scaner/scaner.cpp.s
 Server/Client/Scaner/scaner.cpp.s:
 	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/Scaner/scaner.cpp.s
 .PHONY : Server/Client/Scaner/scaner.cpp.s
-
-Server/Client/User/Router/router.o: Server/Client/User/Router/router.cpp.o
-
-.PHONY : Server/Client/User/Router/router.o
-
-# target to build an object file
-Server/Client/User/Router/router.cpp.o:
-	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.o
-.PHONY : Server/Client/User/Router/router.cpp.o
-
-Server/Client/User/Router/router.i: Server/Client/User/Router/router.cpp.i
-
-.PHONY : Server/Client/User/Router/router.i
-
-# target to preprocess a source file
-Server/Client/User/Router/router.cpp.i:
-	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.i
-.PHONY : Server/Client/User/Router/router.cpp.i
-
-Server/Client/User/Router/router.s: Server/Client/User/Router/router.cpp.s
-
-.PHONY : Server/Client/User/Router/router.s
-
-# target to generate assembly for a file
-Server/Client/User/Router/router.cpp.s:
-	$(MAKE) -f CMakeFiles/HttpServer.dir/build.make CMakeFiles/HttpServer.dir/Server/Client/User/Router/router.cpp.s
-.PHONY : Server/Client/User/Router/router.cpp.s
 
 Server/Client/User/user.o: Server/Client/User/user.cpp.o
 
@@ -441,12 +441,12 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... Server/Client/Router/router.o"
+	@echo "... Server/Client/Router/router.i"
+	@echo "... Server/Client/Router/router.s"
 	@echo "... Server/Client/Scaner/scaner.o"
 	@echo "... Server/Client/Scaner/scaner.i"
 	@echo "... Server/Client/Scaner/scaner.s"
-	@echo "... Server/Client/User/Router/router.o"
-	@echo "... Server/Client/User/Router/router.i"
-	@echo "... Server/Client/User/Router/router.s"
 	@echo "... Server/Client/User/user.o"
 	@echo "... Server/Client/User/user.i"
 	@echo "... Server/Client/User/user.s"

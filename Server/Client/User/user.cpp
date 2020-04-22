@@ -24,6 +24,6 @@ bool User::isIdUsed() {
     return false;
 }
 
-UserData User::getsingInData(std::string data) {
+UserData User::getSingInData(std::string data) {
     return UserData();
 }

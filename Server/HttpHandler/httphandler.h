@@ -34,21 +34,13 @@ struct HttpRequest{
 
 class HttpHandler {
 public:
-    explicit HttpHandler(boost::asio::ip::tcp sock);
-
-    void getRequest();
-
-    void sendRequest(std::string data);
-
-protected:
     void parseRequest(std::string request);
 
     std::string getRequestType(std::string request);
 
     std::string dataToRequest(std::string data);
 
-private:
-    tcp sock;
+public:
     HttpRequest request;
 };
 

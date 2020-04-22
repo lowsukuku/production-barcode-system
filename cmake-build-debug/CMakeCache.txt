@@ -309,13 +309,13 @@ boost_headers_DIR:PATH=/usr/local/lib/cmake/boost_headers-1.72.0
 boost_thread_DIR:PATH=/usr/local/lib/cmake/boost_thread-1.72.0
 
 //Value Computed by CMake
-gmock_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/lib/googletest/googlemock
+gmock_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-build/googlemock
 
 //Dependencies for the target
 gmock_LIB_DEPENDS:STATIC=general;gtest;
 
 //Value Computed by CMake
-gmock_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/Tests/lib/googletest/googlemock
+gmock_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-src/googlemock
 
 //Build all of Google Mock's own tests.
 gmock_build_tests:BOOL=OFF
@@ -324,16 +324,16 @@ gmock_build_tests:BOOL=OFF
 gmock_main_LIB_DEPENDS:STATIC=general;gmock;
 
 //Value Computed by CMake
-googletest-distribution_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/lib/googletest
+googletest-distribution_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-build
 
 //Value Computed by CMake
-googletest-distribution_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/Tests/lib/googletest
+googletest-distribution_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-src
 
 //Value Computed by CMake
-gtest_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/lib/googletest/googletest
+gtest_BINARY_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-build/googletest
 
 //Value Computed by CMake
-gtest_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/Tests/lib/googletest/googletest
+gtest_SOURCE_DIR:STATIC=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-src/googletest
 
 //Build gtest's sample programs.
 gtest_build_samples:BOOL=OFF
@@ -346,7 +346,7 @@ gtest_disable_pthreads:BOOL=OFF
 
 //Use shared (DLL) run-time lib even when Google Test is built
 // as static lib.
-gtest_force_shared_crt:BOOL=OFF
+gtest_force_shared_crt:BOOL=ON
 
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF
@@ -548,7 +548,7 @@ _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 boost_headers_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_thread_DIR
 boost_thread_DIR-ADVANCED:INTERNAL=1
-generated_dir:INTERNAL=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/lib/googletest/googletest/generated
+generated_dir:INTERNAL=/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-debug/Tests/googletest-build/googletest/generated
 //ADVANCED property for variable: gmock_build_tests
 gmock_build_tests-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_build_samples
