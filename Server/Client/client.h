@@ -10,9 +10,15 @@
 
 #include "../HttpHandler/httphandler.h"
 
+namespace beast = boost::beast;         // from <boost/beast.hpp>
+namespace http = beast::http;           // from <boost/beast/http.hpp>
+namespace websocket = beast::websocket; // from <boost/beast/websocket.hpp>
+namespace net = boost::asio;            // from <boost/asio.hpp>
+using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
+
 class Client {
 public:
-    explicit Client(tcp sock): sock(sock), worker(nullptr){}
+    explicit Client(tcp::socket &&sock);
 
     virtual void handleClient(std::string request)=0;
 
@@ -24,7 +30,7 @@ protected:
     virtual bool signIn(std::string request)=0;
 
 protected:
-    tcp sock;
+    tcp::socket socket;
     HttpHandler *worker;
 };
 

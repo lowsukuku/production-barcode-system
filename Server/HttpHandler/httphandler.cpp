@@ -4,14 +4,14 @@
 
 #include "httphandler.h"
 
-void HttpHandler::parseRequest(std::string request) {
+void HttpHandler::parseRequest(const std::string &request) {
 
 }
 
-std::string HttpHandler::getRequestType(std::string request) {
-    return std::string();
+RequestType HttpHandler::getRequestType(const std::string &request) {
+    return POST;
 }
 
-std::string HttpHandler::dataToRequest(std::string data) {
+std::string HttpHandler::dataToRequest(const std::string &data) {
     return std::string();
 }

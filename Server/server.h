@@ -14,23 +14,26 @@ enum ClientType{
 
 class Server {
 public:
+    explicit Server(std::string serverIP="127.0.0.1", unsigned short serverPORT=8000);
+
     void start();
 
     void stop();
 
 private:
-    void acceptor();
+    void accept(tcp::acceptor &&acceptor);
 
-    void clientHandler();
+    void clientHandler(tcp::socket &&socket);
 
-    enum ClientType getType();
+    enum ClientType getType(std::string helloMessage);
 
 public:
     std::vector<User> users;
     std::vector<Scaner> devices;
 private:
+    std::string ip;
+    unsigned short port;
     net::io_context ioc{1};
-    tcp::acceptor sock;
 };
 
 

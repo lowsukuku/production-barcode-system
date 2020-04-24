@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/CMakeFiles/googletest
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/CMakeFiles/googletest.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/CMakeFiles/googletest-complete.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build.rule
+/Users/dellvin/Desktop/Технопарк/Углубленное программирование С С++/HttpServer/cmake-build-release/Tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test.rule

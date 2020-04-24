@@ -4,7 +4,7 @@
 
 #include "scaner.h"
 
-Scaner::Scaner(boost::asio::ip::tcp sock) : Client(sock), id(0) {
+Scaner::Scaner(boost::asio::ip::tcp::socket &&sock) : Client(std::move(sock)), id(0) {
 
 }
 

@@ -11,7 +11,7 @@
 
 class Scaner : public Client{
 public:
-    explicit Scaner(tcp sock);
+    explicit Scaner(tcp::socket &&sock);
 
     void handleClient(std::string request) override;
 
