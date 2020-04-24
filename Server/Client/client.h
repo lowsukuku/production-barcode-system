@@ -4,6 +4,9 @@
 
 #ifndef HTTPSERVER_CLIENT_H
 #define HTTPSERVER_CLIENT_H
+#include <boost/beast/core.hpp>
+#include <boost/beast/websocket.hpp>
+#include <boost/asio/ip/tcp.hpp>
 
 #include "../HttpHandler/httphandler.h"
 

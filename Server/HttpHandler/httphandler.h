@@ -4,14 +4,11 @@
 
 #ifndef HTTPSERVER_HTTPHANDLER_H
 #define HTTPSERVER_HTTPHANDLER_H
-#include <boost/beast/core.hpp>
-#include <boost/beast/websocket.hpp>
-#include <boost/asio/ip/tcp.hpp>
+
 #include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <string>
-#include <thread>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -34,11 +31,11 @@ struct HttpRequest{
 
 class HttpHandler {
 public:
-    void parseRequest(std::string request);
+    void parseRequest(const &std::string request);
 
-    std::string getRequestType(std::string request);
+    RequestType getRequestType(const &std::string request);
 
-    std::string dataToRequest(std::string data);
+    std::string dataToRequest(const &std::string data);
 
 public:
     HttpRequest request;

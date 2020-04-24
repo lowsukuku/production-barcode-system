@@ -5,7 +5,7 @@
 
 #include "../Server/server.h"
 
-class device{
+class device : public Scaner{
 public:
     device(){
     }
@@ -55,7 +55,7 @@ private:
     websocket::stream<tcp::socket> ws{ioc};
 };
 
-class user{
+class user : public User{
 public:
     user()= default;
     void send(std::string text){

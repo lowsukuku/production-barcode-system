@@ -4,7 +4,7 @@
 
 #ifndef HTTPSERVER_SERVER_H
 #define HTTPSERVER_SERVER_H
-
+#include <thread>
 #include "./Client/User/user.h"
 #include "./Client/Scaner/scaner.h"
 enum ClientType{
