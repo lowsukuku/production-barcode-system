@@ -8,24 +8,16 @@
 
 class AppWorker {
  private:
-  /* data */
+  void ConnectWifi(WifiController &controller);
+
  public:
   AppWorker(/* args */) {}
   ~AppWorker() {}
 
   void Run() {
     WifiController controller;
-    SelectorControl<HotSpot> selector = SelectorControl<HotSpot>({0, 0});
-    for (auto &&hotSpot : controller.GetHotSpots()) {
-      selector.AddItem(hotSpot, {0, 0});
-    }
-    selector.Render();
-    auto selectedHotspot = selector.Select();
-    if (selectedHotspot.isOpen == false) {
-      KeyboardControl keyboard;
-      selectedHotspot.Password =
-    }
-    controller.Connect(selector.Select());
-    selector.Select();
+    ConnectWifi(controller);
+    TCPSocket socket = TCPSocket(controller);
+    if (socket.Connect("127.0.0.1") == false) throw("Connection failed");
   }
 };
