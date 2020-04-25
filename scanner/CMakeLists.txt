@@ -15,12 +15,12 @@ SET(PROJECT_SOURCES
     user_main.cpp
 )
 
-set(LIBSTM32_OUT  ../SDK/lib/libstm32.a)
+set(LIBSTM32_OUT  ${PROJECT_SOURCE_DIR}/SDK/lib/libstm32.a)
   
-set(LIBSTM32_OBJS1 ../SDK/lib/src/stm32f10x_vector.o)
-set(LIBSTM32_SRCS1 ../SDK/lib/src/stm32f10x_vector.c)
-set(LIBSTM32_OBJS2 ../SDK/MS3690Lib/SysCallLib.o)
-set(LIBSTM32_SRCS2 ../SDK/MS3690Lib/SysCallLib.c)
+set(LIBSTM32_OBJS1 ${PROJECT_SOURCE_DIR}/SDK/lib/src/stm32f10x_vector.o)
+set(LIBSTM32_SRCS1 ${PROJECT_SOURCE_DIR}/SDK/lib/src/stm32f10x_vector.c)
+set(LIBSTM32_OBJS2 ${PROJECT_SOURCE_DIR}/SDK/MS3690Lib/SysCallLib.o)
+set(LIBSTM32_SRCS2 ${PROJECT_SOURCE_DIR}/SDK/MS3690Lib/SysCallLib.c)
 
 add_custom_target(stm32
 COMMAND ${CMAKE_C_COMPILER} -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -static -O3 -c ${LIBSTM32_SRCS1} -o ${LIBSTM32_OBJS1}
