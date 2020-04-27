@@ -1,16 +1,17 @@
 //
 // Created by Dellvin on 06.03.2020.
 //
+#include <utility>
+
 #include "gtest/gtest.h"
 
 #include "../Server/server.h"
 
 class device : public Scaner{
 public:
-    device(){
-    }
+    device()= default;
     void send(std::string text){
-        ws.write(net::buffer(std::string(text)));
+        ws.write(net::buffer(std::string(std::move(text))));
     }
     std::string read(){
         // This buffer will hold the incoming message
@@ -59,7 +60,7 @@ class user : public User{
 public:
     user()= default;
     void send(std::string text){
-        ws.write(net::buffer(std::string(text)));
+        ws.write(net::buffer(std::string(std::move(text))));
     }
     std::string read(){
         // This buffer will hold the incoming message
@@ -105,8 +106,8 @@ private:
 };
 
 TEST(test, Test2) {
-    Server s();
-    s().start();
+    Server s;
+    s.start();
     device d;
     d.connect();
     std::string message="POST/HTTP/1.1\nContent-Type: application/json\nContent-Length: 133\nHost: 127.0.0.1:8000\n{""clientType"":""Scanner"",""client"":{""apiKey"":2010345719727824955,""deviceID"":186582329519439120,""role"":""Mounting"",""utcTime"":1587150123}}";
@@ -143,7 +144,7 @@ TEST(test, Test2) {
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 18\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n172168591419290202\n", u.read());
     u.close();
 
-    s().stop();
+    s.stop();
 
     EXPECT_EQ(true, true);
 }

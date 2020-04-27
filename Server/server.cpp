@@ -33,7 +33,6 @@ void Server::accept(tcp::acceptor &&acceptor) {
 
             // Block until we get a connection
             acceptor.accept(socket);
-            acceptor.accept(socket);
 
             // Launch the session, transferring ownership of the socket
             std::thread{&Server::clientHandler, this, std::move(socket)}.detach();
@@ -46,9 +45,17 @@ void Server::accept(tcp::acceptor &&acceptor) {
 }
 
 void Server::clientHandler(tcp::socket &&socket) {
-
-}
-
-enum ClientType Server::getType(std::string helloMessage) {
-    return user;
+    HttpHandler handler(std::move(socket));
+    std::string request =handler.getRequest();
+    handler.parseRequest(request);
+    std::string answer;
+    if(handler.request.client==USER){
+        User user;
+        answer=user.handleClient(handler.request);
+    }
+    if(handler.request.client==SCANER){
+        Scaner device;
+        answer=device.handleClient(handler.request);
+    }
+    handler.sendRequest(answer);
 }

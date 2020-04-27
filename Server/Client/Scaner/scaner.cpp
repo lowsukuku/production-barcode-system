@@ -4,18 +4,27 @@
 
 #include "scaner.h"
 
-Scaner::Scaner(boost::asio::ip::tcp::socket &&sock) : Client(std::move(sock)), id(0) {
+Scaner::Scaner(){
 
 }
 
-void Scaner::handleClient(std::string request) {
-
+std::string Scaner::handleClient(HttpRequest requestParsed) {
+    id=getScanerID(requestParsed.rawRequest);
+    if(!signIn(requestParsed.rawRequest))return AUTHENIFICATION_ERROR;
+    return rout.getAnswer(requestParsed);
 }
 
 bool Scaner::signIn(std::string request) {
+    if(rout.signInScaner(id)=="OK") return true;
     return false;
 }
 
 uint64_t Scaner::getScanerID(std::string request) {
-    return 0;
+    size_t pos=request.find("apiKey");
+    pos+=2;
+    std::string apiKey;
+    while(request[pos]!=','){
+        apiKey.push_back(request[pos]);
+    }
+    return std::atoi(apiKey.c_str());
 }

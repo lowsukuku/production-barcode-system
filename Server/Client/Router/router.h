@@ -7,18 +7,47 @@
 
 #include <iostream>
 
+enum RequestType{
+    POST,
+    GET,
+};
+
+enum ClientType{
+    USER,
+    SCANER,
+};
+
+struct HttpRequest{
+    enum RequestType typeRequest;
+    enum ClientType client;
+    std::string method;
+    uint64_t contentLength;
+    std::string data;
+    std::string rawRequest;
+};
+
+struct UserData{
+    std::string login;
+    std::string password;
+};
 
 class Router {
-public:
-    std::string getAnswer(std::string body);
+public:// GET and CHECK methods
+    std::string getAnswer(HttpRequest request);
 
-private:
-    std::string  signInUser(std::string);
+    std::string  signInScaner(uint64_t apiKey);
 
-    std::string signUpUser(std::string);
+    std::string  signInUser(UserData personalInfo);
 
-    std::string  signInScaner(std::string);
+    std::string signUpUser(UserData personalInfo);
 
+    std::string getDevices(std::string);
+
+    std::string getModels(std::string);
+
+    std::string checkIdProduct(uint64_t id);
+
+private:// POST methods
     std::string fixDevice(std::string);
 
     std::string addDevice(std::string);
@@ -30,12 +59,6 @@ private:
     std::string deleteModel(std::string);
 
     std::string fixModel(std::string);
-
-    std::string getDevices(std::string);
-
-    std::string getModels(std::string);
-
-    std::string checkIdProduct(std::string);
 
 private:
     //DbManager db;//Iliya's class object

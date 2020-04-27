@@ -7,10 +7,8 @@
 #include <thread>
 #include "./Client/User/user.h"
 #include "./Client/Scaner/scaner.h"
-enum ClientType{
-    user,
-    scaner,
-};
+#include "./HttpHandler/httphandler.h"
+
 
 class Server {
 public:
@@ -24,8 +22,6 @@ private:
     void accept(tcp::acceptor &&acceptor);
 
     void clientHandler(tcp::socket &&socket);
-
-    enum ClientType getType(std::string helloMessage);
 
 public:
     std::vector<User> users;

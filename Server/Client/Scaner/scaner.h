@@ -7,13 +7,12 @@
 
 
 #include "../client.h"
-#include "../Router/router.h"
 
 class Scaner : public Client{
 public:
-    explicit Scaner(tcp::socket &&sock);
+    explicit Scaner();
 
-    void handleClient(std::string request) override;
+    std::string handleClient(HttpRequest requestParsed) override;
 
 protected:
     bool signIn(std::string request) override;
@@ -23,7 +22,6 @@ private:
 
 private:
     uint64_t id;
-    Router rout;
 };
 
 

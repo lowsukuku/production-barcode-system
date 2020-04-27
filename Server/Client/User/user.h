@@ -6,15 +6,11 @@
 #define HTTPSERVER_USER_H
 
 #include "../client.h"
-#include "../Router/router.h"
-struct UserData{
-    std::string login;
-    std::string password;
-};
+#include <random>
 
 class User : public Client{
 public:
-    void handleClient(std::string request) override;
+    std::string handleClient(HttpRequest requestParsed) override;
 
 protected:
     bool signIn(std::string request) override;
@@ -24,12 +20,11 @@ protected:
     uint64_t generateID();
 
 private:
-    bool isIdUsed();
+    bool isIdUsed(uint64_t id);
 
     UserData getSingInData(std::string data);
 
 private:
-    Router rout;
     UserData personalInfo;
 };
 

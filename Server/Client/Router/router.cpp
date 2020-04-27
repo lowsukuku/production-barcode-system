@@ -4,7 +4,14 @@
 
 #include "router.h"
 
-std::string Router::getAnswer(std::string body) {
+std::string Router::getAnswer(HttpRequest request) {
+    if(request.method=="addDevice") addDevice(request.rawRequest);
+    else if(request.method=="deleteDevice") deleteDevice(request.rawRequest);
+    else if(request.method=="fixDevice") fixDevice(request.rawRequest);
+    else if(request.method=="createModel") createModel(request.rawRequest);
+    else if(request.method=="deleteModel") deleteModel(request.rawRequest);
+    else if(request.method=="fixModel") fixModel(request.rawRequest);
+    else if(request.method=="checkIdProduct") checkIdProduct(request.rawRequest);
     return std::string();
 }
 
@@ -44,14 +51,14 @@ std::string Router::checkIdProduct(std::string) {
     return std::string();
 }
 
-std::string Router::signInUser(std::string) {
+std::string Router::signInUser(UserData personalInfo) {
     return std::string();
 }
 
-std::string Router::signUpUser(std::string) {
+std::string Router::signUpUser(UserData personalInfo) {
     return std::string();
 }
 
-std::string Router::signInScaner(std::string) {
+std::string Router::signInScaner(uint64_t apiKey) {
     return std::string();
 }
