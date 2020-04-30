@@ -33,32 +33,32 @@ struct UserData{
 
 class Router {
 public:// GET and CHECK methods
-    std::string getAnswer(HttpRequest request);
+    std::string getAnswer(HttpRequest &request);
 
     std::string  signInScaner(uint64_t apiKey);
 
-    std::string  signInUser(UserData personalInfo);
+    std::string  signInUser(UserData &personalInfo);
 
-    std::string signUpUser(UserData personalInfo);
+    std::string signUpUser(UserData &personalInfo);
 
-    std::string getDevices(std::string);
+    std::string getDevices(std::string &request);
 
-    std::string getModels(std::string);
+    std::string getModels(std::string &request);
 
     std::string checkIdProduct(uint64_t id);
 
 private:// POST methods
-    std::string fixDevice(std::string);
+    std::string fixDevice(std::string &request);
 
-    std::string addDevice(std::string);
+    std::string addDevice(std::string &request);
 
-    std::string deleteDevice(std::string);
+    std::string deleteDevice(std::string &request);
 
-    std::string createModel(std::string);
+    std::string createModel(std::string &request);
 
-    std::string deleteModel(std::string);
+    std::string deleteModel(std::string &request);
 
-    std::string fixModel(std::string);
+    std::string fixModel(std::string &request);
 
 private:
     //DbManager db;//Iliya's class object

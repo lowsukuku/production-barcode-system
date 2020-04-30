@@ -12,10 +12,10 @@
 
 class Client {
 public:
-    virtual std::string handleClient(HttpRequest requestParsed)=0;
+    virtual std::string handleClient(HttpRequest &requestParsed)=0;
 
 protected:
-    virtual bool signIn(std::string request)=0;
+    virtual bool signIn(std::string &request)=0;
     Router rout;
 };
 

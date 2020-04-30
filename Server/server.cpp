@@ -4,7 +4,7 @@
 
 #include "server.h"
 
-Server::Server(std::string serverIP, unsigned short serverPORT) : ip(serverIP), port(serverPORT){
+Server::Server(std::string &&serverIP, unsigned short &&serverPORT) : ip(serverIP), port(serverPORT){
 
 }
 
@@ -57,5 +57,5 @@ void Server::clientHandler(tcp::socket &&socket) {
         Scaner device;
         answer=device.handleClient(handler.request);
     }
-    handler.sendRequest(answer);
+    handler.sendRequest(std::move(answer));
 }

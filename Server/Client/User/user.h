@@ -10,19 +10,19 @@
 
 class User : public Client{
 public:
-    std::string handleClient(HttpRequest requestParsed) override;
+    std::string handleClient(HttpRequest &requestParsed) override;
 
 protected:
-    bool signIn(std::string request) override;
+    bool signIn(std::string &request) override;
 
-    bool signUp(std::string request);
+    bool signUp(std::string &request);
 
     uint64_t generateID();
 
 private:
     bool isIdUsed(uint64_t id);
 
-    UserData getSingInData(std::string data);
+    UserData getSingInData(std::string &data);
 
 private:
     UserData personalInfo;

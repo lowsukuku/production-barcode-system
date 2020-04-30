@@ -32,7 +32,7 @@ public:
 
     std::string getRequest();
 
-    void sendRequest(std::string data);
+    void sendRequest(std::string &&data);
 
 public:
     HttpRequest request;

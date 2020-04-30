@@ -12,13 +12,13 @@ class Scaner : public Client{
 public:
     explicit Scaner();
 
-    std::string handleClient(HttpRequest requestParsed) override;
+    std::string handleClient(HttpRequest &requestParsed) override;
 
 protected:
-    bool signIn(std::string request) override;
+    bool signIn(std::string &request) override;
 
 private:
-    uint64_t getScanerID(std::string request);
+    uint64_t getScanerID(std::string &request);
 
 private:
     uint64_t id;

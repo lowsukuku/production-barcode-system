@@ -63,7 +63,7 @@ std::string HttpHandler::getRequest() {
     return boost::beast::buffers_to_string(buffer.data());
 }
 
-void HttpHandler::sendRequest(std::string data) {
+void HttpHandler::sendRequest(std::string &&data) {
     std::string s = data;
     auto buffer = boost::asio::dynamic_buffer(s);
     ws.text(ws.got_text());

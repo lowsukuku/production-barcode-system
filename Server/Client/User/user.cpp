@@ -5,18 +5,18 @@
 #include "user.h"
 
 
-std::string User::handleClient(HttpRequest requestParsed) {
+std::string User::handleClient(HttpRequest &requestParsed) {
     if(!signIn(requestParsed.rawRequest)) return AUTHENIFICATION_ERROR;
     return "";
 }
 
-bool User::signIn(std::string request) {
+bool User::signIn(std::string &request) {
     getSingInData(request);
     if(rout.signInUser(personalInfo)=="OK") return true;
     return false;
 }
 
-bool User::signUp(std::string request) {
+bool User::signUp(std::string &request) {
     return false;
 }
 
@@ -32,7 +32,7 @@ bool User::isIdUsed(uint64_t id) {
     return false;
 }
 
-UserData User::getSingInData(std::string data) {
+UserData User::getSingInData(std::string &data) {
     uint64_t pos=data.find("login");
     pos+=8;
     while(data[pos]!='"'){

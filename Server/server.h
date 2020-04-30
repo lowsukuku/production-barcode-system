@@ -12,7 +12,7 @@
 
 class Server {
 public:
-    explicit Server(std::string serverIP="127.0.0.1", unsigned short serverPORT=8000);
+    explicit Server(std::string &&serverIP="127.0.0.1", unsigned short &&serverPORT=8000);
 
     void start();
 
