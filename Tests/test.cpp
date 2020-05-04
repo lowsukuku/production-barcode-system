@@ -145,6 +145,14 @@ TEST(test, Test2) {
     u.close();
 
     s.stop();
+    net::io_context ioc{1};
+    tcp::socket socket{ioc};
+    HttpHandler h(std::move(socket));
+    HttpRequest r=h.parseRequest("POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddDevice"",""context"":{""modelId"":3,""deviceID"":1861559598230240184}}}");
+    EXPECT_EQ(r.contentLength, 156);
+    EXPECT_EQ(r.client, ClientType::USER);
+    EXPECT_EQ(r.typeRequest, RequestType::POST);
+    EXPECT_STREQ(r.method, "AddDevice");
 
     EXPECT_EQ(true, true);
 }

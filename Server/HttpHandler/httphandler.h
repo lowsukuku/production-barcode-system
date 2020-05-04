@@ -36,7 +36,6 @@ public:
 
 public:
     tcp::socket socket;
-    HttpHandler *worker;
     websocket::stream<tcp::socket> ws{std::move(socket)};
 };
 

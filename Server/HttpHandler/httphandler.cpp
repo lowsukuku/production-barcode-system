@@ -71,6 +71,6 @@ void HttpHandler::sendRequest(std::string &&data) {
     ws.close(websocket::close_code::normal);
 }
 
-HttpHandler::HttpHandler(tcp::socket &&sock) : socket(std::move(sock)), worker(nullptr) {
+HttpHandler::HttpHandler(tcp::socket &&sock) : socket(std::move(sock)) {
 
 }
