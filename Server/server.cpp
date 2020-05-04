@@ -47,15 +47,15 @@ void Server::accept(tcp::acceptor &&acceptor) {
 void Server::clientHandler(tcp::socket &&socket) {
     HttpHandler handler(std::move(socket));
     std::string request =handler.getRequest();
-    handler.parseRequest(request);
+    HttpRequest req=handler.parseRequest(request);
     std::string answer;
-    if(handler.request.client==USER){
+    if(req.client==USER){
         User user;
-        answer=user.handleClient(handler.request);
+        answer=user.handleClient(req);
     }
-    if(handler.request.client==SCANER){
+    if(req.client==SCANER){
         Scaner device;
-        answer=device.handleClient(handler.request);
+        answer=device.handleClient(req);
     }
     handler.sendRequest(std::move(answer));
 }

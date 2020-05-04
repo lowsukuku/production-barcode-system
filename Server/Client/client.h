@@ -8,7 +8,7 @@
 #include "../HttpHandler/httphandler.h"
 
 
-#define AUTHENIFICATION_ERROR "AUTHENIFICATION_ERROR"
+constexpr char AUTHENTICATION_ERROR[]="AUTHENTICATION_ERROR";
 
 class Client {
 public:

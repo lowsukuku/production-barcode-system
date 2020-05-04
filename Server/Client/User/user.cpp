@@ -6,7 +6,7 @@
 
 
 std::string User::handleClient(HttpRequest &requestParsed) {
-    if(!signIn(requestParsed.rawRequest)) return AUTHENIFICATION_ERROR;
+    if(!signIn(requestParsed.rawRequest)) return AUTHENTICATION_ERROR;
     return "";
 }
 
@@ -34,13 +34,13 @@ bool User::isIdUsed(uint64_t id) {
 
 UserData User::getSingInData(std::string &data) {
     uint64_t pos=data.find("login");
-    pos+=8;
+    pos+=strlen("\":{\"login\":");
     while(data[pos]!='"'){
         personalInfo.login.push_back(data[pos]);
         pos++;
     }
     pos=data.find("password");
-    pos+=11;
+    pos+=strlen("\",\"password\":\"");
     while(data[pos]!='"'){
         personalInfo.password.push_back(data[pos]);
         pos++;

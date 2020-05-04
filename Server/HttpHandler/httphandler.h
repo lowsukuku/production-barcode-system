@@ -24,7 +24,7 @@ class HttpHandler {
 public:
     HttpHandler(tcp::socket &&sock);
 
-    void parseRequest(const std::string &request);
+    HttpRequest parseRequest(const std::string &request);
 
     RequestType getRequestType(const std::string &request);
 
@@ -35,7 +35,6 @@ public:
     void sendRequest(std::string &&data);
 
 public:
-    HttpRequest request;
     tcp::socket socket;
     HttpHandler *worker;
     websocket::stream<tcp::socket> ws{std::move(socket)};

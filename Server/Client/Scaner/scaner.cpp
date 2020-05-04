@@ -10,7 +10,7 @@ Scaner::Scaner(){
 
 std::string Scaner::handleClient(HttpRequest &requestParsed) {
     id=getScanerID(requestParsed.rawRequest);
-    if(!signIn(requestParsed.rawRequest))return AUTHENIFICATION_ERROR;
+    if(!signIn(requestParsed.rawRequest))return AUTHENTICATION_ERROR;
     return rout.getAnswer(requestParsed);
 }
 
@@ -20,7 +20,9 @@ bool Scaner::signIn(std::string &request) {
 }
 
 uint64_t Scaner::getScanerID(std::string &request) {
-    size_t pos=request.find("apiKey");
+    int64_t pos=request.find("apiKey");
+    if(pos==-1)
+        return 0;
     pos+=2;
     std::string apiKey;
     while(request[pos]!=','){

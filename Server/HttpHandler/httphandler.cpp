@@ -4,7 +4,7 @@
 
 #include "httphandler.h"
 
-void HttpHandler::parseRequest(const std::string &request) {
+HttpRequest HttpHandler::parseRequest(const std::string &request) {
 
 }
 
@@ -27,7 +27,7 @@ std::string HttpHandler::getRequest() {
                 [](websocket::response_type &res) {
                     res.set(http::field::server,
                             std::string(BOOST_BEAST_VERSION_STRING) +
-                            " websocket-server-sync");
+                            " websocket-server-dsync");
                 }));
 
         // Accept the websocket handshake
