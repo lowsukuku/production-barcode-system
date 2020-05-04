@@ -3,17 +3,53 @@
 //
 
 #include "httphandler.h"
+#include <nlohmann/json.hpp>
+#include <time.h>
+
+// for convenience
+using json = nlohmann::json;
 
 HttpRequest HttpHandler::parseRequest(const std::string &request) {
-
+    HttpRequest r;
+    json parser=request;
+    std::string type=parser["clientType"];
+    if(type=="User") r.client=ClientType::USER;
+    else r.client=ClientType::SCANER;
+    r.method=parser["clientType"];
+    r.data=parser["context"];
+    r.typeRequest=RequestType::POST;
+    r.rawRequest=request;
+    uint64_t contentBeginPos=request.find('{');
+    r.contentLength=request.size()-contentBeginPos;
+    return r;
 }
 
 RequestType HttpHandler::getRequestType(const std::string &request) {
+    int8_t type=request.find("POST");
+    if(type==-1)return GET;
     return POST;
 }
 
 std::string HttpHandler::dataToRequest(const std::string &data) {
-    return std::string();
+    std::string answer;
+    bool errorFlag=false;
+    if(data.find("_ERROR")!=-1){
+        answer+="HTTP/1.1 505 ";
+        answer+=data;
+        errorFlag= true;
+    }
+    else{
+        answer+="HTTP/1.1 200 OK";
+    }
+
+    answer+="Server: DellvinConnect";
+    time_t seconds = time(NULL);
+    tm* timeinfo = localtime(&seconds);
+    answer+="Date:";
+    answer+=asctime(timeinfo);
+    if(!errorFlag)
+        answer+=data;
+    return answer;
 }
 
 std::string HttpHandler::getRequest() {

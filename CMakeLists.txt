@@ -8,12 +8,12 @@ include_directories(/usr/local/opt/openssl@1.1/include)
 
 link_directories(/usr/local/lib /usr/local/opt/openssl@1.1/lib)
 find_package(Boost 1.72 COMPONENTS thread REQUIRED)
+find_package(nlohmann_json 3.2.0 REQUIRED)
 
 add_executable(HttpServer main.cpp Server/server.cpp Server/server.h Server/Client/client.cpp Server/Client/client.h Server/Client/User/user.cpp Server/Client/User/user.h Server/Client/Scaner/scaner.cpp Server/Client/Scaner/scaner.h Server/HttpHandler/httphandler.cpp Server/HttpHandler/httphandler.h Server/Client/Router/router.cpp Server/Client/Router/router.h)
-
 
 target_link_libraries(HttpServer ${OPENSSL_LIBRARIES})
 
 
-target_link_libraries(HttpServer -lboost_system Boost::thread -lgumbo -lcrypto -lssl -std=c++17)
+target_link_libraries(HttpServer -lboost_system nlohmann_json::nlohmann_json Boost::thread -lgumbo -lcrypto -lssl -std=c++17)
 add_subdirectory(Tests)
