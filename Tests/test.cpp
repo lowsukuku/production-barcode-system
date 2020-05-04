@@ -105,7 +105,7 @@ private:
     websocket::stream<tcp::socket> ws{ioc};
 };
 
-TEST(test, Test2) {
+TEST(test, Test1) {
     Server s;
     s.start();
     device d;
@@ -114,37 +114,61 @@ TEST(test, Test2) {
     d.send(message);
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", d.read());
     d.close();
+    s.stop();
+}
+
+TEST(test, Test2) {
+    Server s;
+    s.start();
 
     user u;
     u.connect();
-    message="POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddDevice"",""context"":{""modelId"":3,""deviceID"":1861559598230240184}}}";
+    std::string message="POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddDevice"",""context"":{""modelId"":3,""deviceID"":1861559598230240184}}}";
     u.send(message);
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", u.read());
     u.close();
+    s.stop();
+}
 
+TEST(test, Test3) {
+    Server s;
+    s.start();
+    user u;
     u.connect();
-    message="POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddModel"",""context"":{""modelName"":""Model 42""}}}";
+    std::string message = "POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""AddModel"",""context"":{""modelName"":""Model 42""}}}";
+    u.send(message);
+    EXPECT_EQ(
+            "HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n",
+            u.read());
+    u.close();
+    s.stop();
+}
+
+TEST(test, Test4) {
+    Server s;
+    s.start();
+    user u;
+
+    std::string message="GET /?contextType=GetDeviceById&id=1478668906952015500 HTTP/1.1\nHost: 127.0.0.1:8000";
     u.send(message);
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", u.read());
     u.close();
+    s.stop();
+}
 
-    u.connect();
-    message="POST / HTTP/1.1\nContent-Type: application/json\nContent-Length: 156\nHost: 127.0.0.1:8000\n{""clientType"":""User"",""client"":{""login"":""mRj9wpsFny"",""password"":""K6S1uKxP"",""contextType"":""DeleteModel"",""context"":{""modelName"":""Model 42""}}}";
-    u.send(message);
-    EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", u.read());
-    u.close();
+TEST(test, Test5) {
+    Server s;
+    s.start();
+    user u;
 
-    message="GET /?contextType=GetDeviceById&id=1478668906952015500 HTTP/1.1\nHost: 127.0.0.1:8000";
-    u.send(message);
-    EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 0\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n", u.read());
-    u.close();
-
-    message="GET /?contextType=GenerateUniqueID HTTP/1.1\nHost: 127.0.0.1:8000";
+    std::string message="GET /?contextType=GenerateUniqueID HTTP/1.1\nHost: 127.0.0.1:8000";
     u.send(message);
     EXPECT_EQ("HTTP/1.1 200 OK\nContent-Length: 18\nServer: Microsoft-HTTPAPI/2.0\nDate: Fri, 17 Apr 2020 19:02:03 GMT\n172168591419290202\n", u.read());
     u.close();
-
     s.stop();
+}
+
+TEST(test, Test6) {
     net::io_context ioc{1};
     tcp::socket socket{ioc};
     HttpHandler h(std::move(socket));
@@ -152,7 +176,6 @@ TEST(test, Test2) {
     EXPECT_EQ(r.contentLength, 156);
     EXPECT_EQ(r.client, ClientType::USER);
     EXPECT_EQ(r.typeRequest, RequestType::POST);
-    EXPECT_STREQ(r.method, "AddDevice");
-
+    EXPECT_STREQ(r.method.c_str(), "AddDevice");
     EXPECT_EQ(true, true);
 }
