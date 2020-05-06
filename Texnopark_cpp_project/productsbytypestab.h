@@ -2,6 +2,7 @@
 #define PRODUCTSBYTYPESTAB_H
 
 #include <QtWidgets>
+#include <structuresForTable.h>
 
 class ProductsByTypesTab : public QWidget
 {
@@ -9,7 +10,7 @@ class ProductsByTypesTab : public QWidget
 public:
     explicit ProductsByTypesTab(QWidget *parent = nullptr);
 
-    void updateTableData(const QStringList data);
+    void updateTableData(const QList<Product> data);
     void updateProductTypes(const QStringList productTypes);
     QComboBox* getProductTypesComboBox(){return & productTypes;}
     QTableWidget* getProductsTable(){ return &productsTable;}

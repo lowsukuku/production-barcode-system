@@ -3,25 +3,15 @@
 ProductTab::ProductTab( QWidget *parent) : QWidget(parent)
 {
 
-    productTypes.addItems({"T1","T2", "T3"});
-    productIds.addItems({"0","1","2"});
     printBareCodeBtn.setText("Печать");
     saveBareCodeInFileBtn.setText("Сохранить в файл");
-
-    productTable.setColumnCount(3);
-    productTable.setHorizontalHeaderLabels({"Зав. номер", "Дата добавления", "Состояние"});
+    productTable.setColumnCount(4);
+    productTable.setHorizontalHeaderLabels({"Модель","Номер","Дата", "Событие"});
     productTable.setSortingEnabled(true);
     productTable.setEditTriggers(QAbstractItemView::NoEditTriggers);
-    for(int i=0; i<5; i++){
-        productTable.insertRow(i);
-        for(int j=0; j< 7; j++)
-        productTable.setItem(i,j, new QTableWidgetItem("col"+QString::number(i)+" "+ QString::number(j)));
-    }
-    productTable.resizeColumnsToContents();
-    productTable.resizeRowsToContents();
-
     layout.addWidget(&productTypes);
     layout.addWidget(&productIds);
+    layout.addWidget(&barecodeImg);
     layout.addWidget(&printBareCodeBtn);
     layout.addWidget(&saveBareCodeInFileBtn);
     layout.addWidget(&productTable);
@@ -32,36 +22,66 @@ ProductTab::ProductTab( QWidget *parent) : QWidget(parent)
 
 }
 
-void ProductTab::updateTableData(const QStringList data){
-    for(auto i:data){
-        qDebug()<<i;
-    }
+void ProductTab::updateTableDateAndBarecode(const ProductHistory& data, const QImage& barecode){
+    qDebug()<<data.productType<<" "<<data.id<<"\n";
+    barecodeImg.setPixmap(QPixmap::fromImage(barecode));
+    productTable.clear();
+    productTable.setRowCount(0);
+    productTable.setHorizontalHeaderLabels({"Модель","Номер","Дата", "Событие"});
+
+    productTable.insertRow(0);
+    productTable.setCellWidget(0,0, new QLabel(data.productType));
+    productTable.setCellWidget(0,1, new QLabel(data.id));
+    productTable.setCellWidget(0,2, new QLabel("Добавлено"));
+    productTable.setCellWidget(0,3, new QLabel(data.dateOfAdd));
+
+    productTable.insertRow(1);
+    productTable.setCellWidget(1,0, new QLabel(data.productType));
+    productTable.setCellWidget(1,1, new QLabel(data.id));
+    productTable.setCellWidget(1,2, new QLabel("Собрано"));
+    productTable.setCellWidget(1,3, new QLabel(data.dateOfBuild));
+
+    productTable.insertRow(2);
+    productTable.setCellWidget(2,0, new QLabel(data.productType));
+    productTable.setCellWidget(2,1, new QLabel(data.id));
+    productTable.setCellWidget(2,2, new QLabel("Прошло регулировку"));
+    productTable.setCellWidget(2,3, new QLabel(data.dateOfAdjustment));
+
+    productTable.insertRow(3);
+    productTable.setCellWidget(3,0, new QLabel(data.productType));
+    productTable.setCellWidget(3,1, new QLabel(data.id));
+    productTable.setCellWidget(3,2, new QLabel("Прошло ОТК"));
+    productTable.setCellWidget(3,3, new QLabel(data.dateOfOtk));
+
+    productTable.insertRow(4);
+    productTable.setCellWidget(4,0, new QLabel(data.productType));
+    productTable.setCellWidget(4,1, new QLabel(data.id));
+    productTable.setCellWidget(4,2, new QLabel("Отгружено"));
+    productTable.setCellWidget(4,3, new QLabel(data.dateOfShipping));
+
+    productTable.resizeColumnsToContents();
+    productTable.resizeRowsToContents();
 }
 
-void ProductTab::updateProductTypes(const QStringList productTypes){
-    for(auto i:productTypes){
-        qDebug()<<i;
-    }
+void ProductTab::updateProductTypes(const QStringList types){
+    productTypes.clear();
+    productTypes.addItems(types);
 }
 
 void ProductTab::updateIds(const QStringList idList){
-    for(auto i:idList){
-        qDebug()<<i;
-    }
+    this->productIds.clear();
+    productIds.addItems(idList);
 }
-
-
-//void  needPrintBarecode(const QList<QImage>& img);
-//void needSaveBarecode(const QList<QImage>& img);
 
 void ProductTab::onClickedPrintBareCode()
 {
     qDebug()<<"onClickedPrintBareCode\n";
-    emit needPrintBarecode({});
+    emit needPrintBarecode({QImage("test.jpg")});
 }
 
 void ProductTab::onClickedSaveBareCodeInFile()
 {
-     qDebug()<<"onClickedSaveBareCodeInFile\n";
-    emit needSaveBarecode({});
+    qDebug()<<"onClickedSaveBareCodeInFile\n";
+    QString filename = QInputDialog::getText(this, "Введите имя файла", "имя файла");
+    emit needSaveBarecode({QImage("test.jpg")}, filename);
 }

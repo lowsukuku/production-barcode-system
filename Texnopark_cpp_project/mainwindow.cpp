@@ -1,5 +1,6 @@
 #include "mainwindow.h"
-//https://www.draw.io/?state=%7B%22ids%22:%5B%221j2n3zKBZTiV1pvSBbawUL633ih3vfUtN%22%5D,%22action%22:%22open%22,%22userId%22:%22111131452457637558449%22%7D#G1j2n3zKBZTiV1pvSBbawUL633ih3vfUtN
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -7,12 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     initSignalsAndSlots();
     authorizationForm->show();
 
+    prodTypesTab->updateTableData(controllerForDataBase.getAllProductsType());
+    allProductsTab->updateTableData(controllerForDataBase.getAllProducts());
+    prodByTypesTab->updateProductTypes(controllerForDataBase.getTypesList());
+    prodTab->updateProductTypes(controllerForDataBase.getTypesList());
 }
 
 void MainWindow::initLayout()
 {
     setWindowTitle("Система штрих-кодирования");
-
     authorizationForm = new AuthorizationForm();
     tabWidget = new QTabWidget();
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -34,9 +38,9 @@ void MainWindow::initLayout()
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(addProtuctBtn);
     mainLayout->addWidget(addProtuctTypeBtn);
-
     body->setLayout(mainLayout);
     setCentralWidget(body);
+
 }
 
 void MainWindow::initSignalsAndSlots()
@@ -56,10 +60,10 @@ void MainWindow::initSignalsAndSlots()
     connect( prodTab->getProductIdsComboBox(), SIGNAL(currentTextChanged(const QString&)),
              this, SLOT(tabProdChangeId(const QString &)));
     connect(addProductForm, SIGNAL(needPrintBarecode(const QList<QImage>& )), this, SLOT(printBarecode(const QList<QImage> &)));
-    connect(addProductForm, SIGNAL(needSaveBarecode(const QList<QImage>& )), this, SLOT(saveBarecode(const QList<QImage> &)));
+    connect(addProductForm, SIGNAL(needSaveBarecode(const QList<QImage>&, const QString&)), this, SLOT(saveBarecode(const QList<QImage>&, const QString&)));
 
     connect(prodTab, SIGNAL(needPrintBarecode(const QList<QImage>& )), this, SLOT(printBarecode(const QList<QImage> &)));
-    connect(prodTab, SIGNAL(needSaveBarecode(const QList<QImage>& )), this, SLOT(saveBarecode(const QList<QImage> &)));
+    connect(prodTab, SIGNAL(needSaveBarecode(const QList<QImage>& , const QString& )), this, SLOT(saveBarecode(const QList<QImage>&, const QString&)));
 
     connect(authorizationForm->getButtonEnter(), SIGNAL(clicked()),this, SLOT(authorizate()));
 
@@ -74,70 +78,92 @@ MainWindow::~MainWindow()
 
 void MainWindow::onClickedAddProtuctTypeBtn(){
 
-    this->addProductTypesForm->show();
+    addProductTypesForm->show();
 }
 
 void MainWindow::onClickedAddProtuctBtn(){
-    this->addProductForm->show();
+    addProductForm->getSubmitButton()->setHidden(false);
+    addProductForm->updateProductTypes(controllerForDataBase.getTypesList());
+    addProductForm->show();
 }
 
 void MainWindow::onClickedTabBar(int index){
-    //тут через контроллер бд надо будет обновить данные в таблицах
     qDebug()<<"click "<<index<<" \n";
+    switch (index) {
+    case 0:
+    {
+        qDebug()<<"0\n";
+        prodTypesTab->updateTableData(controllerForDataBase.getAllProductsType());
+        break;
+    };
+
+    case 1:
+    {
+        qDebug()<<"1\n";
+        allProductsTab->updateTableData(controllerForDataBase.getAllProducts());
+        break;
+    };
+    }
 }
 
 void MainWindow::formAddProdOnClickedSubmit()
 {
     qDebug()<<"tabAddProdOnClickedSubmit\n";
-    qDebug()<<this->addProductForm->getCurrentProductType()<<" "<<this->addProductForm->getCurrentAmount()<<"\n";
-    this->addProductForm->updateAfterSubmit({"1","2"}, {});
+    qDebug()<<addProductForm->getCurrentProductType()<<" "<<this->addProductForm->getCurrentAmount()<<"\n";
+    QStringList ids = controllerForDataBase.addProduct(addProductForm->getCurrentProductType(),this->addProductForm->getCurrentAmount());
+    QList<QImage> imgs;
+    for(auto i:ids){
+        imgs.push_back(controllerForBarecode.transformIdToBarecode(i));
+    }
+    addProductForm->updateAfterSubmit(ids,imgs);
 }
 
 void MainWindow::formAddProdTypeClickedSubmit()
 {
     qDebug()<<"formAddProdTypeClickedSubmit";
-    qDebug()<<this->addProductTypesForm->getCurrentProductTypeNameInput()<<"\n";
-    this->addProductTypesForm->hide();
-}
-
-void MainWindow::tabProdByTypesChangedTypes(const QString &text)
-{
-    qDebug()<<"tabProdByTypesChangedTypes  "<<text<<"\n";
-    prodByTypesTab->updateProductTypes({});
-    prodByTypesTab->updateTableData({});
+    qDebug()<<addProductTypesForm->getCurrentProductTypeNameInput()<<"\n";
+    controllerForDataBase.addProductType(addProductTypesForm->getCurrentProductTypeNameInput());
+    addProductTypesForm->hide();
 }
 
 
-
-void MainWindow::tabProdChangeTypes(const QString &text)
+void MainWindow::tabProdChangeTypes(const QString &type)
 {
-    qDebug()<<"tabProdChangeTypes "<<text<<"\n";
-    prodTab->updateIds({});
+    qDebug()<<"tabProdChangeTypes "<<type<<"\n";
+    prodTab->updateIds(controllerForDataBase.getIdByType(type));
 
 }
 
-void MainWindow::tabProdChangeId(const QString &text)
+void MainWindow::tabProdChangeId(const QString &id)
 {
-     qDebug()<<"tabProdChangeId "<<text<<"\n";
-     prodTab->updateTableData({});
+    qDebug()<<"tabProdChangeId "<<id<<"\n";
+    QString productType = prodTab->getProductTypesComboBox()->currentText();
+    prodTab->updateTableDateAndBarecode(controllerForDataBase.getProductHistory(productType, id), controllerForBarecode.transformIdToBarecode(id));
 }
 
 void MainWindow::printBarecode(const QList<QImage> &img)
 {
-   qDebug()<<"print barecode\n";
+    qDebug()<<"print barecode\n";
+    for(auto imgage: img){
+        controllerForBarecode.printBarecode(imgage);
+    }
+
 }
 
-void MainWindow::saveBarecode(const QList<QImage> &img)
+void MainWindow::saveBarecode(const QList<QImage>& img, const QString& filename)
 {
+    for(auto imgage: img){
+        controllerForBarecode.saveBarecodeInFile(imgage, filename);
+    }
     qDebug()<<"save Barecode\n";
 }
 
 void MainWindow::authorizate()
 {
-     qDebug()<<"Login "<<authorizationForm->getUserName();
-     qDebug()<<"Password "<<authorizationForm->getPassword()<<"\n";
-     bool flag = !authorizationForm->getUserName().isEmpty() && !authorizationForm->getPassword().isEmpty();
-     authorizationForm->afterLoginRequest(flag);
+    qDebug()<<"Login "<<authorizationForm->getUserName();
+    qDebug()<<"Password "<<authorizationForm->getPassword()<<"\n";
+    //bool flag = !authorizationForm->getUserName().isEmpty() && !authorizationForm->getPassword().isEmpty();
+    authorizationForm->afterLoginRequest(controllerForDataBase.isAuthorized(authorizationForm->getUserName(), authorizationForm->getPassword()));
 }
 
 
@@ -145,15 +171,32 @@ void MainWindow::authorizate()
 void MainWindow::tabProdTypesOnDoubleClicked(int row, int column)
 {
     qDebug()<<"tabProdTypesOnDoubleClicked"<<row<<" "<<column<<" " <<((QLabel*)(prodTypesTab->getProductTypeTable()->cellWidget(row,column)))->text()<<"\n";
-    //prodByTypesTab->updateProductTypes({prodTypesTab->getProductTypeTable()->cellWidget(row,column)});
-    prodByTypesTab->updateTableData({});
-    prodTab->updateProductTypes({});
-    prodTab->updateIds({});
+    if(column!=0)
+        return;
+    QString productType = ((QLabel*)(prodTypesTab->getProductTypeTable()->cellWidget(row,column)))->text();
+    prodByTypesTab->updateProductTypes(controllerForDataBase.getTypesList());
+    prodByTypesTab->getProductTypesComboBox()->setCurrentText(productType);
     tabWidget->setCurrentWidget(prodByTypesTab);
+}
+
+void MainWindow::tabProdByTypesChangedTypes(const QString &productType)
+{
+    qDebug()<<"tabProdByTypesChangedTypes  "<<productType<<"\n";
+    prodByTypesTab->updateTableData(controllerForDataBase.getProductsByType(productType));
 }
 
 void MainWindow::tabProdByTypesOnDoubleClicked(int row, int column)
 {
-    qDebug()<<"tabProdTypesOnDoubleClicked"<<row<<" "<<column<<" " <<((QLabel*)(prodByTypesTab->getProductsTable()->cellWidget(row,column)))->text()<<"\n";
+    QString productType = ((QLabel*)(prodByTypesTab->getProductsTable()->cellWidget(row,0)))->text();
+    QString id = ((QLabel*)(prodByTypesTab->getProductsTable()->cellWidget(row,column)))->text();
+
+    qDebug()<<"tabProdByTypesOnDoubleClicked"<<row<<" "<<column<<" " <<productType<< id<<"\n";
+    if(column!=2)
+        return;
+    prodTab->updateIds(controllerForDataBase.getIdByType(productType));
+    prodTab->updateProductTypes(controllerForDataBase.getTypesList());
+    prodTab->getProductIdsComboBox()->setCurrentText(id);
+    prodTab->getProductTypesComboBox()->setCurrentText(productType);
+    prodTab->updateTableDateAndBarecode(controllerForDataBase.getProductHistory(productType, id),controllerForBarecode.transformIdToBarecode(id));
     tabWidget->setCurrentWidget(prodTab);
 }

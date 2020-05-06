@@ -2,6 +2,7 @@
 #define ALLPRODUCTSTAB_H
 
 #include <QtWidgets>
+#include <structuresForTable.h>
 
 class AllProductsTab : public QWidget
 {
@@ -9,7 +10,7 @@ class AllProductsTab : public QWidget
 public:
     explicit AllProductsTab(QWidget *parent = nullptr);
 
-    void updateTableData(const QStringList data);
+    void updateTableData(const QList<Product> data);
     QTableWidget* getProductsTable(){return &productsTable;}
     ~AllProductsTab(){}
 

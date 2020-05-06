@@ -2,6 +2,7 @@
 #define AUTHORIZATIONFORM_H
 #include <QtWidgets>
 #include <QCloseEvent>
+#include <structuresForTable.h>
 class AuthorizationForm : public QDialog
 {
 

@@ -2,6 +2,7 @@
 #define ADDPRODUCTTYPESFORM_H
 
 #include <QtWidgets>
+#include <structuresForTable.h>
 
 class AddProductTypesForm : public QDialog
 {

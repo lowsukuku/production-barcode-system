@@ -9,6 +9,10 @@
 #include "producttypestab.h"
 #include "addproducttypesform.h"
 #include "addproductform.h"
+#include "controllerforbarecode.h"
+#include "controllerfordatabase.h"
+#include <structuresForTable.h>
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -29,6 +33,9 @@ public:
     AllProductsTab* allProductsTab;
     ProductsByTypesTab* prodByTypesTab;
     ProductTab* prodTab;
+    ControllerForBarecode controllerForBarecode;
+    ControllerForDataBase controllerForDataBase;
+
 
 public slots:
     void onClickedAddProtuctTypeBtn();
@@ -41,26 +48,26 @@ public slots:
     void formAddProdTypeClickedSubmit();
 
     //для таба изделия по моделям
-    void tabProdByTypesChangedTypes(const QString &text);
+    void tabProdByTypesChangedTypes(const QString &productType);
     void tabProdByTypesOnDoubleClicked(int row, int column);
 
     //для таба моделей
     void tabProdTypesOnDoubleClicked(int row, int column);
 
     //для таба отдельного изделия
-    void tabProdChangeTypes(const QString &text);
-    void tabProdChangeId(const QString &text);
+    void tabProdChangeTypes(const QString &type);
+    void tabProdChangeId(const QString &id);
 
     //для штрих-кодов
     void printBarecode(const QList<QImage>& img);
-    void saveBarecode(const QList<QImage>& img);
+    void saveBarecode(const QList<QImage>& img, const QString& filename);
+
 
     //для авторизации
      void authorizate();
 private:
      void initLayout();
      void initSignalsAndSlots();
-
 };
 
 

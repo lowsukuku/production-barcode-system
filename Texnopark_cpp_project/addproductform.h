@@ -3,6 +3,7 @@
 
 #include "controllerforbarecode.h"
 #include <QtWidgets>
+#include <structuresForTable.h>
 
 class AddProductForm : public QDialog
 {
@@ -13,19 +14,17 @@ public:
     const QString getCurrentProductType();
     const QString getCurrentAmount();
     void setCurrentProductType(const QString& type){}
-    const QPushButton* getSubmitButton(){return &submit;}
+    QPushButton* getSubmitButton(){return &submit;}
     const QPushButton* getSaveBarecodeButton(){return &saveBareCodeInFileBtn;}
-     const QPushButton* getPrintBarecodeButton(){return &printBareCodeBtn;}
+    const QPushButton* getPrintBarecodeButton(){return &printBareCodeBtn;}
     void updateAfterSubmit(const QStringList& ids, const QList<QImage>& barecodes);
-    void setBarecodeButtonsHidden(){
-        printBareCodeBtn.setHidden(true);
-        saveBareCodeInFileBtn.setHidden(true);
-    }
+    void clearState();
+    void updateProductTypes(const QStringList types);
     bool isBarecodeButtonsHidden(){return printBareCodeBtn.isHidden()&&saveBareCodeInFileBtn.isHidden();}
-     ~AddProductForm();
+    ~AddProductForm();
 signals:
-   void needPrintBarecode(const QList<QImage>& img);
-   void needSaveBarecode(const QList<QImage>& img);
+    void needPrintBarecode(const QList<QImage>& img);
+    void needSaveBarecode(const QList<QImage>& img, const QString& filename);
 private:
     QPushButton submit;
     QComboBox productTypes;
@@ -33,9 +32,17 @@ private:
     QPushButton printBareCodeBtn;
     QPushButton saveBareCodeInFileBtn;
     QVBoxLayout layout;
+    QGridLayout imgLayout;
+    QList<QImage> imgList;
+
+protected: void closeEvent(QCloseEvent *event)
+    {
+        clearState();
+    }
 private slots:
     void onClickedPrintBareCode();
     void onClickedSaveBareCodeInFile();
 };
+
 
 #endif // ADDPRODUCTFORM_H

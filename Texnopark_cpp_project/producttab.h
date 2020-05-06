@@ -3,24 +3,25 @@
 
 #include <QtWidgets>
 #include "controllerforbarecode.h"
+#include <structuresForTable.h>
 
 class ProductTab : public QWidget
 {
     Q_OBJECT
 public:
     explicit ProductTab(QWidget *parent = nullptr);
-    void updateTableData(const QStringList data);
+    void updateTableDateAndBarecode(const ProductHistory& data, const QImage& barecode);
     void updateProductTypes(const QStringList productTypes);
     void updateIds(const QStringList idList);
-    const QComboBox* getProductTypesComboBox(){return &productTypes;}
-    const QComboBox* getProductIdsComboBox(){return &productIds;}
+    QComboBox* getProductTypesComboBox(){return &productTypes;}
+    QComboBox* getProductIdsComboBox(){return &productIds;}
     const QPushButton* getPrintBareCodePushButton(){return  &printBareCodeBtn;}
     const QPushButton* getSaveBareCodeInFilePushButton(){return &saveBareCodeInFileBtn;}
     const QString cetCurrentProductType(){return productTypes.currentText();}
     ~ProductTab(){}
 signals:
     void  needPrintBarecode(const QList<QImage>& img);
-    void needSaveBarecode(const QList<QImage>& img);
+    void needSaveBarecode(const QList<QImage>& img, const QString& filename);
 private:
     QVBoxLayout layout;
     QTableWidget productTable;
@@ -28,6 +29,7 @@ private:
     QComboBox productIds;
     QPushButton printBareCodeBtn;
     QPushButton saveBareCodeInFileBtn;
+    QLabel barecodeImg;
 private slots:
     void onClickedPrintBareCode();
     void onClickedSaveBareCodeInFile();
