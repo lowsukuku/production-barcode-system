@@ -1,22 +1,22 @@
-#ifndef DB_USERPRODUCTMAPPER_H
-#define DB_USERPRODUCTMAPPER_H
+#ifndef DB_PRODUCTMAPPER_H
+#define DB_PRODUCTMAPPER_H
 
 
 using namespace std;
 #include <vector>
 #include "Product.h"
 #include "../err_code.h"
+#include "../MySQL/MySQL.h"
 
-
-class UserProductMapper {
+class ProductMapper {
 private:
-    void *dataBase; // обьект базы данных TO DO поменять тип
+    DBMySQL *mydb;
     enum productFields {modelId, deviceId};
 
 public:
-    explicit UserProductMapper(void *dataBase);
+    explicit ProductMapper();
 
-    err_code update(Product &product);
+    err_code addProduct(Product &product);
     void *deleteProduct(Product &product);
 
     Product getProductByDeviceId(ULLInt_t deviceId);
@@ -27,4 +27,4 @@ public:
 };
 
 
-#endif //DB_USERPRODUCTMAPPER_H
+#endif //DB_PRODUCTMAPPER_H

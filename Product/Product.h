@@ -25,28 +25,28 @@ public:
     Product();
 
     void setDeviceId(ULLInt_t deviceId);
-    int getDeviceId();
+    ULLInt_t getDeviceId();
 
     void setModelId(ULInt_t modelId);
-    int getModelId();
+    ULInt_t getModelId();
 
     void setCreationUtc(ULInt_t creationUtc);
-    int getCreationUtc();
+    ULInt_t getCreationUtc();
 
     void setSerialNumber(ULInt_t serialNumber);
-    int getSerialNumber();
+    ULInt_t getSerialNumber();
 
     void setMountingUtc(ULInt_t mountingUtc);
-    int getMountingUtc();
+    ULInt_t getMountingUtc();
 
     void setTuningUtc(ULInt_t tuningUtc);
-    int getTuningUtc();
+    ULInt_t getTuningUtc();
 
     void setQuailityCheckUtc(ULInt_t quailityCheckUtc);
-    int getQuailityCheckUtc();
+    ULInt_t getQuailityCheckUtc();
 
     void setShipmentUtc(ULInt_t shipmentUtc);
-    int getShipmentUtc();
+    ULInt_t getShipmentUtc();
 
     void setMountingPassed(bool mountingPassed);
     bool getMountingPassed();
