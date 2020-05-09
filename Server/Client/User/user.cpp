@@ -7,7 +7,7 @@
 
 std::string User::handleClient(HttpRequest &requestParsed) {
     if(!signIn(requestParsed.rawRequest)) return AUTHENTICATION_ERROR;
-    return "";
+    return rout.getAnswer(requestParsed);
 }
 
 bool User::signIn(std::string &request) {

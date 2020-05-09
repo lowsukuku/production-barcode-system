@@ -34,6 +34,16 @@ public:
 
     void sendRequest(std::string &&data);
 
+private:
+    std::string getContent(const std::string &request);
+
+    enum ClientType getClientType(const std::string &content);
+
+    std::string getPostMethod(const std::string &content);
+
+    std::string getGetMethod(const std::string &request);
+
+    std::string getGetData(const std::string &request);
 public:
     tcp::socket socket;
     websocket::stream<tcp::socket> ws{std::move(socket)};

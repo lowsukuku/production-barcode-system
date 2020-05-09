@@ -3,25 +3,72 @@
 //
 
 #include "httphandler.h"
-#include <nlohmann/json.hpp>
 #include <time.h>
 
-// for convenience
-using json = nlohmann::json;
 
 HttpRequest HttpHandler::parseRequest(const std::string &request) {
     HttpRequest r;
-    json parser=request;
-    std::string type=parser["clientType"];
-    if(type=="User") r.client=ClientType::USER;
-    else r.client=ClientType::SCANER;
-    r.method=parser["clientType"];
-    r.data=parser["context"];
-    r.typeRequest=RequestType::POST;
+    r.typeRequest=getRequestType(request);
+    if(r.typeRequest==POST){
+        std::string content=getContent(request);
+        r.client=getClientType(content);
+        r.method=getPostMethod(content);
+        r.data=content;
+        r.contentLength=content.size();
+    }
+    else{
+        r.method=getGetMethod(request);
+        r.data=getGetData(request);
+    }
     r.rawRequest=request;
-    uint64_t contentBeginPos=request.find('{');
-    r.contentLength=request.size()-contentBeginPos;
     return r;
+}
+
+std::string HttpHandler::getGetMethod(const std::string &request) {
+    uint64_t pos=request.find("contextType=");pos+=strlen("contextType=");
+    std::string method;
+    while(request[pos]!='&' && request[pos]!=' '){
+        method+=request[pos];
+        pos++;
+    }
+    return method;
+}
+
+std::string HttpHandler::getGetData(const std::string &request) {
+    int64_t pos=request.find('&');
+    if(pos==-1)return "";
+    pos++;
+    std::string data;
+    while(request[pos]!=' ' && request[pos]!='\n'){
+        data+=request[pos];
+        pos++;
+    }
+    return std::string();
+}
+
+std::string HttpHandler::getPostMethod(const std::string &content) {
+    uint64_t pos=content.find("contextType");pos+=3; pos+=strlen("contextType");
+    std::string method;
+    while(content[pos]!='"'){
+        method+=content[pos];
+        pos++;
+    }
+    return method;
+}
+
+enum ClientType HttpHandler::getClientType(const std::string &content) {
+    if(content.find("User")) return ClientType ::USER;
+    return ClientType ::SCANER;
+
+}
+
+std::string HttpHandler::getContent(const std::string &request){
+    uint64_t pos=request.find('{');
+    std::string content;
+    for(;pos< request.size();++pos){
+        content+=request[pos];
+    }
+    return content;
 }
 
 RequestType HttpHandler::getRequestType(const std::string &request) {
