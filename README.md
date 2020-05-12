@@ -2,7 +2,8 @@
 Настройка БД:
 
 1) sudo apt update
-2) sudo apt install mysql-server
+2) sudo apt-get install libmysqlcppconn-dev
+3) sudo apt install mysql-server
 
 Теперь запуск скрипта настройки (Введите новый пароль. Везде пишите Y и Enter)
 - sudo mysql_secure_installation
