@@ -38,6 +38,11 @@ int DBMySQL::getInt(int ind)
     return res->getInt(ind);
 }
 
+int DBMySQL::getRow()
+{
+    return res->getRow();
+}
+
 sql::SQLString DBMySQL::getString(std::string& colLabel)
 {
     return res->getString(colLabel);

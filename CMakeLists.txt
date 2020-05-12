@@ -16,7 +16,8 @@ project(DB)
 #
 #set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DB src/User/User.cpp
+add_executable(DB
+#        src/User/User.cpp
 #        User/User.h
 #        User/UserMapper.cpp
 #        User/UserMapper.h
@@ -40,6 +41,10 @@ add_executable(DB src/User/User.cpp
 #        test/test_ScanerMapper_class.cpp
 #        test/test_ScanerProductMapper_class.cpp
 #        test/test_UserProductMapper_class.cpp
-        ../main.cpp src/MySQL/MySQL.cpp src/MySQL/MySQL.h)
+        ../main.cpp
+        src/MySQL/MySQL.cpp
+        src/MySQL/MySQL.h
+        src/Parser/IPost.cpp
+        src/Parser/IPost.h src/Parser/IGet.cpp src/Parser/IGet.h)
 
 target_link_libraries(DB mysqlcppconn)

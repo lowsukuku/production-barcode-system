@@ -24,6 +24,7 @@ public:
     sql::ResultSet* executeQuery(std::string& query);
     bool next();
     int getInt(int ind);
+    int getRow();
     sql::SQLString getString(std::string& colLabel);
 };
 

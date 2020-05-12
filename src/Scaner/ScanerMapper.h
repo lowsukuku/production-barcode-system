@@ -3,7 +3,7 @@
 
 
 #include "Scaner.h"
-#include "../../err_code.h"
+#include "../err_code.h"
 
 
 class ScanerMapper {

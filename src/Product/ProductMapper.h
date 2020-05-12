@@ -5,7 +5,7 @@
 using namespace std;
 #include <vector>
 #include "Product.h"
-#include "../../err_code.h"
+#include "../err_code.h"
 #include "../MySQL/MySQL.h"
 
 class ProductMapper {
