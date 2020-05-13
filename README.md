@@ -12,7 +12,7 @@
 1) sudo mysql -u root -p // (Нужно ввести пароль, который задали)
 2) После того, как зашло: 
     - CREATE USER 'newuser'@'localhost' IDENTIFIED BY '123456789Qqw_!';
-    - GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;
+    - GRANT ALL PRIVILEGES ON \*.\* TO 'newuser'@'localhost' WITH GRANT OPTION;
     
 Теперь запустите скрипт из папки InitializeDB
 
