@@ -7,11 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     initLayout();
     initSignalsAndSlots();
     authorizationForm->show();
-
-    prodTypesTab->updateTableData(controllerForDataBase.getAllProductsType());
-    allProductsTab->updateTableData(controllerForDataBase.getAllProducts());
-    prodByTypesTab->updateProductTypes(controllerForDataBase.getTypesList());
-    prodTab->updateProductTypes(controllerForDataBase.getTypesList());
 }
 
 void MainWindow::initLayout()
@@ -111,6 +106,9 @@ void MainWindow::formAddProdOnClickedSubmit()
     qDebug()<<"tabAddProdOnClickedSubmit\n";
     qDebug()<<addProductForm->getCurrentProductType()<<" "<<this->addProductForm->getCurrentAmount()<<"\n";
     QStringList ids = controllerForDataBase.addProduct(addProductForm->getCurrentProductType(),this->addProductForm->getCurrentAmount());
+    if(ids.empty()){
+        (new QErrorMessage())->showMessage("Возникла ошибка, проверьте соединение с интернетом и попробуйте снова");
+    }
     QList<QImage> imgs;
     for(auto i:ids){
         imgs.push_back(controllerForBarecode.transformIdToBarecode(i));
@@ -122,7 +120,10 @@ void MainWindow::formAddProdTypeClickedSubmit()
 {
     qDebug()<<"formAddProdTypeClickedSubmit";
     qDebug()<<addProductTypesForm->getCurrentProductTypeNameInput()<<"\n";
-    controllerForDataBase.addProductType(addProductTypesForm->getCurrentProductTypeNameInput());
+    bool correct =  controllerForDataBase.addProductType(addProductTypesForm->getCurrentProductTypeNameInput());
+    if(!correct){
+        (new QErrorMessage())->showMessage("Возникла ошибка, проверьте соединение с интернетом и попробуйте снова");
+    }
     addProductTypesForm->hide();
 }
 
@@ -144,16 +145,17 @@ void MainWindow::tabProdChangeId(const QString &id)
 void MainWindow::printBarecode(const QList<QImage> &img)
 {
     qDebug()<<"print barecode\n";
-    for(auto imgage: img){
-        controllerForBarecode.printBarecode(imgage);
+    for(auto image: img){
+        controllerForBarecode.printBarecode(image);
     }
 
 }
 
 void MainWindow::saveBarecode(const QList<QImage>& img, const QString& filename)
 {
+    int i = 1;
     for(auto imgage: img){
-        controllerForBarecode.saveBarecodeInFile(imgage, filename);
+        controllerForBarecode.saveBarecodeInFile(imgage, filename+QString::number(i++));
     }
     qDebug()<<"save Barecode\n";
 }
@@ -162,8 +164,14 @@ void MainWindow::authorizate()
 {
     qDebug()<<"Login "<<authorizationForm->getUserName();
     qDebug()<<"Password "<<authorizationForm->getPassword()<<"\n";
-    //bool flag = !authorizationForm->getUserName().isEmpty() && !authorizationForm->getPassword().isEmpty();
-    authorizationForm->afterLoginRequest(controllerForDataBase.isAuthorized(authorizationForm->getUserName(), authorizationForm->getPassword()));
+    bool authorized = controllerForDataBase.isAuthorized(authorizationForm->getUserName(), authorizationForm->getPassword());
+    if(authorized){
+        prodTypesTab->updateTableData(controllerForDataBase.getAllProductsType());
+        allProductsTab->updateTableData(controllerForDataBase.getAllProducts());
+        prodByTypesTab->updateProductTypes(controllerForDataBase.getTypesList());
+        prodTab->updateProductTypes(controllerForDataBase.getTypesList());
+    }
+    authorizationForm->afterLoginRequest(authorized);
 }
 
 

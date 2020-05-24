@@ -28,8 +28,11 @@ void ProductTypesTab::updateTableData(QList<ProductType> data){
         productTypesTable.setCellWidget(i,4, new QLabel(it->amountOfSettingProduct));
         productTypesTable.setCellWidget(i,5, new QLabel(it->amountAfterOtk));
         productTypesTable.setCellWidget(i,6, new QLabel(it->amountOfShippedProduct));
+        i++;
     }
     productTypesTable.resizeColumnsToContents();
     productTypesTable.resizeRowsToContents();
 
 }
+
+const QTableWidget *ProductTypesTab::getProductTypeTable(){return &productTypesTable;}

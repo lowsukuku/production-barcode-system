@@ -11,7 +11,7 @@ ProductTab::ProductTab( QWidget *parent) : QWidget(parent)
     productTable.setEditTriggers(QAbstractItemView::NoEditTriggers);
     layout.addWidget(&productTypes);
     layout.addWidget(&productIds);
-    layout.addWidget(&barecodeImg);
+    layout.addWidget(&barecodeImgLabel);
     layout.addWidget(&printBareCodeBtn);
     layout.addWidget(&saveBareCodeInFileBtn);
     layout.addWidget(&productTable);
@@ -24,11 +24,11 @@ ProductTab::ProductTab( QWidget *parent) : QWidget(parent)
 
 void ProductTab::updateTableDateAndBarecode(const ProductHistory& data, const QImage& barecode){
     qDebug()<<data.productType<<" "<<data.id<<"\n";
-    barecodeImg.setPixmap(QPixmap::fromImage(barecode));
+    barecodeImgLabel.setPixmap(QPixmap::fromImage(barecode));
     productTable.clear();
     productTable.setRowCount(0);
     productTable.setHorizontalHeaderLabels({"Модель","Номер","Дата", "Событие"});
-
+    barecoceImg = barecode;
     productTable.insertRow(0);
     productTable.setCellWidget(0,0, new QLabel(data.productType));
     productTable.setCellWidget(0,1, new QLabel(data.id));
@@ -73,15 +73,25 @@ void ProductTab::updateIds(const QStringList idList){
     productIds.addItems(idList);
 }
 
+QComboBox *ProductTab::getProductTypesComboBox(){return &productTypes;}
+
+QComboBox *ProductTab::getProductIdsComboBox(){return &productIds;}
+
+const QPushButton *ProductTab::getPrintBareCodePushButton(){return  &printBareCodeBtn;}
+
+const QPushButton *ProductTab::getSaveBareCodeInFilePushButton(){return &saveBareCodeInFileBtn;}
+
+const QString ProductTab::cetCurrentProductType(){return productTypes.currentText();}
+
 void ProductTab::onClickedPrintBareCode()
 {
     qDebug()<<"onClickedPrintBareCode\n";
-    emit needPrintBarecode({QImage("test.jpg")});
+    emit needPrintBarecode({barecoceImg});
 }
 
 void ProductTab::onClickedSaveBareCodeInFile()
 {
     qDebug()<<"onClickedSaveBareCodeInFile\n";
     QString filename = QInputDialog::getText(this, "Введите имя файла", "имя файла");
-    emit needSaveBarecode({QImage("test.jpg")}, filename);
+    emit needSaveBarecode({barecoceImg}, filename);
 }

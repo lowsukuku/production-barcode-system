@@ -1,4 +1,13 @@
 #include "controllerforbarecode.h"
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
+#include <QPainter>
+#include <QDebug>
+#include <QDateTime>
+#include "prison.h"
+#include "abstractbarcode.h"
+#include <qstringlist.h>
+#include <QImageWriter>
 
 ControllerForBarecode::ControllerForBarecode(QObject *parent) : QObject(parent)
 {
@@ -32,7 +41,7 @@ QImage ControllerForBarecode::transformIdToBarecode(const QString &id)
     QScopedPointer<Prison::AbstractBarcode> barcode;
     barcode.reset(Prison::createBarcode(Prison::DataMatrix));
     barcode->setData(id);
-    QImage result = barcode->toImage(QSizeF(25,25));
+    QImage result = barcode->toImage(QSizeF(40,40));
     result.save("id","png");
     return result;
 

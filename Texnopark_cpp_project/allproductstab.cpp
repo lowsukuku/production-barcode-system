@@ -25,6 +25,7 @@ void AllProductsTab::updateTableData(QList<Product> data){
        productsTable.setCellWidget(i,1, new QLabel(it->date));
        productsTable.setCellWidget(i,2, new QLabel(it->id));
        productsTable.setCellWidget(i,3, new QLabel(it->state));
+       i++;
    }
    productsTable.resizeColumnsToContents();
    productsTable.resizeRowsToContents();

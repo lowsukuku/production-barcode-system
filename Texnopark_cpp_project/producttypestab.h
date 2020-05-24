@@ -10,7 +10,7 @@ class ProductTypesTab : public QWidget
 public:
     explicit ProductTypesTab(QWidget *parent = nullptr);
     void updateTableData(QList<ProductType> data);
-    const QTableWidget* getProductTypeTable(){return &productTypesTable;}
+    const QTableWidget* getProductTypeTable();
     ~ProductTypesTab(){}
 
 private:

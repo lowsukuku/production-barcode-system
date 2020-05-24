@@ -13,11 +13,11 @@ public:
     void updateTableDateAndBarecode(const ProductHistory& data, const QImage& barecode);
     void updateProductTypes(const QStringList productTypes);
     void updateIds(const QStringList idList);
-    QComboBox* getProductTypesComboBox(){return &productTypes;}
-    QComboBox* getProductIdsComboBox(){return &productIds;}
-    const QPushButton* getPrintBareCodePushButton(){return  &printBareCodeBtn;}
-    const QPushButton* getSaveBareCodeInFilePushButton(){return &saveBareCodeInFileBtn;}
-    const QString cetCurrentProductType(){return productTypes.currentText();}
+    QComboBox* getProductTypesComboBox();
+    QComboBox* getProductIdsComboBox();
+    const QPushButton* getPrintBareCodePushButton();
+    const QPushButton* getSaveBareCodeInFilePushButton();
+    const QString cetCurrentProductType();
     ~ProductTab(){}
 signals:
     void  needPrintBarecode(const QList<QImage>& img);
@@ -29,7 +29,8 @@ private:
     QComboBox productIds;
     QPushButton printBareCodeBtn;
     QPushButton saveBareCodeInFileBtn;
-    QLabel barecodeImg;
+    QLabel barecodeImgLabel;
+    QImage barecoceImg;
 private slots:
     void onClickedPrintBareCode();
     void onClickedSaveBareCodeInFile();

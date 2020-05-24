@@ -13,3 +13,9 @@ AddProductTypesForm::AddProductTypesForm(QWidget *parent):QDialog(parent)
     setLayout(layout);
     setMinimumWidth(220);
 }
+
+const QPushButton *AddProductTypesForm::getSubmitButton(){return &submit;}
+
+const QString AddProductTypesForm::getCurrentProductTypeNameInput(){return productTypeNameInput.text();}
+
+void AddProductTypesForm::setProductTypeName(const QString &name){productTypeNameInput.setText(name);}

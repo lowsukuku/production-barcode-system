@@ -3,18 +3,6 @@
 
 #include <QObject>
 #include <QImage>
-#include <QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
-#include <QPainter>
-#include <QDebug>
-#include <QDateTime>
-#include <structuresForTable.h>
-#include "prison.h"
-#include "abstractbarcode.h"
-#include <qstringlist.h>
-#include <QImageWriter>
-
-
 
 class ControllerForBarecode : public QObject
 {

@@ -17,6 +17,16 @@ AuthorizationForm::AuthorizationForm(QWidget *parent):QDialog(parent)
     this->setMinimumWidth(300);
 }
 
+const QString AuthorizationForm::getUserName(){return  userName.text();}
+
+const QString AuthorizationForm::getPassword(){return password.text();}
+
+void AuthorizationForm::setUserName(const QString &name){userName.setText(name);}
+
+void AuthorizationForm::setPassword(const QString &pswd){password.setText(pswd);}
+
+const QPushButton *AuthorizationForm::getButtonEnter(){return &enter;}
+
 void AuthorizationForm::afterLoginRequest(bool isAuthorized)
 {
     if(isAuthorized)
@@ -24,4 +34,11 @@ void AuthorizationForm::afterLoginRequest(bool isAuthorized)
     else{
         (new QErrorMessage(this))->showMessage("Неправильный логин или пароль, попробуйте снова");
     }
+}
+
+void AuthorizationForm::closeEvent(QCloseEvent *event)
+{
+    qDebug()<<"Крестик\n";
+    exit(0);
+    event->accept();
 }

@@ -9,9 +9,9 @@ class AddProductTypesForm : public QDialog
     Q_OBJECT
 public:
     explicit AddProductTypesForm(QWidget *parent = nullptr);
-    const QPushButton* getSubmitButton(){return &submit;}
-    const QString getCurrentProductTypeNameInput(){return productTypeNameInput.text();}
-    void setProductTypeName(const QString& name){productTypeNameInput.setText(name);}
+    const QPushButton* getSubmitButton();
+    const QString getCurrentProductTypeNameInput();
+    void setProductTypeName(const QString& name);
     ~AddProductTypesForm(){}
 private:
     QLineEdit productTypeNameInput;

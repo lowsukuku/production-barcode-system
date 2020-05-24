@@ -21,6 +21,7 @@ AddProductForm::AddProductForm(QWidget *parent):QDialog(parent)
 
     setLayout(&layout);
     setMinimumWidth(220);
+    layout.addLayout(&imgLayout);
     connect(&printBareCodeBtn, SIGNAL(clicked()), this, SLOT(onClickedPrintBareCode()));
     connect(&saveBareCodeInFileBtn, SIGNAL(clicked()), this, SLOT(onClickedSaveBareCodeInFile()));
 }
@@ -40,6 +41,12 @@ const QString AddProductForm::getCurrentAmount()
     return QString::number(amountOfProducts.value());
 }
 
+QPushButton *AddProductForm::getSubmitButton(){return &submit;}
+
+const QPushButton *AddProductForm::getSaveBarecodeButton(){return &saveBareCodeInFileBtn;}
+
+const QPushButton *AddProductForm::getPrintBarecodeButton(){return &printBareCodeBtn;}
+
 void AddProductForm::updateAfterSubmit(const QStringList &ids, const QList<QImage> &barecodes)
 {
     //заполняем layout кнопками и т.д.
@@ -52,7 +59,7 @@ void AddProductForm::updateAfterSubmit(const QStringList &ids, const QList<QImag
         imgLabel->setPixmap(QPixmap::fromImage(*imgIter));
         imgLayout.addWidget(imgLabel);
         imgIter->save(*idIter + ".png","png");
-        layout.addLayout(&imgLayout);
+
         imgIter++;
         idIter++;
 
@@ -82,16 +89,18 @@ void AddProductForm::updateProductTypes(const QStringList types)
 void AddProductForm::onClickedPrintBareCode()
 {
     qDebug()<<"onClickedPrintBareCode\n";
+    emit needPrintBarecode(imgList);
     clearState();
     hide();
-    emit needPrintBarecode(imgList);
+
 }
 
 void AddProductForm::onClickedSaveBareCodeInFile()
 {
      qDebug()<<"onClickedSaveBareCodeInFile\n";
-     clearState();
-     hide();
      QString filename = QInputDialog::getText(this, "Введите имя файла", "имя файла");
      emit needSaveBarecode(imgList, filename);
+     clearState();
+     hide();
+
 }

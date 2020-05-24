@@ -13,10 +13,9 @@ public:
 
     const QString getCurrentProductType();
     const QString getCurrentAmount();
-    void setCurrentProductType(const QString& type){}
-    QPushButton* getSubmitButton(){return &submit;}
-    const QPushButton* getSaveBarecodeButton(){return &saveBareCodeInFileBtn;}
-    const QPushButton* getPrintBarecodeButton(){return &printBareCodeBtn;}
+    QPushButton* getSubmitButton();
+    const QPushButton* getSaveBarecodeButton();
+    const QPushButton* getPrintBarecodeButton();
     void updateAfterSubmit(const QStringList& ids, const QList<QImage>& barecodes);
     void clearState();
     void updateProductTypes(const QStringList types);
