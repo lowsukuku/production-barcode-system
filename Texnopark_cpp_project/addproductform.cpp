@@ -50,6 +50,13 @@ const QPushButton *AddProductForm::getPrintBarecodeButton(){return &printBareCod
 void AddProductForm::updateAfterSubmit(const QStringList &ids, const QList<QImage> &barecodes)
 {
     //заполняем layout кнопками и т.д.
+    if(ids.empty()){
+        (new QErrorMessage(this))->showMessage("Возникла ошибка, проверьте соединение с интернетом и попробуйте снова");
+        clearState();
+        hide();
+        return;
+    }
+
     auto idIter = ids.begin();
     auto imgIter = barecodes.begin();
     for(int i = 0; i< ids.length(); ++i){

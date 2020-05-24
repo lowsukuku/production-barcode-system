@@ -106,9 +106,6 @@ void MainWindow::formAddProdOnClickedSubmit()
     qDebug()<<"tabAddProdOnClickedSubmit\n";
     qDebug()<<addProductForm->getCurrentProductType()<<" "<<this->addProductForm->getCurrentAmount()<<"\n";
     QStringList ids = controllerForDataBase.addProduct(addProductForm->getCurrentProductType(),this->addProductForm->getCurrentAmount());
-    if(ids.empty()){
-        (new QErrorMessage())->showMessage("Возникла ошибка, проверьте соединение с интернетом и попробуйте снова");
-    }
     QList<QImage> imgs;
     for(auto i:ids){
         imgs.push_back(controllerForBarecode.transformIdToBarecode(i));

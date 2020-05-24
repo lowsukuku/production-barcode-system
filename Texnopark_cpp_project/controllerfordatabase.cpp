@@ -20,7 +20,7 @@ ControllerForDataBase::ControllerForDataBase()
 
 bool ControllerForDataBase::isAuthorized(const QString &login, const QString &password)
 {
-    bool res = true;
+    bool res = false;
     ptree root, client;
     userLogin = login.toStdString();
     userPassword = password.toStdString();
@@ -66,7 +66,7 @@ bool ControllerForDataBase::addProductType(const QString &name)
 
     if(!jsonTree.empty()){
         try{
-            bool res = jsonTree.get<string>("context.result")=="ok";
+             res = jsonTree.get<string>("context.result")=="ok";
         }
         catch(...){}
     }
