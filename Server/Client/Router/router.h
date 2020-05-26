@@ -6,6 +6,9 @@
 #define HTTPSERVER_ROUTER_H
 
 #include <iostream>
+#include <string>
+#include "../../DataBase/src/Parser/IPost.h"
+#include "../../DataBase/src/Parser/IGet.h"
 
 enum RequestType{
     POST,
@@ -61,7 +64,8 @@ private:// POST methods
     std::string fixModel(std::string &request);
 
 private:
-    //DbManager db;//Iliya's class object
+    IPost postRequestHandler;
+    IGet getRequestHandler;
 };
 
 

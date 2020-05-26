@@ -7,8 +7,6 @@
 
 #include <cstdlib>
 #include <functional>
-#include <iostream>
-#include <string>
 #include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/ip/tcp.hpp>

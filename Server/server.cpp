@@ -10,7 +10,7 @@ Server::Server(std::string &&serverIP, unsigned short &&serverPORT) : ip(serverI
 
 void Server::start() {
     try {
-        auto const address = net::ip::make_address("127.0.0.1");
+        auto const address = net::ip::make_address(ip);
         // The acceptor receives incoming connections
         tcp::acceptor acceptor{ioc, {address, port}};
         accept(std::move(acceptor));
@@ -45,6 +45,7 @@ void Server::accept(tcp::acceptor &&acceptor) {
 }
 
 void Server::clientHandler(tcp::socket &&socket) {
+    std::cout<<"Connected!"<<std::endl;
     HttpHandler handler(std::move(socket));
     std::string request =handler.getRequest();
     HttpRequest req=handler.parseRequest(request);

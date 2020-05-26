@@ -52,7 +52,7 @@ std::string Router::checkIdProduct(uint64_t id) {
 }
 
 std::string Router::signInUser(UserData &personalInfo) {
-    return std::string();
+    return "OK";
 }
 
 std::string Router::signUpUser(UserData &personalInfo) {

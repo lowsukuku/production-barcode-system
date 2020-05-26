@@ -22,10 +22,10 @@ protected:
 private:
     bool isIdUsed(uint64_t id);
 
-    UserData getSingInData(std::string &data);
+    void getSingInData(std::string data);
 
-private:
-    UserData personalInfo;
+public:
+    UserData personalInfo={"login", "password"};
 };
 
 
