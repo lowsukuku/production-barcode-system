@@ -19,5 +19,6 @@ class AppWorker {
     ConnectWifi(controller);
     TCPSocket socket = TCPSocket(controller);
     if (socket.Connect("127.0.0.1") == false) throw("Connection failed");
-  }
+    HTTPClient client = HTTPClient(socket);
+    }
 };

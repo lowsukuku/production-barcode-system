@@ -1,23 +1,23 @@
 /****************************************Copyright
-*(c)**************************************************
-**
-**-----------------------------------------File
-*Info----------------------------------------------------
-** File name:		SysCallLib.h
-** Decriptions:
-**------------------------------------------------------------------------------------------------------
-** Latest modified By: ZhangME, 2017-05-17
-** Latest Version:	3.3.x
-** Descriptions:
-**------------------------------------------------------------------------------------------------------
-** Created by:		jason.lam
-** Created date:		2012-07-10
-** Version:
-** Descriptions: Add APIs
-** Notice: This APIs document is only provided for the MS3690 Mobile Scanner.
-**------------------------------------------------------------------------------------------------------
-**- Listing: List the functions' simplified descriptions here
-********************************************************************************************************/
+ *(c)**************************************************
+ **
+ **-----------------------------------------File
+ *Info----------------------------------------------------
+ ** File name:		SysCallLib.h
+ ** Decriptions:
+ **------------------------------------------------------------------------------------------------------
+ ** Latest modified By: ZhangME, 2017-05-17
+ ** Latest Version:	3.3.x
+ ** Descriptions:
+ **------------------------------------------------------------------------------------------------------
+ ** Created by:		jason.lam
+ ** Created date:		2012-07-10
+ ** Version:
+ ** Descriptions: Add APIs
+ ** Notice: This APIs document is only provided for the MS3690 Mobile Scanner.
+ **------------------------------------------------------------------------------------------------------
+ **- Listing: List the functions' simplified descriptions here
+ ********************************************************************************************************/
 #ifndef MS3690_SYS_CALL_LIB_H
 #define MS3690_SYS_CALL_LIB_H
 
@@ -207,7 +207,7 @@ typedef void (*Registry_t)(void);
 #define SYSTEM 0x04        // System File
 #define VOLUME 0x08        // Volume
 #define SUBDIRECTORY 0x10  // Subdirectory
-#define FILE 0x20          // File
+#define FILE_ATTR 0x20     // File
 
 /*Keyboard Layout*/
 #define USA 0x00        // USA

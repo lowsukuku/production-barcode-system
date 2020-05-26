@@ -1,5 +1,10 @@
 #pragma once
 
+extern "C" {
+#include "SDK/MS3690Lib/SysCallLib.h"
+#include "SDK/MS3690Lib/ms3690_lib.h"
+}
+
 #include <vector>
 
 #include "HotSpot.h"
@@ -10,7 +15,7 @@ class WifiController {
   std::vector<HotSpot> availableHotSpots;
   std::vector<HotSpot> savedHotSpots;
 
-  void UpdateHotSpotsList() {}
+  void UpdateHotSpotsList();
   void GetSavedHotSpots() {}
   void SaveHotSpots() {}
 
@@ -19,8 +24,12 @@ class WifiController {
   WifiController() {}
   ~WifiController() {}
 
-  std::vector<HotSpot> GetHotSpots() {}
-  WifiConnectStatus Connect(HotSpot &hotSpot, std::string password = "") {
+  std::vector<HotSpot> GetHotSpots() {
+    UpdateHotSpotsList();
+    return availableHotSpots;
+  }
+  WifiConnectStatus Connect(HotSpot& hotSpot,
+                            const std::string& password = "") {
     return WifiConnectStatus::OK;
   }
   bool Disconnect() { return true; }

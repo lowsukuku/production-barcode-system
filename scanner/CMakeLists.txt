@@ -13,6 +13,8 @@ INCLUDE_DIRECTORIES(
 
 SET(PROJECT_SOURCES
     user_main.cpp
+    AppWorker.cpp
+    WifiController.cpp
 )
 
 set(LIBSTM32_OUT  ${PROJECT_SOURCE_DIR}/SDK/lib/libstm32.a)

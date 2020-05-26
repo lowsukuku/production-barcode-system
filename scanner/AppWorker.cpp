@@ -3,6 +3,8 @@
 void AppWorker::ConnectWifi(WifiController &controller) {
   SelectorControl<HotSpot> selector = SelectorControl<HotSpot>({0, 0});
   HotSpot selectedHotspot;
+
+  mGUI_Printf(0, 0, "nibba", FontSize6X12);
   do {
     for (auto &&hotSpot : controller.GetHotSpots()) {
       selector.AddItem(hotSpot, {0, 0});
@@ -14,5 +16,5 @@ void AppWorker::ConnectWifi(WifiController &controller) {
       keyboard.Render();
       selectedHotspot.Password = keyboard.GetLine();
     }
-  } while (controller.Connect(selectedHotspot) != WifiController::OK);
+  } while (/*controller.Connect(selectedHotspot) != WifiController::OK*/ true);
 }

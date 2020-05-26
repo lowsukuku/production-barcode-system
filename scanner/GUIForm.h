@@ -4,17 +4,12 @@
 
 #include "GUIItem.h"
 
-struct Point {
-  uint8_t x;
-  uint8_t y;
-};
-
 class GUIForm {
  private:
- 
  protected:
   Point position;
-  std::map<GUIItem &, Point> items;
+  // std::map<GUIItem &, Point> items;
+  std::vector<GUIItem> items;
 
  public:
   enum Direction { Up, Down, Left, Right };
@@ -22,8 +17,11 @@ class GUIForm {
   GUIForm(Point position) : position(position) {}
   ~GUIForm() {}
 
-  bool AddItem(GUIItem &, Point) { return true; }
+  bool AddItem(GUIItem &item, Point point) {
+    items.push_back(item);
+    return true;
+  }
   bool RemoveItem(GUIItem &) { return true; }
-  void Render() {}
+  virtual void Render() {}
   virtual void Navigate(Direction) {}
 };

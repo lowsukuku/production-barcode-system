@@ -2,7 +2,6 @@
 extern "C" {
 #include "SysCallLib.h"
 #include "ms3690_lib.h"
-#undef FILE
 }
 #include "AppWorker.h"
 

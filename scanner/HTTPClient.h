@@ -6,11 +6,11 @@
 
 class HTTPClient {
  private:
-  TCPSocket *_socket;
+  TCPSocket &_socket;
   std::string _apiKey = "";
 
  public:
-  HTTPClient(TCPSocket *socket, std::string apiKey = "")
+  HTTPClient(TCPSocket &socket, const std::string &apiKey = "")
       : _socket(socket), _apiKey(apiKey) {}
   ~HTTPClient() {}
 
