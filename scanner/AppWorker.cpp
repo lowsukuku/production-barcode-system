@@ -1,7 +1,7 @@
 #include "AppWorker.h"
 
 void AppWorker::ConnectWifi(WifiController &controller) {
-  SelectorControl<HotSpot> selector = SelectorControl<HotSpot>({0, 0});
+  SelectorControl selector = SelectorControl({0, 0});
   HotSpot selectedHotspot;
 
   mGUI_Printf(0, 0, "nibba", FontSize6X12);
@@ -10,7 +10,7 @@ void AppWorker::ConnectWifi(WifiController &controller) {
       selector.AddItem(hotSpot, {0, 0});
     }
     selector.Render();
-    selectedHotspot = selector.Select();
+    selectedHotspot = (HotSpot &)selector.Select();
     if (selectedHotspot.isOpen == false) {
       KeyboardControl keyboard = KeyboardControl({0, 0});
       keyboard.Render();

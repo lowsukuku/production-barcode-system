@@ -2,13 +2,12 @@
 
 #include "GUIForm.h"
 
-template <class SelectableElement>
 class SelectorControl : public GUIForm {
  private:
  public:
   SelectorControl(Point position) : GUIForm(position) {}
   void Navigate(Direction) override {}
-  SelectableElement &Select() {
+  GUIItem &Select() {
     uint8_t selectedItem = 0;
     mGUI_InverseRegionPixels(0, selectedItem * 12, OLED_W, 12);
 
@@ -32,13 +31,14 @@ class SelectorControl : public GUIForm {
         }
       }
     }
-    return items.at(selectedItem);
+    while (mKey_GetTirgKeyStatus() == IS_PRESSED){}
+    return *(items.at(selectedItem));
   }
 
   void Render() override {
     uint8_t i = 0;
     for (auto &&item : items) {
-      item.Show({0, i});
+      item->Show({0, i});
       i += 12;
       if (i > 64 - 12) i = 0;
     }

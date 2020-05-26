@@ -2,7 +2,6 @@
 
 void WifiController::UpdateHotSpotsList() {
   unsigned char name[33] = {0};
-  char debugString[30] = {0};
   unsigned char encryptionStatus = 0;
   unsigned char hotspotsCount = mWiFi_StationModeSearchHotSpot();
   for (size_t i = 0; i < hotspotsCount; i++) {
