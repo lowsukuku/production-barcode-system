@@ -17,8 +17,8 @@ class GUIForm {
   GUIForm(Point position) : position(position) {}
   ~GUIForm() {}
 
-  bool AddItem(GUIItem &item, Point point) {
-    items.push_back(&item);
+  bool AddItem(GUIItem *item, Point point) {
+    items.push_back(item);
     return true;
   }
   bool RemoveItem(GUIItem &) { return true; }

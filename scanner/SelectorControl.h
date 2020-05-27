@@ -32,6 +32,7 @@ class SelectorControl : public GUIForm {
       }
     }
     while (mKey_GetTirgKeyStatus() == IS_PRESSED){}
+    mGUI_InverseRegionPixels(0, selectedItem * 12, OLED_W, 12);
     return *(items.at(selectedItem));
   }
 
