@@ -23,7 +23,9 @@ std::string Router::fixDevice(std::string &request) {
 }
 
 std::string Router::addDevice(std::string &request) {
-    if( postRequestHandler.addToDB(request)) return "OK";
+    std::string s="1";
+    return getRequestHandler.getJsonProductByDeviceId(1);
+   // if( getRequestHandler.getJsonProductByDeviceId(1)) return "OK";
     return "ERROR";
 }
 

@@ -19,13 +19,15 @@ DBMySQL::~DBMySQL()
 
 bool DBMySQL::execute(std::string& query)
 {
-    bool flag=stmt->execute(query);
+    sql::SQLString q(query);
+    bool flag=stmt->execute(q);
     return flag;
 }
 
 sql::ResultSet* DBMySQL::executeQuery(std::string& query)
 {
-    res = stmt->executeQuery(query);
+    const sql::SQLString q(query);
+    res = stmt->executeQuery(q);
     return res;
 }
 
