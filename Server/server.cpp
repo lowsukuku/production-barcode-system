@@ -58,5 +58,6 @@ void Server::clientHandler(tcp::socket &&socket) {
         Scaner device;
         answer=device.handleClient(req);
     }
+    handler.dataToRequest(answer);
     handler.sendRequest(std::move(answer));
 }

@@ -40,9 +40,9 @@ public:// GET and CHECK methods
 
     std::string  signInScaner(uint64_t apiKey);
 
-    std::string  signInUser(UserData &personalInfo);
+    std::string  signInUser(UserData info);
 
-    std::string signUpUser(UserData &personalInfo);
+    std::string signUpUser(UserData info);
 
     std::string getDevices(std::string &request);
 

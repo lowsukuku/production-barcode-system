@@ -19,7 +19,8 @@ DBMySQL::~DBMySQL()
 
 bool DBMySQL::execute(std::string& query)
 {
-    return stmt->execute(query);
+    bool flag=stmt->execute(query);
+    return flag;
 }
 
 sql::ResultSet* DBMySQL::executeQuery(std::string& query)

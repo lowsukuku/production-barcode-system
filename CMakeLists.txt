@@ -2,9 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 project(HttpServer)
 
 set(CMAKE_CXX_STANDARD 14)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O2 -fsanitize=address -fsanitize=undefined -fno-sanitize-recover -fstack-protector-strong -D_FORTIFY_SOURCE=2")
 
-find_library(gumbo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system log log_setup)
 include_directories(${Boost_DIRECTORIES})
 find_package(OpenSSL REQUIRED)
@@ -29,13 +28,9 @@ add_executable(HttpServer main.cpp
         Server/DataBase/src/MySQL/MySQL.h Server/DataBase/src/MySQL/MySQL.cpp
         )
 
+target_link_libraries(HttpServer asan ubsan)
 target_link_libraries(HttpServer OpenSSL::SSL)
 target_link_libraries(HttpServer ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES})
 target_link_libraries(HttpServer mysqlcppconn)
 set(CMAKE_CXX_FLAGS "-g -Wall -DBOOST_LOG_DYN_LINK")
 add_subdirectory(Tests)
-
-
-
-
-

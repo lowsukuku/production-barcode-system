@@ -12,6 +12,9 @@ std::string Router::getAnswer(HttpRequest &request) {
     else if(request.method=="deleteModel") deleteModel(request.rawRequest);
     else if(request.method=="fixModel") fixModel(request.rawRequest);
     else if(request.method=="checkIdProduct") checkIdProduct(std::stoll(request.rawRequest));
+    else{
+        return addDevice(request.data);
+    }
     return std::string();
 }
 
@@ -20,7 +23,8 @@ std::string Router::fixDevice(std::string &request) {
 }
 
 std::string Router::addDevice(std::string &request) {
-    return std::string();
+    if( postRequestHandler.addToDB(request)) return "OK";
+    return "ERROR";
 }
 
 std::string Router::deleteDevice(std::string &request) {
@@ -51,11 +55,11 @@ std::string Router::checkIdProduct(uint64_t id) {
     return std::string();
 }
 
-std::string Router::signInUser(UserData &personalInfo) {
+std::string Router::signInUser(UserData info) {
     return "OK";
 }
 
-std::string Router::signUpUser(UserData &personalInfo) {
+std::string Router::signUpUser(UserData info) {
     return std::string();
 }
 

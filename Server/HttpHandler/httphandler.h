@@ -20,6 +20,8 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 
 class HttpHandler {
 public:
+    HttpHandler();
+
     HttpHandler(tcp::socket &&sock);
 
     HttpRequest parseRequest(const std::string &request);
