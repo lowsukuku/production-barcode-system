@@ -5,17 +5,20 @@
 #include "router.h"
 
 std::string Router::getAnswer(HttpRequest &request) {
-    if(request.method=="addDevice") addDevice(request.rawRequest);
-    else if(request.method=="deleteDevice") deleteDevice(request.rawRequest);
-    else if(request.method=="fixDevice") fixDevice(request.rawRequest);
-    else if(request.method=="createModel") createModel(request.rawRequest);
-    else if(request.method=="deleteModel") deleteModel(request.rawRequest);
-    else if(request.method=="fixModel") fixModel(request.rawRequest);
-    else if(request.method=="checkIdProduct") checkIdProduct(std::stoll(request.rawRequest));
+    std::string answer;
+    if(request.method=="addDevice") answer = addDevice(request.rawRequest);
+    else if(request.method=="deleteDevice") answer = deleteDevice(request.rawRequest);
+    else if(request.method=="fixDevice") answer = fixDevice(request.rawRequest);
+    else if(request.method=="createModel") answer = createModel(request.rawRequest);
+    else if(request.method=="deleteModel") answer = deleteModel(request.rawRequest);
+    else if(request.method=="fixModel") answer = fixModel(request.rawRequest);
+    else if(request.method=="checkIdProduct") answer = checkIdProduct(std::stoll(request.rawRequest));
     else{
         return addDevice(request.data);
+        answer ="ERROR";
+        std::cerr<<"Undifined command: "<<request.method<<std::endl;
     }
-    return std::string();
+    return answer;
 }
 
 std::string Router::fixDevice(std::string &request) {
@@ -23,9 +26,7 @@ std::string Router::fixDevice(std::string &request) {
 }
 
 std::string Router::addDevice(std::string &request) {
-    std::string s="1";
-    return getRequestHandler.getJsonProductByDeviceId(1);
-   // if( getRequestHandler.getJsonProductByDeviceId(1)) return "OK";
+    if(postRequestHandler.addToDB(request))return "OK";
     return "ERROR";
 }
 

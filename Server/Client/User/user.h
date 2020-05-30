@@ -8,7 +8,7 @@
 #include "../client.h"
 #include <random>
 
-class User : public Client{
+class UserServer : public Client{
 public:
     std::string handleClient(HttpRequest &requestParsed) override;
 

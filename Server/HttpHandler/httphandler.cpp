@@ -63,10 +63,15 @@ enum ClientType HttpHandler::getClientType(const std::string &content) {
 }
 
 std::string HttpHandler::getContent(const std::string &request){
-    uint64_t pos=request.find('{');
+    uint64_t pos=request.find("\"context\":{");
     std::string content;
-    for(;pos< request.size();++pos){
+    content+='{';
+    int openedObj=1;
+    while(openedObj!=0){
+        if(request[pos]=='{')openedObj++;
+        if(request[pos]=='}')openedObj--;
         content+=request[pos];
+        pos++;
     }
     return content;
 }
@@ -80,13 +85,13 @@ RequestType HttpHandler::getRequestType(const std::string &request) {
 std::string HttpHandler::dataToRequest(const std::string &data) {
     std::string answer;
     bool errorFlag=false;
-    if(data.find("_ERROR")!=-1){
+    if(data.find("ERROR")!=-1){
         answer+="HTTP/1.1 505 ";
         answer+=data;
         errorFlag= true;
     }
     else{
-        answer+="HTTP/1.1 200 OK";
+        answer+="HTTP/1.1 200 OK ";
     }
 
     answer+="Server: DellvinConnect";
@@ -95,7 +100,7 @@ std::string HttpHandler::dataToRequest(const std::string &data) {
     answer+="Date:";
     answer+=asctime(timeinfo);
     if(!errorFlag)
-        answer+=data;
+//        answer+=data;
     return answer;
 }
 

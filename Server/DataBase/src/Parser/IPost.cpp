@@ -8,15 +8,12 @@ IPost::IPost() : ProductMapper()
 bool IPost::addToDB(const std::string& sJson)
 {
     auto prod = this->jsonToProduct(sJson);
-    this->addProduct(prod);
-
-    return false;
+    return this->addProduct(prod) == OK;
 }
 
 Product IPost::jsonToProduct(const std::string& sJson)
 {
     Product prod;
-
     // Create a root
     pt::ptree root;
 
@@ -34,7 +31,7 @@ Product IPost::jsonToProduct(const std::string& sJson)
     prod.setSerialNumber(root.get<ULInt_t>("context.serialNumber"));
     prod.setMountingUtc(root.get<ULInt_t>("context.mountingUtc"));
     prod.setTuningUtc(root.get<ULInt_t>("context.tuningUtc"));
-    prod.setQuailityCheckUtc(root.get<ULInt_t>("context.quailityCheckUtc"));
+    prod.setQuailityCheckUtc(root.get<ULInt_t>("context.tuningUtc"));
     prod.setShipmentUtc(root.get<ULInt_t>("context.shipmentUtc"));
     prod.setMountingPassed(root.get<bool>("context.mountingPassed"));
     prod.setTuningPassed(root.get<bool>("context.tuningPassed"));

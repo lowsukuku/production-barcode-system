@@ -5,7 +5,7 @@
 #include "server.h"
 
 Server::Server(std::string &&serverIP, unsigned short &&serverPORT) : ip(serverIP), port(serverPORT){
-
+    std::cout<<"Ready!"<<std::endl;
 }
 
 void Server::start() {
@@ -45,19 +45,28 @@ void Server::accept(tcp::acceptor &&acceptor) {
 }
 
 void Server::clientHandler(tcp::socket &&socket) {
-    std::cout<<"Connected!"<<std::endl;
-    HttpHandler handler(std::move(socket));
-    std::string request =handler.getRequest();
-    HttpRequest req=handler.parseRequest(request);
-    std::string answer;
-    if(req.client==USER){
-        User user;
-        answer=user.handleClient(req);
+    try{
+        std::cout<<"Connected!"<<std::endl;
+        HttpHandler handler(std::move(socket));
+        std::string request =handler.getRequest();
+        HttpRequest req=handler.parseRequest(request);
+        std::string answer;
+        if(req.client==USER){
+            UserServer user;
+            answer=user.handleClient(req);
+        }
+        if(req.client==SCANER){
+            Scaner device;
+            answer=device.handleClient(req);
+        }
+        answer=handler.dataToRequest(answer);
+
+        std::cout<<std::endl<<std::endl<<"Sended!"<<std::endl
+                 <<answer<<std::endl;
+        handler.sendRequest(std::move(answer));
+    }  catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return;
     }
-    if(req.client==SCANER){
-        Scaner device;
-        answer=device.handleClient(req);
-    }
-    handler.dataToRequest(answer);
-    handler.sendRequest(std::move(answer));
+
 }

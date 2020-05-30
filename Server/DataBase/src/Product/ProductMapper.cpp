@@ -26,7 +26,7 @@ err_code ProductMapper::addProduct(Product &product) {
                               "tuningPassed, qualityCheckPassed, shipmentPassed)"
                               "VALUES (" + data + ")";
 
-    mydb->execute(insertQuery);
+    if(mydb->execute(insertQuery))return OK;
 
     return WRONG_LOGIN;
 }

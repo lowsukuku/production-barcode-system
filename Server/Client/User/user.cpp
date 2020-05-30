@@ -6,22 +6,22 @@
 #include <cstdlib>
 
 
-std::string User::handleClient(HttpRequest &requestParsed) {
-    bool flag=User::signIn( requestParsed.rawRequest);
+std::string UserServer::handleClient(HttpRequest &requestParsed) {
+    bool flag=UserServer::signIn( requestParsed.rawRequest);
     if(!flag) return AUTHENTICATION_ERROR;
     return rout.getAnswer(requestParsed);
 }
 
-bool User::signIn(std::string &request) {
+bool UserServer::signIn(std::string &request) {
     if(rout.signInUser(getSingInData(request))=="OK") return true;
     return false;
 }
 
-bool User::signUp(std::string &request) {
+bool UserServer::signUp(std::string &request) {
     return false;
 }
 
-uint64_t User::generateID() {
+uint64_t UserServer::generateID() {
     uint32_t testID;
     do{
         testID=(uint32_t)std::rand();
@@ -29,11 +29,11 @@ uint64_t User::generateID() {
     return testID;
 }
 
-bool User::isIdUsed(uint64_t id) {
+bool UserServer::isIdUsed(uint64_t id) {
     return false;
 }
 
-UserData User::getSingInData(std::string data) {
+UserData UserServer::getSingInData(std::string data) {
     UserData info;
     uint64_t pos=data.find("login");
     pos+=strlen("login\":\"");

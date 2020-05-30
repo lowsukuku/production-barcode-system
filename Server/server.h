@@ -24,7 +24,7 @@ private:
     void clientHandler(tcp::socket &&socket);
 
 public:
-    std::vector<User> users;
+    std::vector<UserServer> users;
     std::vector<Scaner> devices;
 private:
     std::string ip;

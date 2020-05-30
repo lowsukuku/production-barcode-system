@@ -19,9 +19,14 @@ DBMySQL::~DBMySQL()
 
 bool DBMySQL::execute(std::string& query)
 {
-    sql::SQLString q(query);
-    bool flag=stmt->execute(q);
-    return flag;
+    try {
+        sql::SQLString q(query);
+        bool flag=stmt->execute(q);
+    } catch (std::exception e) {
+        std::cerr<<"Error: "<<e.what()<<std::endl;
+        return false;
+    }
+    return true;
 }
 
 sql::ResultSet* DBMySQL::executeQuery(std::string& query)

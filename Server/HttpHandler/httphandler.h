@@ -21,6 +21,13 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 class HttpHandler {
 public:
     HttpHandler();
+    ~HttpHandler(){
+        try{
+            socket.cancel();
+        } catch(...){
+            return;
+        }
+    }
 
     HttpHandler(tcp::socket &&sock);
 
