@@ -31,8 +31,14 @@ err_code ProductMapper::addProduct(Product &product) {
     return WRONG_LOGIN;
 }
 
-void *ProductMapper::deleteProduct(Product &product) {
-    return nullptr;
+bool ProductMapper::deleteProductByDeviceId(uint64_t id) {
+    try{
+        std::string query = "DELETE FROM test WHERE deviceId=" + std::to_string(id);
+        mydb->executeQuery(query);
+    } catch (...) {
+        return false;
+    }
+    return true;
 }
 
 Product ProductMapper::getProductByDeviceId(ULLInt_t deviceId)

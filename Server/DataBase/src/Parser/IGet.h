@@ -16,7 +16,10 @@ public:
     explicit IGet();
 
     std::string getJsonProductByDeviceId(ULLInt_t deviceId);
+
     std::string ProductToJson(Product& prod);
+
+    std::string removeProduct(uint64_t id);
 
 //    std::string getAllProductByModelId(ULInt_t modelId);
 //

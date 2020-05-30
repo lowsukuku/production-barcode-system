@@ -44,18 +44,18 @@ public:// GET and CHECK methods
 
     std::string signUpUser(UserData info);
 
-    std::string getDevices(std::string &request);
+    std::string getDevicesByID(std::string &request);
 
     std::string getModels(std::string &request);
 
-    std::string checkIdProduct(uint64_t id);
+    std::string checkIdProduct(std::string data);
 
 private:// POST methods
     std::string fixDevice(std::string &request);
 
     std::string addDevice(std::string &request);
 
-    std::string deleteDevice(std::string &request);
+    std::string deleteDeviceById(std::string &request);
 
     std::string createModel(std::string &request);
 

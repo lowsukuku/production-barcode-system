@@ -91,7 +91,7 @@ std::string HttpHandler::dataToRequest(const std::string &data) {
         errorFlag= true;
     }
     else{
-        answer+="HTTP/1.1 200 OK ";
+        answer+="HTTP/1.1 200 \n";
     }
 
     answer+="Server: DellvinConnect";
@@ -100,7 +100,7 @@ std::string HttpHandler::dataToRequest(const std::string &data) {
     answer+="Date:";
     answer+=asctime(timeinfo);
     if(!errorFlag)
-//        answer+=data;
+        answer+=data;
     return answer;
 }
 

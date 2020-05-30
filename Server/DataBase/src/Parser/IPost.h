@@ -15,6 +15,7 @@ class IPost : private ProductMapper
 public:
     explicit IPost();
     bool addToDB(const std::string& sJson);
+
     Product jsonToProduct(const std::string& sJson);
 };
 

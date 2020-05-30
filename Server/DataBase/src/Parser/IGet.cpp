@@ -10,8 +10,14 @@ std::string IGet::getJsonProductByDeviceId(ULLInt_t deviceId)
 {
     auto prod = this->getProductByDeviceId(deviceId);
 
-    return this->ProductToJson(prod);;
+    return this->ProductToJson(prod);
 }
+
+std::string IGet::removeProduct(uint64_t id) {
+    if(!this->deleteProductByDeviceId(id))return "OBJECT_DOES_NOT_EXIST_ERROR";
+    return "OK";
+}
+
 
 std::string IGet::ProductToJson(Product &prod)
 {
@@ -39,6 +45,7 @@ std::string IGet::ProductToJson(Product &prod)
 
     return JsonSS.str();
 }
+
 
 
 
