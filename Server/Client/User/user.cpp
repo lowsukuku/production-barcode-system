@@ -13,8 +13,7 @@ std::string UserServer::handleClient(HttpRequest &requestParsed) {
 }
 
 bool UserServer::signIn(std::string &request) {
-    if(rout.signInUser(getSingInData(request))=="OK") return true;
-    return false;
+    return rout.signInUser(getSingInData(request)) == "OK";
 }
 
 bool UserServer::signUp(std::string &request) {

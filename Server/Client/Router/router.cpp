@@ -6,7 +6,7 @@
 
 std::string Router::getAnswer(HttpRequest &request) {
     std::string answer;
-    if(request.method=="addDevice") answer = addDevice(request.rawRequest);
+    if(request.method=="AddDevice") answer = addDevice(request.data);
     else if(request.method=="deleteDevice") answer = deleteDevice(request.rawRequest);
     else if(request.method=="fixDevice") answer = fixDevice(request.rawRequest);
     else if(request.method=="createModel") answer = createModel(request.rawRequest);
@@ -14,8 +14,7 @@ std::string Router::getAnswer(HttpRequest &request) {
     else if(request.method=="fixModel") answer = fixModel(request.rawRequest);
     else if(request.method=="checkIdProduct") answer = checkIdProduct(std::stoll(request.rawRequest));
     else{
-        return addDevice(request.data);
-        answer ="ERROR";
+        answer ="COMMAND_ERROR";
         std::cerr<<"Undifined command: "<<request.method<<std::endl;
     }
     return answer;

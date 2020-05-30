@@ -24,40 +24,40 @@ private:
 public:
     Product();
 
-    void setDeviceId(ULLInt_t deviceId);
+    const void setDeviceId(ULLInt_t deviceId);
     ULLInt_t getDeviceId();
 
-    void setModelId(ULInt_t modelId);
+    const void setModelId(ULInt_t modelId);
     ULInt_t getModelId();
 
-    void setCreationUtc(ULInt_t creationUtc);
+    const void setCreationUtc(ULInt_t creationUtc);
     ULInt_t getCreationUtc();
 
-    void setSerialNumber(ULInt_t serialNumber);
+    const void setSerialNumber(ULInt_t serialNumber);
     ULInt_t getSerialNumber();
 
-    void setMountingUtc(ULInt_t mountingUtc);
+    const void setMountingUtc(ULInt_t mountingUtc);
     ULInt_t getMountingUtc();
 
-    void setTuningUtc(ULInt_t tuningUtc);
+    const void setTuningUtc(ULInt_t tuningUtc);
     ULInt_t getTuningUtc();
 
-    void setQuailityCheckUtc(ULInt_t quailityCheckUtc);
+    const void setQuailityCheckUtc(ULInt_t quailityCheckUtc);
     ULInt_t getQuailityCheckUtc();
 
-    void setShipmentUtc(ULInt_t shipmentUtc);
+    const void setShipmentUtc(ULInt_t shipmentUtc);
     ULInt_t getShipmentUtc();
 
-    void setMountingPassed(bool mountingPassed);
+    const void setMountingPassed(bool mountingPassed);
     bool getMountingPassed();
 
-    void setTuningPassed(bool tuningPassed);
+    const void setTuningPassed(bool tuningPassed);
     bool getTuningPassed();
 
-    void setQualityCheckPassed(bool qualityCheckPassed);
+    const void setQualityCheckPassed(bool qualityCheckPassed);
     bool getQualityCheckPassed();
 
-    void setShipmentPassed(bool shipmentPassed);
+    const void setShipmentPassed(bool shipmentPassed);
     bool getShipmentPassed();
 };
 

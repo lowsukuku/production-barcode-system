@@ -12,7 +12,7 @@ HttpRequest HttpHandler::parseRequest(const std::string &request) {
     if(r.typeRequest==POST){
         std::string content=getContent(request);
         r.client=getClientType(content);
-        r.method=getPostMethod(content);
+        r.method=getPostMethod(request);
         r.data=content;
         r.contentLength=content.size();
     }
@@ -43,7 +43,7 @@ std::string HttpHandler::getGetData(const std::string &request) {
         data+=request[pos];
         pos++;
     }
-    return std::string();
+    return data;
 }
 
 std::string HttpHandler::getPostMethod(const std::string &content) {

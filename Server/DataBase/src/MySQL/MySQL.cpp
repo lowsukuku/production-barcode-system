@@ -4,10 +4,14 @@
 DBMySQL::DBMySQL(const char *filename)
 {
     driver = get_driver_instance();
-    con = driver->connect("tcp://127.0.0.1:3306","newuser","123456789Qqw_!");
+    try{
+        con = driver->connect("tcp://127.0.0.1:3306","newuser","123456789Qqw_!");
 
-    stmt = con->createStatement();
-    stmt->execute("USE Scaner");
+        stmt = con->createStatement();
+        stmt->execute("USE Scaner");
+    } catch ( std::exception &e ) {
+        std::cerr<<"DATABASE_CONNECTION_ERROR: "<<e.what()<<std::endl;
+    }
 }
 
 DBMySQL::~DBMySQL()
