@@ -64,7 +64,7 @@ std::string Router::deleteModel(std::string &request) {
 }
 
 std::string Router::getModels() {
-    return std::string();
+    return getRequestHandler.getAllModels();
 }
 
 std::string Router::checkIdProduct(std::string data) {
@@ -96,5 +96,5 @@ std::string Router::getDevicesByID(string &request) {
     for(;pos<request.size();++pos){
         s.push_back(request[pos]);
     }
-    return getRequestHandler.getJsonProductByDeviceId(std::stof(s));
+    return getRequestHandler.getJsonProductByDeviceId(std::stoll(s));
 }

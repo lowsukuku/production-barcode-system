@@ -55,3 +55,4 @@ void IPost::addMod(std::string modelName) {
 void IPost::removeMod(std::string modelName) {
     this->removeModel(std::move(modelName));
 }
+

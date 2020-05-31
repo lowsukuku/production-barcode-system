@@ -59,21 +59,6 @@ Product ProductMapper::getProductByDeviceId(ULLInt_t deviceId)
     return prod;
 }
 
-vector<Product> ProductMapper::getAllProductByModelId(ULInt_t modelId) {
-    return vector<Product>();
-}
-
-vector<Product> ProductMapper::getProductsSortedBy(int firstN, ProductMapper::productFields field) {
-    return vector<Product>();
-}
-
-vector<Product> ProductMapper::getAllProductsSortedBy(ProductMapper::productFields field) {
-    return vector<Product>();
-}
-
-ULLInt_t ProductMapper::generateUnicDeviceId() {
-    return 0;
-}
 
 void ProductMapper::addModel(const std::string& modelName) {
     std::string query = "CREATE TABLE " + modelName+" (id INT AUTO_INCREMENT PRIMARY KEY)";
@@ -86,6 +71,26 @@ void ProductMapper::removeModel(const string &modelName) {
 }
 
 std::string ProductMapper::getModels() {
-    std::string query = "SHOW TABLES " + modelName;
-    return std::string();
+    std::string query = "SHOW TABLES";
+    mydb->executeQuery(query);
+    std::vector<std::string> v;
+    std::string s="2";
+    mydb->next();
+    try {
+        v.push_back(mydb->getString(s));
+    } catch (...) {
+        try {mydb->next();
+            s="0";
+            v.push_back(mydb->getString(s));
+        } catch (...) {
+            try {
+                s="1";
+                v.push_back(mydb->getString(s));
+            } catch (...) {
+
+            }
+        }
+    }
+
+    return "OK";
 }

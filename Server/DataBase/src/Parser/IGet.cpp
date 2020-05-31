@@ -33,10 +33,6 @@ std::string IGet::ProductToJson(Product &prod)
     root.put("context.qualityCheckPassed", prod.getQualityCheckPassed());
     root.put("context.shipmentPassed", prod.getShipmentPassed());
 
-
-
-
-
     std::stringstream JsonSS;
     pt::write_json(JsonSS, root);
 
@@ -44,7 +40,7 @@ std::string IGet::ProductToJson(Product &prod)
 }
 
 std::string IGet::getAllModels() {
-    return std::string();
+    return this->getModels();
 }
 
 

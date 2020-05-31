@@ -19,10 +19,6 @@ public:
     err_code addProduct(Product &product);
 
     Product getProductByDeviceId(ULLInt_t deviceId);
-    vector<Product> getAllProductByModelId(ULInt_t modelId);
-    vector<Product> getProductsSortedBy(int firstN, enum productFields field);
-    vector<Product> getAllProductsSortedBy(enum productFields field);
-    ULLInt_t generateUnicDeviceId();
 
     bool deleteProductByDeviceId(uint64_t id);
 
@@ -30,7 +26,7 @@ public:
 
     void removeModel(const std::string & modelName);
 
-    std::string getModels(const std::string & modelName);
+    std::string getModels();
 };
 
 

@@ -38,6 +38,7 @@ sql::ResultSet* DBMySQL::executeQuery(std::string& query)
 {
     const sql::SQLString q(query);
     res = stmt->executeQuery(q);
+
     return res;
 }
 
