@@ -46,22 +46,18 @@ public:// GET and CHECK methods
 
     std::string getDevicesByID(std::string &request);
 
-    std::string getModels(std::string &request);
+    std::string getModels();
 
     std::string checkIdProduct(std::string data);
 
 private:// POST methods
-    std::string fixDevice(std::string &request);
-
     std::string addDevice(std::string &request);
 
-    std::string deleteDeviceById(std::string &request);
+    std::string deleteDevice(std::string &request);
 
     std::string createModel(std::string &request);
 
     std::string deleteModel(std::string &request);
-
-    std::string fixModel(std::string &request);
 
 private:
     IPost postRequestHandler;

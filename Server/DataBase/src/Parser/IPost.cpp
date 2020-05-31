@@ -1,5 +1,7 @@
 #include "IPost.h"
 
+#include <utility>
+
 IPost::IPost() : ProductMapper()
 {
 
@@ -39,4 +41,17 @@ Product IPost::jsonToProduct(const std::string& sJson)
     prod.setShipmentPassed(root.get<bool>("context.shipmentPassed"));
 
     return prod;
+}
+
+std::string IPost::removeProduct(uint64_t id) {
+    if(!this->deleteProductByDeviceId(id))return "OBJECT_DOES_NOT_EXIST_ERROR";
+    return "OK";
+}
+
+void IPost::addMod(std::string modelName) {
+    this->addModel(std::move(modelName));
+}
+
+void IPost::removeMod(std::string modelName) {
+    this->removeModel(std::move(modelName));
 }

@@ -19,15 +19,8 @@ public:
 
     std::string ProductToJson(Product& prod);
 
-    std::string removeProduct(uint64_t id);
+    std::string getAllModels();
 
-//    std::string getAllProductByModelId(ULInt_t modelId);
-//
-//    std::string getProductsSortedBy(int firstN, enum productFields field);
-//
-//    std::string getAllProductsSortedBy(enum productFields field);
-//
-//    ULLInt_t generateUnicDeviceId();
 };
 
 

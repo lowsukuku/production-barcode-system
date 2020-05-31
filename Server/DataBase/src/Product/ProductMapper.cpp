@@ -32,13 +32,8 @@ err_code ProductMapper::addProduct(Product &product) {
 }
 
 bool ProductMapper::deleteProductByDeviceId(uint64_t id) {
-    try{
-        std::string query = "DELETE FROM test WHERE deviceId=" + std::to_string(id);
-        mydb->executeQuery(query);
-    } catch (...) {
-        return false;
-    }
-    return true;
+    std::string query = "DELETE FROM test WHERE deviceId=" + std::to_string(id);
+    return mydb->execute(query);
 }
 
 Product ProductMapper::getProductByDeviceId(ULLInt_t deviceId)
@@ -78,4 +73,19 @@ vector<Product> ProductMapper::getAllProductsSortedBy(ProductMapper::productFiel
 
 ULLInt_t ProductMapper::generateUnicDeviceId() {
     return 0;
+}
+
+void ProductMapper::addModel(const std::string& modelName) {
+    std::string query = "CREATE TABLE " + modelName+" (id INT AUTO_INCREMENT PRIMARY KEY)";
+    mydb->execute(query);
+}
+
+void ProductMapper::removeModel(const string &modelName) {
+    std::string query = "DROP TABLE " + modelName;
+    mydb->execute(query);
+}
+
+std::string ProductMapper::getModels() {
+    std::string query = "SHOW TABLES " + modelName;
+    return std::string();
 }

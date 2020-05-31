@@ -7,13 +7,12 @@
 std::string Router::getAnswer(HttpRequest &request) {
     std::string answer;
     if(request.method=="AddDevice") answer = addDevice(request.data);
-    else if(request.method=="DeleteDevice") answer = deleteDeviceById(request.data);
-    else if(request.method=="fixDevice") answer = fixDevice(request.rawRequest);
-    else if(request.method=="createModel") answer = createModel(request.rawRequest);
-    else if(request.method=="deleteModel") answer = deleteModel(request.rawRequest);
-    else if(request.method=="fixModel") answer = fixModel(request.rawRequest);
-    else if(request.method=="checkIdProduct") answer = checkIdProduct(request.rawRequest);
+    else if(request.method=="DeleteDevice") answer = deleteDevice(request.data);
+    else if(request.method=="AddModel") answer = createModel(request.data);
+//    else if(request.method=="checkIdProduct") answer = checkIdProduct(request.rawRequest);
     else if(request.method=="GetDeviceById") answer = getDevicesByID(request.data);
+    else if(request.method=="DeleteModel") answer = deleteModel(request.data);
+    else if(request.method=="GetAllModels") answer = getModels();
     else{
         answer ="COMMAND_ERROR";
         std::cerr<<"Undifined command: "<<request.method<<std::endl;
@@ -21,38 +20,50 @@ std::string Router::getAnswer(HttpRequest &request) {
     return answer;
 }
 
-std::string Router::fixDevice(std::string &request) {
-    return std::string();
-}
-
 std::string Router::addDevice(std::string &request) {
     if(postRequestHandler.addToDB(request))return "OK";
     return "ERROR";
 }
 
-std::string Router::deleteDeviceById(std::string &request) {
-    if(request.find("id=")==-1)return "ARGUMENT_ERROR";
-    uint16_t pos=strlen("id=");
+std::string Router::deleteDevice(std::string &request) {
+    int16_t pos=request.find("\"deviceID\":");
+    if(pos==-1)return "ARGUMENT_ERROR";
+    pos+=strlen("\"deviceID\":");
     std::string s;
-    for(;pos<request.size();++pos){
+    while(request[pos]!='}' && request[pos]!=' '){
         s.push_back(request[pos]);
+        pos++;
     }
-    return getRequestHandler.removeProduct(std::stof(s));
+    return postRequestHandler.removeProduct(std::stof(s));
 }
 
 std::string Router::createModel(std::string &request) {
-    return std::string();
+    int16_t pos=request.find("\"modelName\":");
+    if(pos==-1)return "ARGUMENT_ERROR";
+    pos+=strlen("\"modelName\":")+1;
+    std::string s;
+    while(request[pos]!='"'){
+        s.push_back(request[pos]);
+        pos++;
+    }
+    postRequestHandler.addMod(s);
+    return "OK";
 }
 
 std::string Router::deleteModel(std::string &request) {
-    return std::string();
+    int16_t pos=request.find("\"modelName\":");
+    if(pos==-1)return "ARGUMENT_ERROR";
+    pos+=strlen("\"modelName\":")+1;
+    std::string s;
+    while(request[pos]!='"'){
+        s.push_back(request[pos]);
+        pos++;
+    }
+    postRequestHandler.removeMod(s);
+    return "OK";
 }
 
-std::string Router::fixModel(std::string &request) {
-    return std::string();
-}
-
-std::string Router::getModels(std::string &request) {
+std::string Router::getModels() {
     return std::string();
 }
 
