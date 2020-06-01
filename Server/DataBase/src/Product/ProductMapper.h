@@ -27,6 +27,8 @@ public:
     void removeModel(const std::string & modelName);
 
     std::string getModels();
+
+    std::string modelsToJson(std::vector<std::string> &v);
 };
 
 

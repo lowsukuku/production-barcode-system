@@ -17,16 +17,16 @@ private:
 public:
     User();
 
-    void setName(string name);
+    void setName(string &name);
     string getName();
 
-    void setSurname(string surname);
+    void setSurname(string &surname);
     string getSurname();
 
-    void setLogin(string login);
+    void setLogin(string &login);
     string getLogin();
 
-    void setPassword(string password);
+    void setPassword(string &password);
     string getPassword();
 };
 

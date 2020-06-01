@@ -66,3 +66,10 @@ private:
 
 
 #endif //HTTPSERVER_ROUTER_H
+
+
+
+
+// TODO authorization
+// TODO gernration id in addDevice request and rewrite all method only modelname
+// TODO 

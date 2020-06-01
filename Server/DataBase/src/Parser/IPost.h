@@ -7,6 +7,7 @@
 #include <boost/property_tree/json_parser.hpp>
 #include "../Product/Product.h"
 #include "../Product/ProductMapper.h"
+#include "../User/UserMapper.h"
 
 namespace pt = boost::property_tree;
 
@@ -24,6 +25,8 @@ public:
     void addMod(std::string modelName);
 
     void removeMod(std::string modelName);
+
+    std::string signIn(std::string &username, std::string &password);
 };
 
 

@@ -78,7 +78,7 @@ std::string Router::checkIdProduct(std::string data) {
 }
 
 std::string Router::signInUser(UserData info) {
-    return "OK";
+    return postRequestHandler.signIn(info.login, info.password);
 }
 
 std::string Router::signUpUser(UserData info) {

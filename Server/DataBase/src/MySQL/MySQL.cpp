@@ -36,9 +36,12 @@ bool DBMySQL::execute(std::string& query)
 
 sql::ResultSet* DBMySQL::executeQuery(std::string& query)
 {
-    const sql::SQLString q(query);
-    res = stmt->executeQuery(q);
-
+    try{
+        const sql::SQLString q(query);
+        res = stmt->executeQuery(query);
+    } catch (std::exception &ex) {
+        std::cerr<<ex.what()<<std::endl;
+    }
     return res;
 }
 

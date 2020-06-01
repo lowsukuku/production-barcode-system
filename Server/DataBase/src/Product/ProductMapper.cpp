@@ -74,23 +74,20 @@ std::string ProductMapper::getModels() {
     std::string query = "SHOW TABLES";
     mydb->executeQuery(query);
     std::vector<std::string> v;
-    std::string s="2";
-    mydb->next();
-    try {
+    std::string s="Tables_in_Scaner";
+
+    while(mydb->next()){
         v.push_back(mydb->getString(s));
-    } catch (...) {
-        try {mydb->next();
-            s="0";
-            v.push_back(mydb->getString(s));
-        } catch (...) {
-            try {
-                s="1";
-                v.push_back(mydb->getString(s));
-            } catch (...) {
-
-            }
-        }
     }
+    return modelsToJson(v);
+}
 
-    return "OK";
+std::string ProductMapper::modelsToJson(std::vector<std::string> &v) {
+    std::string json;
+    json+="{[";
+    for(const auto &model:v){
+        json+=model+',';
+    }
+    json+="]}";
+    return json;
 }

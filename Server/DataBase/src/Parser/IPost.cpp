@@ -56,3 +56,10 @@ void IPost::removeMod(std::string modelName) {
     this->removeModel(std::move(modelName));
 }
 
+std::string IPost::signIn(string &username, string &password) {
+    User u;
+    u.setLogin(username);
+    u.setPassword(password);
+    UserMapper maper;
+    return maper.signInUser(u);
+}

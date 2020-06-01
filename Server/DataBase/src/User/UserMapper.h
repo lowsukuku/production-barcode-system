@@ -4,6 +4,7 @@
 
 #include "User.h"
 #include "../err_code.h"
+#include "../MySQL/MySQL.h"
 
 
 class UserMapper {
@@ -13,7 +14,9 @@ private:
 public:
     UserMapper();
 
-    err_code signInUser(User &user);
+    ~UserMapper();
+
+    std::string signInUser(User &user);
     err_code signUpUser(User &user);
 
     err_code update(User &user);
@@ -21,6 +24,8 @@ public:
 
     User getById(int id);
 
+private:
+    DBMySQL *mydb;
 };
 
 

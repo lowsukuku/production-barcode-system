@@ -5,34 +5,34 @@ User::User() {
 
 }
 
-void User::setName(string name) {
-
+void User::setName(string &name) {
+    this->name=name;
 }
 
 string User::getName() {
-    return std::string();
+    return this->name;
 }
 
-void User::setSurname(string surname) {
-
+void User::setSurname(string &surname) {
+    this->surname=surname;
 }
 
 string User::getSurname() {
-    return std::string();
+    return this->surname;
 }
 
-void User::setLogin(string login) {
-
+void User::setLogin(string &login) {
+    this->login=login;
 }
 
 string User::getLogin() {
-    return std::string();
+    return this->login;
 }
 
-void User::setPassword(string password) {
-
+void User::setPassword(string &password) {
+    this->password=password;
 }
 
 string User::getPassword() {
-    return std::string();
+    return this->password;
 }
