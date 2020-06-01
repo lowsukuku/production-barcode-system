@@ -60,9 +60,10 @@ Product ProductMapper::getProductByDeviceId(ULLInt_t deviceId)
 }
 
 
-void ProductMapper::addModel(const std::string& modelName) {
+std::string ProductMapper::addModel(const std::string& modelName) {
     std::string query = "CREATE TABLE " + modelName+" (id INT AUTO_INCREMENT PRIMARY KEY)";
-    mydb->execute(query);
+    if(!mydb->execute(query))return "TABLE_EXIST_ERROR";
+    return "OK";
 }
 
 void ProductMapper::removeModel(const string &modelName) {

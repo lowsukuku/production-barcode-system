@@ -46,8 +46,7 @@ std::string Router::createModel(std::string &request) {
         s.push_back(request[pos]);
         pos++;
     }
-    postRequestHandler.addMod(s);
-    return "OK";
+    return postRequestHandler.addMod(s);;
 }
 
 std::string Router::deleteModel(std::string &request) {

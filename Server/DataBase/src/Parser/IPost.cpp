@@ -48,8 +48,8 @@ std::string IPost::removeProduct(uint64_t id) {
     return "OK";
 }
 
-void IPost::addMod(std::string modelName) {
-    this->addModel(std::move(modelName));
+std::string IPost::addMod(std::string modelName) {
+    return this->addModel(std::move(modelName));
 }
 
 void IPost::removeMod(std::string modelName) {

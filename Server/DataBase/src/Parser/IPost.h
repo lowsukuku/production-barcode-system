@@ -22,7 +22,7 @@ public:
 
     std::string removeProduct(uint64_t id);
 
-    void addMod(std::string modelName);
+    std::string addMod(std::string modelName);
 
     void removeMod(std::string modelName);
 

@@ -22,10 +22,8 @@ std::string UserMapper::signInUser(User &user) {
     try {
         checker = mydb->getString(s);
     } catch (std::exception &ex) {
-        std::cerr << ex.what() << std::endl;
         return "USER_AUTHENTIFICATION_ERROR";
     }
-
     return "OK";
 }
 

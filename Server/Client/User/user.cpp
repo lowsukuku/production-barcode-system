@@ -9,6 +9,7 @@
 std::string UserServer::handleClient(HttpRequest &requestParsed) {
     bool flag=UserServer::signIn( requestParsed.rawRequest);
     if(!flag) return AUTHENTICATION_ERROR;
+    if(requestParsed.method=="signin") return "OK";
     return rout.getAnswer(requestParsed);
 }
 

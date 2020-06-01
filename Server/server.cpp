@@ -62,7 +62,7 @@ void Server::clientHandler(tcp::socket &&socket) {
         answer=handler.dataToRequest(answer);
 
         std::cout<<std::endl<<std::endl<<"Sended!"<<std::endl
-                 <<answer<<std::endl;
+                 <<answer<<std::endl<<std::endl<<std::endl;
         handler.sendRequest(std::move(answer));
     }  catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;

@@ -8,99 +8,100 @@
 
 HttpRequest HttpHandler::parseRequest(const std::string &request) {
     HttpRequest r;
-    r.typeRequest=getRequestType(request);
-    if(r.typeRequest==POST){
-        std::string content=getContent(request);
-        r.client=getClientType(content);
-        r.method=getPostMethod(request);
-        r.data=content;
-        r.contentLength=content.size();
+    r.typeRequest = getRequestType(request);
+    if (r.typeRequest == POST) {
+        std::string content = getContent(request);
+        r.client = getClientType(content);
+        r.method = getPostMethod(request);
+        r.data = content;
+        r.contentLength = content.size();
+    } else {
+        r.method = getGetMethod(request);
+        r.data = getGetData(request);
     }
-    else{
-        r.method=getGetMethod(request);
-        r.data=getGetData(request);
-    }
-    r.rawRequest=request;
+    r.rawRequest = request;
     return r;
 }
 
 std::string HttpHandler::getGetMethod(const std::string &request) {
-    uint64_t pos=request.find("contextType=");pos+=strlen("contextType=");
+    uint64_t pos = request.find("contextType=");
+    pos += strlen("contextType=");
     std::string method;
-    while(request[pos]!='&' && request[pos]!=' '){
-        method+=request[pos];
+    while (request[pos] != '&' && request[pos] != ' ') {
+        method += request[pos];
         pos++;
     }
     return method;
 }
 
 std::string HttpHandler::getGetData(const std::string &request) {
-    int64_t pos=request.find('&');
-    if(pos==-1)return "";
+    int64_t pos = request.find('&');
+    if (pos == -1)return "";
     pos++;
     std::string data;
-    while(request[pos]!=' ' && request[pos]!='\n'){
-        data+=request[pos];
+    while (request[pos] != ' ' && request[pos] != '\n') {
+        data += request[pos];
         pos++;
     }
     return data;
 }
 
 std::string HttpHandler::getPostMethod(const std::string &content) {
-    uint64_t pos=content.find("contextType");pos+=3; pos+=strlen("contextType");
+    uint64_t pos = content.find("contextType");
+    pos += 3;
+    pos += strlen("contextType");
     std::string method;
-    while(content[pos]!='"'){
-        method+=content[pos];
+    while (content[pos] != '"') {
+        method += content[pos];
         pos++;
     }
     return method;
 }
 
 enum ClientType HttpHandler::getClientType(const std::string &content) {
-    if(content.find("User")) return ClientType ::USER;
-    return ClientType ::SCANER;
+    if (content.find("User")) return ClientType::USER;
+    return ClientType::SCANER;
 
 }
 
-std::string HttpHandler::getContent(const std::string &request){
-    uint64_t pos=request.find("\"context\":{");
+std::string HttpHandler::getContent(const std::string &request) {
+    int64_t pos = request.find("\"context\":{");
+    if (pos == -1)return "";
     std::string content;
-    content+='{';
-    int openedObj=1;
-    while(openedObj!=0){
-        if(request[pos]=='{')openedObj++;
-        if(request[pos]=='}')openedObj--;
-        content+=request[pos];
+    content += '{';
+    int openedObj = 1;
+    while (openedObj != 0) {
+        if (request[pos] == '{')openedObj++;
+        if (request[pos] == '}')openedObj--;
+        content += request[pos];
         pos++;
     }
     return content;
 }
 
 RequestType HttpHandler::getRequestType(const std::string &request) {
-    int8_t type=request.find("POST");
-    if(type==-1)return GET;
+    int8_t type = request.find("POST");
+    if (type == -1)return GET;
     return POST;
 }
 
 std::string HttpHandler::dataToRequest(const std::string &data) {
     std::string answer;
-    bool errorFlag=false;
-    if(data.find("ERROR")!=-1){
-        answer+="HTTP/1.1 505 ";
-        answer+=data;
-        errorFlag= true;
-    }
-    else{
-        answer+="HTTP/1.1 200 \n";
+    bool errorFlag = false;
+    if (data.find("ERROR") != -1) {
+        answer += "HTTP/1.1 505 ";
+        errorFlag = true;
+    } else {
+        answer += "HTTP/1.1 200 \n";
     }
 
-    answer+="Server: DellvinConnect";
+    answer += "Server: DellvinConnect\n";
     time_t seconds = time(NULL);
-    tm* timeinfo = localtime(&seconds);
-    answer+="Date:";
-    answer+=asctime(timeinfo);
-    if(!errorFlag)
-        answer+=data;
+    tm *timeinfo = localtime(&seconds);
+    answer += "Date:";
+    answer += asctime(timeinfo);
+
+    answer += "{context:{result: \""+data+"\"}}";
     return answer;
 }
 

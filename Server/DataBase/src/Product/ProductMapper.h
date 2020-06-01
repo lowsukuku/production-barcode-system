@@ -22,7 +22,7 @@ public:
 
     bool deleteProductByDeviceId(uint64_t id);
 
-    void addModel(const std::string& modelName);
+    std::string addModel(const std::string& modelName);
 
     void removeModel(const std::string & modelName);
 
