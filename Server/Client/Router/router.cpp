@@ -6,13 +6,16 @@
 
 std::string Router::getAnswer(HttpRequest &request) {
     std::string answer;
-    if(request.method=="AddDevice") answer = addDevice(request.data);
-    else if(request.method=="DeleteDevice") answer = deleteDevice(request.data);
+    if(request.method=="DeleteDevice") answer = deleteDevice(request.data);
     else if(request.method=="AddModel") answer = createModel(request.data);
-//    else if(request.method=="checkIdProduct") answer = checkIdProduct(request.rawRequest);
     else if(request.method=="GetDeviceById") answer = getDevicesByID(request.data);
     else if(request.method=="DeleteModel") answer = deleteModel(request.data);
     else if(request.method=="GetAllModels") answer = getModels();
+    else if(request.method=="GetAllModelsDetailed") answer = getAllModelsDetailed();
+    else if(request.method=="allDevice") answer=getAllDevices();
+    else if(request.method=="devicesByModel") answer=getDevicesByModel(request.data);
+    else if(request.method=="getDeviseById") answer=getDevicesByID(request.data);
+    else if(request.method=="devicesIdByModel") answer=getDevicesIdByModel(request.data);
     else{
         answer ="COMMAND_ERROR";
         std::cerr<<"Undifined command: "<<request.method<<std::endl;
@@ -20,8 +23,44 @@ std::string Router::getAnswer(HttpRequest &request) {
     return answer;
 }
 
-std::string Router::addDevice(std::string &request) {
-    if(postRequestHandler.addToDB(request))return "OK";
+std::string Router::getDevicesIdByModel(std::string &request) {
+    if(request.find("model=")==-1)return "ARGUMENT_ERROR";
+    uint16_t pos=strlen("model=");
+    std::string model;
+    for(;request[pos]!='&';++pos){
+        model.push_back(request[pos]);
+    }
+    return getRequestHandler.deviceIdByModel(model);
+}
+
+std::string Router::getDevicesByModel(std::string &request) {
+    uint16_t pos=strlen("model=");
+    std::string model;
+    for(;pos<request.size();++pos)
+        model.push_back(request[pos]);
+    return getRequestHandler.deviceByModel(model);
+}
+
+std::string Router::getAllDevices() {
+    return getRequestHandler.AllDevices();
+}
+
+
+std::string Router::getAllModelsDetailed() {
+    return getRequestHandler.getModDet();
+}
+
+std::string Router::addDevice(std::string &request, uint64_t id) {
+    int16_t pos= request.find("modelName");
+    if(pos==-1)return 0;
+    pos+=strlen("modelName':'");
+    std::string model_name;
+
+    while(request[pos]!='"'){
+        model_name+=request[pos];
+        pos++;
+    }
+    if(postRequestHandler.addToDB(id, model_name))return std::to_string(id);
     return "ERROR";
 }
 
@@ -58,22 +97,16 @@ std::string Router::deleteModel(std::string &request) {
         s.push_back(request[pos]);
         pos++;
     }
-    postRequestHandler.removeMod(s);
-    return "OK";
+
+    return postRequestHandler.removeMod(s);
 }
 
 std::string Router::getModels() {
     return getRequestHandler.getAllModels();
 }
 
-std::string Router::checkIdProduct(std::string data) {
-    if(data.find("id=")==-1)return "ARGUMENT_ERROR";
-    uint16_t pos=strlen("id=");
-    std::string s;
-    for(;pos<data.size();++pos){
-        s.push_back(data[pos]);
-    }
-    return getRequestHandler.getJsonProductByDeviceId(std::stof(s));
+std::string Router::checkIdProduct(std::string modelName, uint64_t id) {
+    return postRequestHandler.checkProductID(id, modelName);
 }
 
 std::string Router::signInUser(UserData info) {
@@ -89,11 +122,21 @@ std::string Router::signInScaner(uint64_t apiKey) {
 }
 
 std::string Router::getDevicesByID(string &request) {
-    if(request.find("id=")==-1)return "ARGUMENT_ERROR";
-    uint16_t pos=strlen("id=");
+
+    int16_t pos=request.find("&id=");
+    if(pos==-1)return "ARGUMENT_ERROR";
+    pos+=strlen("&id=");
     std::string s;
     for(;pos<request.size();++pos){
         s.push_back(request[pos]);
     }
-    return getRequestHandler.getJsonProductByDeviceId(std::stoll(s));
+    if(request.find("model=")==-1)return "ARGUMENT_ERROR";
+    pos=strlen("model=");
+    std::string model;
+    for(;request[pos]!='&';++pos){
+        model.push_back(request[pos]);
+    }
+
+    return getRequestHandler.getJsonProductByDeviceId(std::stoll(s), model);
 }
+

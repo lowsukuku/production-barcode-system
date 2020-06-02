@@ -1,34 +1,50 @@
 #include "ProductMapper.h"
-
+#include <ctime>
+#include <cstring>
 
 ProductMapper::ProductMapper() {
     mydb = new DBMySQL();
 }
 
 
-err_code ProductMapper::addProduct(Product &product) {
-    std::string data = std::to_string(product.getDeviceId()) + "," +
-                     std::to_string(product.getModelId()) + "," +
-                     std::to_string(product.getCreationUtc()) + "," +
-                     std::to_string(product.getSerialNumber()) + "," +
-                     std::to_string(product.getMountingUtc()) + "," +
-                     std::to_string(product.getTuningUtc()) + "," +
-                     std::to_string(product.getQuailityCheckUtc()) + "," +
-                     std::to_string(product.getShipmentUtc()) + "," +
-                     std::to_string(product.getMountingPassed()) + "," +
-                     std::to_string(product.getTuningPassed()) + "," +
-                     std::to_string(product.getQualityCheckPassed()) + "," +
-                     std::to_string(product.getShipmentPassed());
+err_code ProductMapper::addProduct(uint64_t id, std::string &modelName) {
+    const time_t timer = time(NULL);
+    localtime(&timer);
+    std::string data = "'" + modelName + "', " + std::to_string(id) + "," + std::to_string(timer) + ",0,0,0,0,0,0,0,0";
 
-    std::string insertQuery = "INSERT INTO test(deviceId, modelId, creationUtc,"
-                              "serialNumber, mountingUtc, tuningUtc,"
+    std::string insertQuery = "INSERT INTO devices(model_name, deviceId,  creationUtc,"
+                              " mountingUtc, tuningUtc,"
                               "quailityCheckUtc, shipmentUtc, mountingPassed,"
                               "tuningPassed, qualityCheckPassed, shipmentPassed)"
                               "VALUES (" + data + ")";
 
-    if(mydb->execute(insertQuery))return OK;
+    mydb->execute(insertQuery);
 
-    return WRONG_LOGIN;
+//    update  models set amount =amount+1 where id=7;
+    std::string command = "UPDATE models SET amount = amount+1 WHERE modelname = '" + modelName + "'";
+    mydb->execute(command);
+
+    return OK;
+}
+
+std::string ProductMapper::addModel(const std::string &modelName) {
+    std::string query = "CREATE TABLE " + modelName + " (id INT AUTO_INCREMENT PRIMARY KEY)";
+    if (!mydb->execute(query))return "TABLE_EXIST_ERROR";
+    const time_t timer = time(NULL);
+    localtime(&timer);
+    query = "INSERT INTO models (modelname,creationUTC,  amount,  amountOfMountedProduct, amountOfTuningProduct, amountOfQualityCheckProduct, amountOfShipmentProduct)"
+            "VALUES (\"" + modelName + "\", " + std::to_string(timer) + ", 0, 0, 0, 0, 0)";
+    mydb->execute(query);
+    return "OK";
+}
+
+std::string ProductMapper::removeModel(const string &modelName) {
+    std::string query = "DROP TABLE " + modelName;
+    if (!mydb->execute(query)) return "TABLE_DOES_NOT_EXIST_ERROR";
+
+    query = "DELETE FROM models WHERE modelname = '" + modelName + "'";
+    mydb->execute(query);
+    return "OK";
 }
 
 bool ProductMapper::deleteProductByDeviceId(uint64_t id) {
@@ -36,48 +52,51 @@ bool ProductMapper::deleteProductByDeviceId(uint64_t id) {
     return mydb->execute(query);
 }
 
-Product ProductMapper::getProductByDeviceId(ULLInt_t deviceId)
-{
-    std::string query = "SELECT * FROM test WHERE deviceId=" + std::to_string(deviceId);
+std::string ProductMapper::getProductByDeviceId(ULLInt_t deviceId, std::string &modelName) {
+    std::string query =
+            "SELECT * FROM devices WHERE deviceId=" + std::to_string(deviceId) + " AND model_name = '" + modelName +
+            "'";
     mydb->executeQuery(query);
     mydb->next();
+    std::string s, json;
 
-    Product prod;
-    prod.setDeviceId(mydb->getInt(2));
-    prod.setModelId(mydb->getInt(3));
-    prod.setCreationUtc(mydb->getInt(4));
-    prod.setSerialNumber(mydb->getInt(5));
-    prod.setMountingUtc(mydb->getInt(6));
-    prod.setTuningUtc(mydb->getInt(7));
-    prod.setQuailityCheckUtc(mydb->getInt(8));
-    prod.setShipmentUtc(mydb->getInt(9));
-    prod.setMountingPassed(mydb->getInt(10));
-    prod.setTuningPassed(mydb->getInt(11));
-    prod.setQualityCheckPassed(mydb->getInt(12));
-    prod.setShipmentPassed(mydb->getInt(13));
+    s = "model_name";
+    json += '{';
+    json += "modelname : '";
+    uint16_t checker = json.size();
+    try {
+        json += mydb->getString(s) + "', ";
+    } catch (std::exception &ex) {
+        return "DEVICE_NOT_FOUND_ERROR";
+    }
 
-    return prod;
-}
+    if (json.size() == checker)
+        return "DEVICE_NOT_FOUND_ERROR";
+    json += "creationUtc : '";
+    json += std::to_string(mydb->getInt(3)) + ", ";
+    json += "amount : '";
+    json += std::to_string(mydb->getInt(4)) + ", ";
+    json += "amountOfMountedProduct : '";
+    json += std::to_string(mydb->getInt(5)) + ", ";
+    json += "amountOfMountedProduct : '";
+    json += std::to_string(mydb->getInt(5)) + ", ";
+    json += "amountOfQualityCheckProduct : '";
+    json += std::to_string(mydb->getInt(6)) + ", ";
+    json += "amountOfShipmentProduct : '";
+    json += std::to_string(mydb->getInt(7)) + ", ";
+    json += "}";
 
 
-std::string ProductMapper::addModel(const std::string& modelName) {
-    std::string query = "CREATE TABLE " + modelName+" (id INT AUTO_INCREMENT PRIMARY KEY)";
-    if(!mydb->execute(query))return "TABLE_EXIST_ERROR";
-    return "OK";
-}
-
-void ProductMapper::removeModel(const string &modelName) {
-    std::string query = "DROP TABLE " + modelName;
-    mydb->execute(query);
+    return json;
 }
 
 std::string ProductMapper::getModels() {
-    std::string query = "SHOW TABLES";
+    std::string query = "SELECT * FROM models";
     mydb->executeQuery(query);
     std::vector<std::string> v;
-    std::string s="Tables_in_Scaner";
+    std::string s = "modelname";
 
-    while(mydb->next()){
+    while (mydb->next()) {
         v.push_back(mydb->getString(s));
     }
     return modelsToJson(v);
@@ -85,10 +104,157 @@ std::string ProductMapper::getModels() {
 
 std::string ProductMapper::modelsToJson(std::vector<std::string> &v) {
     std::string json;
-    json+="{[";
-    for(const auto &model:v){
-        json+=model+',';
+    json += "{[";
+    for (const auto &model:v) {
+        json += model + ',';
     }
-    json+="]}";
+    json += "]}";
+    return json;
+}
+
+//select * from devices where deviceid=1 and model_name = 'model_1';
+std::string ProductMapper::checkID(uint64_t id, const std::string &modelName) {
+    std::string command =
+            "SELECT * FROM devices WHERE deviceid = " + std::to_string(id) + " and model_name = '" + modelName + "'";
+    mydb->executeQuery(command);
+    std::string checker;
+
+    std::string s = "model_name";
+    mydb->next();
+    try {
+        checker = mydb->getString(s);
+    } catch (std::exception &ex) {
+        return "OK";
+    }
+    return "FOUND";
+}
+
+std::string ProductMapper::getModelsDet() {
+
+    std::string command = "SELECT * FROM models";
+    mydb->executeQuery(command);
+
+    std::string json = "[";
+    std::string s;
+    while (mydb->next()) {
+        json += "{";
+        s = "modelname";
+        json += "modelname : '";
+        json += mydb->getString(s) + "', ";
+        json += "creationUtc : '";
+        json += std::to_string(mydb->getInt(3)) + ", ";
+        json += "amount : '";
+        json += std::to_string(mydb->getInt(4)) + ", ";
+        json += "amountOfMountedProduct : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "amountOfMountedProduct : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "amountOfQualityCheckProduct : '";
+        json += std::to_string(mydb->getInt(6)) + ", ";
+        json += "amountOfShipmentProduct : '";
+        json += std::to_string(mydb->getInt(7)) + ", ";
+        json += "}, ";
+    }
+    json += "]";
+    return json;
+}
+
+std::string ProductMapper::getAllDevices() {
+    std::string command = "SELECT * FROM devices";
+    mydb->executeQuery(command);
+    std::string json = "[";
+    std::string s;
+    while (mydb->next()) {
+        json += "{";
+        s = "model_name";
+        json += "model_name : '";
+        json += mydb->getString(s) + "', ";
+        json += "deviceId : '";
+        json += std::to_string(mydb->getInt(3)) + ", ";
+        json += "creationUtc : '";
+        json += std::to_string(mydb->getInt(4)) + ", ";
+        json += "tuningUtc : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "quailityCheckUtc : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "shipmentUtc : '";
+        json += std::to_string(mydb->getInt(6)) + ", ";
+        json += "mountingPassed : '";
+        json += std::to_string(mydb->getInt(7)) + ", ";
+        json += "tuningPassed : '";
+        json += std::to_string(mydb->getInt(8)) + ", ";
+        json += "qualityCheckPassed : '";
+        json += std::to_string(mydb->getInt(9)) + ", ";
+        json += "shipmentPassed : '";
+        json += std::to_string(mydb->getInt(10)) + ", ";
+        json += "}, ";
+    }
+    json += "]";
+    return json;
+}
+
+std::string ProductMapper::getDevicesByModel(std::string &model) {
+//    select * from devices where model_name='model_1';
+
+    std::string comand = "SELECT * FROM devices WHERE model_name = '" + model + "'";
+    mydb->executeQuery(comand);
+
+
+    std::string json = "[";
+
+    std::string s;
+    while (mydb->next()) {
+        json += "{";
+        s = "model_name";
+        json += "model_name : '";
+        json += mydb->getString(s) + "', ";
+        json += "deviceId : '";
+        json += std::to_string(mydb->getInt(3)) + ", ";
+        json += "creationUtc : '";
+        json += std::to_string(mydb->getInt(4)) + ", ";
+        json += "tuningUtc : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "quailityCheckUtc : '";
+        json += std::to_string(mydb->getInt(5)) + ", ";
+        json += "shipmentUtc : '";
+        json += std::to_string(mydb->getInt(6)) + ", ";
+        json += "mountingPassed : '";
+        json += std::to_string(mydb->getInt(7)) + ", ";
+        json += "tuningPassed : '";
+        json += std::to_string(mydb->getInt(8)) + ", ";
+        json += "qualityCheckPassed : '";
+        json += std::to_string(mydb->getInt(9)) + ", ";
+        json += "shipmentPassed : '";
+        json += std::to_string(mydb->getInt(10)) + ", ";
+        json += "}, ";
+    }
+    json += "]";
+    if (json.size() == 2)
+        return "MODEL_NOT_FOUND_ERROR";
+    return json;
+}
+
+std::string ProductMapper::getDevicesIdByModel(string &model) {
+    std::string comand = "SELECT * FROM devices WHERE model_name = '" + model + "'";
+    mydb->executeQuery(comand);
+
+
+    std::string json = "[";
+
+    std::string s;
+    try{
+        while (mydb->next()) {
+            json += "{";
+            json += "deviceId : '";
+            json += std::to_string(mydb->getInt(3)) + ", ";
+
+            json += "},";
+        }
+    } catch (std::exception &ex) {
+            return "MODEL_NOT_FOUND_ERROR";
+    }
+
+    json += "]";
+
     return json;
 }

@@ -4,12 +4,19 @@
 
 #include "user.h"
 #include <cstdlib>
+#include<time.h>
 
 
 std::string UserServer::handleClient(HttpRequest &requestParsed) {
-    bool flag=UserServer::signIn( requestParsed.rawRequest);
-    if(!flag) return AUTHENTICATION_ERROR;
+    if(requestParsed.typeRequest==POST){
+        bool flag=UserServer::signIn( requestParsed.rawRequest);
+        if(!flag) return AUTHENTICATION_ERROR;
+    }
     if(requestParsed.method=="signin") return "OK";
+    if(requestParsed.method=="AddDevice") {
+        uint64_t id=generateID(requestParsed.data);
+        return rout.addDevice(requestParsed.data, id);
+    }
     return rout.getAnswer(requestParsed);
 }
 
@@ -21,15 +28,26 @@ bool UserServer::signUp(std::string &request) {
     return false;
 }
 
-uint64_t UserServer::generateID() {
+uint64_t UserServer::generateID(std::string &model) {
     uint32_t testID;
+    int16_t pos= model.find("modelName");
+    if(pos==-1)return 0;
+    pos+=strlen("modelName':'");
+    std::string model_name;
+
+    while(model[pos]!='"'){
+        model_name+=model[pos];
+        pos++;
+    }
+    srand(time(NULL));
     do{
-        testID=(uint32_t)std::rand();
-    }while(!isIdUsed(testID));
+        testID=(uint32_t)rand();
+    }while(!isIdUsed(model_name,testID));
     return testID;
 }
 
-bool UserServer::isIdUsed(uint64_t id) {
+bool UserServer::isIdUsed(std::string modelName, uint64_t id) {
+    if(rout.checkIdProduct(modelName, id)=="OK")return true;
     return false;
 }
 

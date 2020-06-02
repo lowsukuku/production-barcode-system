@@ -7,10 +7,9 @@ IPost::IPost() : ProductMapper()
 
 }
 
-bool IPost::addToDB(const std::string& sJson)
+bool IPost::addToDB(uint64_t id, std::string &modelName)
 {
-    auto prod = this->jsonToProduct(sJson);
-    return this->addProduct(prod) == OK;
+    return this->addProduct(id, modelName) == OK;
 }
 
 Product IPost::jsonToProduct(const std::string& sJson)
@@ -52,8 +51,8 @@ std::string IPost::addMod(std::string modelName) {
     return this->addModel(std::move(modelName));
 }
 
-void IPost::removeMod(std::string modelName) {
-    this->removeModel(std::move(modelName));
+std::string IPost::removeMod(std::string modelName) {
+    return this->removeModel(std::move(modelName));
 }
 
 std::string IPost::signIn(string &username, string &password) {
@@ -62,4 +61,8 @@ std::string IPost::signIn(string &username, string &password) {
     u.setPassword(password);
     UserMapper maper;
     return maper.signInUser(u);
+}
+
+std::string IPost::checkProductID(uint64_t id, std::string modelName) {
+    return checkID(id, modelName);
 }

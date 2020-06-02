@@ -17,10 +17,10 @@ protected:
 
     bool signUp(std::string &request);
 
-    uint64_t generateID();
+    uint64_t generateID(std::string &model);
 
 private:
-    bool isIdUsed(uint64_t id);
+    bool isIdUsed(std::string modelName, uint64_t id);
 
     UserData getSingInData(std::string data);
 };

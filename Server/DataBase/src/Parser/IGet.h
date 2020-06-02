@@ -15,12 +15,19 @@ class IGet : private ProductMapper
 public:
     explicit IGet();
 
-    std::string getJsonProductByDeviceId(ULLInt_t deviceId);
+    std::string getJsonProductByDeviceId(ULLInt_t deviceId, std::string &modelName);
 
     std::string ProductToJson(Product& prod);
 
     std::string getAllModels();
 
+    std::string AllDevices();
+
+    std::string getModDet();
+
+    std::string deviceByModel(std::string &model);
+
+    std::string deviceIdByModel(std::string &model);
 };
 
 

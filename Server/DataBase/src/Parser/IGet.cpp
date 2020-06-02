@@ -6,11 +6,9 @@ IGet::IGet() : ProductMapper()
 
 }
 
-std::string IGet::getJsonProductByDeviceId(ULLInt_t deviceId)
+std::string IGet::getJsonProductByDeviceId(ULLInt_t deviceId, std::string &modelName)
 {
-    auto prod = this->getProductByDeviceId(deviceId);
-
-    return this->ProductToJson(prod);
+    return  this->getProductByDeviceId(deviceId, modelName);
 }
 
 
@@ -43,6 +41,21 @@ std::string IGet::getAllModels() {
     return this->getModels();
 }
 
+std::string IGet::getModDet() {
+    return getModelsDet();
+}
+
+std::string IGet::AllDevices() {
+    return getAllDevices();
+}
+
+std::string IGet::deviceByModel(string &model) {
+    return getDevicesByModel(model);
+}
+
+std::string IGet::deviceIdByModel(string &model) {
+    return getDevicesIdByModel(model);
+}
 
 
 

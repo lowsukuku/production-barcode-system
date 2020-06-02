@@ -16,7 +16,7 @@ class IPost : private ProductMapper
 public:
     explicit IPost();
 
-    bool addToDB(const std::string& sJson);
+    bool addToDB(uint64_t id, std::string &modelName);
 
     Product jsonToProduct(const std::string& sJson);
 
@@ -24,9 +24,11 @@ public:
 
     std::string addMod(std::string modelName);
 
-    void removeMod(std::string modelName);
+    std::string removeMod(std::string modelName);
 
     std::string signIn(std::string &username, std::string &password);
+
+    std::string checkProductID(uint64_t id, std::string modelName);
 };
 
 

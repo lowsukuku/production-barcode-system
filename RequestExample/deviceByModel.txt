@@ -1,0 +1,4 @@
+GET /?contextType=devicesByModel&model=mode1l_1 HTTP/1.0
+Host: 127.0.0.1
+Accept: */*
+Connection: close

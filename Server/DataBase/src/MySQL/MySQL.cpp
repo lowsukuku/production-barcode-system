@@ -28,6 +28,7 @@ bool DBMySQL::execute(std::string& query)
         sql::SQLString q(query);
         flag=stmt->execute(q);
     } catch (std::exception &e) {
+
         return false;
     }
     return true;
