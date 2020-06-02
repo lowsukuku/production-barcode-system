@@ -1,0 +1,4 @@
+GET /?contextType=getDeviseById&model=model_2&id=1 HTTP/1.0
+Host: 127.0.0.1
+Accept: */*
+Connection: close

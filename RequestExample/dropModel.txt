@@ -1,0 +1,5 @@
+POST / HTTP/1.1                                                                                                                                                                                                                              Content-Type: application
+json                                                                                                                                                                                                               Content-Length
+135
+Host: 127.0.0.1:8000   
+{"clientType":"User","client":{"login":"ivan","password":"petrovich","contextType":"DeleteModel","context":{"modelName":"model_4"}}}

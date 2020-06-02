@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/cmake-build-debug/
+/.idea/
+/sertificate.hpp
+/cmake-build-release/
